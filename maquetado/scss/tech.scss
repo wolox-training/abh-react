@@ -1,0 +1,58 @@
+@import 'variables';
+@import 'margins';
+
+$tech-height: 390px;
+$tech-width: 270px;
+$border-radius: 5px;
+$tech-image-size: 180px;
+$position: -30px;
+
+.text-container {
+  margin: 20px 20px;
+}
+
+.tech-box {
+  background-color: $green;
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  height: $tech-height;
+  position: relative;
+  width: $tech-width;
+  
+  &::before {
+    border: 1px solid #BED23C;
+    border-radius: $border-radius;
+    content: '';
+    height: $tech-height;
+    left: $position;
+    margin: 15px 15px;
+    position: absolute;
+    top: $position;
+    width: $tech-width;
+  }
+}
+
+.tech-image{
+  width: $tech-image-size;
+  height: $tech-image-size; 
+  align-self: center;
+}
+
+.tech-info {
+  padding: 0 50px;
+}
+
+.text-center {
+  display: block;
+  text-align: center;
+}
+
+.title-medium ,
+.title-medium-bold {
+  font-size: $text-medium;
+}
+
+.title-medium-bold {
+  font-weight: bold;
+}
