@@ -1,0 +1,24 @@
+@import 'colors';
+@import 'variables';
+
+.title {
+  align-items: center;
+  color: $black;
+  display: flex;
+  font-size: $text-big;
+  padding-left: 51px;
+  position: relative;
+  height: $title-decoration-height;
+
+  &::before {
+    background: (url(assets/triangle.svg));
+    background-repeat: no-repeat;
+    content: '';
+    height: $title-decoration-height;
+    left: 0;
+    position: absolute;
+    width:  $title-decoration-width;
+    z-index: -1;
+  }
+
+}
