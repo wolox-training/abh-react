@@ -33,6 +33,7 @@
   padding-top: 20px;
   height: $tech-image-size;
   width: $tech-image-size;
+  object-fit: contain;
 }
 
 .tech-info {
