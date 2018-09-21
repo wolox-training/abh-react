@@ -217,11 +217,23 @@ li {
   font-size: 24px; }
 
 .footer {
+  align-items: center;
   background-color: #00ADEE;
   display: flex;
-  height: auto;
-  justify-content: center;
-  width: 100%; }
+  flex-direction: column; }
+
+.footer-big-text {
+  color: #FFF;
+  font-size: 24px;
+  font-weight: 100;
+  margin: 40px 0 10px 0; }
+
+.text-copyright {
+  align-self: flex-end;
+  color: #FFF;
+  font-size: 12px;
+  font-weight: 100;
+  margin: 20px 30px; }
 
 body {
   font-family: "Roboto", sans-serif; }
