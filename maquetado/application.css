@@ -180,12 +180,41 @@ li {
   font-weight: bold; }
 
 .card-container {
-  margin: 30px 50px; }
+  margin: 100px 50px; }
 
 .techs-container {
   display: flex;
   flex-flow: row wrap;
   margin: 30px 140px; }
+
+.nav {
+  height: 0;
+  left: 0;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  z-index: 9999; }
+
+.navbar {
+  background-color: white;
+  border-bottom: 1px lightgray solid;
+  box-shadow: 0 2px lightgray;
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%; }
+
+.logo {
+  padding: 20px; }
+
+.logo-img {
+  height: 30px; }
+
+.page-title {
+  align-self: center;
+  padding: 20px;
+  font-size: 24px; }
 
 body {
   font-family: "Roboto", sans-serif; }
