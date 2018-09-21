@@ -142,16 +142,21 @@ li {
   position: relative;
   width: 280px; }
   .tech-box::before {
-    border: 1px solid #BED23C;
+    border: 2px solid #bed23c;
     border-radius: 5px;
-    content: '';
+    content: "";
     height: 100%;
     left: -30px;
     margin: 15px 15px;
     position: absolute;
     top: -30px;
+    transition: top 0.2s linear, left 0.2s linear;
     width: 280px;
     z-index: -1; }
+  .tech-box:hover::before {
+    left: 0;
+    top: 0;
+    transition: top 0.2s linear, left 0.2s linear; }
 
 .tech-image {
   align-self: center;
