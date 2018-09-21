@@ -7,9 +7,10 @@
   color: $black;
   display: flex;
   font-size: $text-big;
+  height: $title-decoration-height;
+  margin-left: 80px;
   padding-left: 51px;
   position: relative;
-  height: $title-decoration-height;
 
   &::before {
     background: (url(assets/triangle.svg));
@@ -21,5 +22,4 @@
     width:  $title-decoration-width;
     z-index: -1;
   }
-
 }

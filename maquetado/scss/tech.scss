@@ -1,22 +1,17 @@
 @import 'variables';
 @import 'margins';
 
-$tech-height: 390px;
-$tech-width: 270px;
 $border-radius: 5px;
-$tech-image-size: 180px;
 $position: -30px;
-
-.text-container {
-  margin: 20px 20px;
-}
+$tech-image-size: 180px;
+$tech-width: 280px;
 
 .tech-box {
   background-color: $green;
   border-radius: $border-radius;
   display: flex;
   flex-direction: column;
-  height: $tech-height;
+  margin: 20px 20px;
   position: relative;
   width: $tech-width;
   
@@ -24,23 +19,26 @@ $position: -30px;
     border: 1px solid #BED23C;
     border-radius: $border-radius;
     content: '';
-    height: $tech-height;
+    height: 100%;
     left: $position;
     margin: 15px 15px;
     position: absolute;
     top: $position;
     width: $tech-width;
+    z-index: -1;
   }
 }
 
 .tech-image{
-  width: $tech-image-size;
-  height: $tech-image-size; 
   align-self: center;
+  height: $tech-image-size; 
+  padding-top: 20px;
+  width: $tech-image-size;
 }
 
 .tech-info {
-  padding: 0 50px;
+  margin: 20px 0 40px 0;
+  padding: 0 40px;
 }
 
 .text-center {
