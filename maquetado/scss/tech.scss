@@ -1,0 +1,51 @@
+@import 'variables';
+@import 'margins';
+
+.tech-container {
+  margin: 20px 20px;
+}
+
+.tech-box {
+  background-color: $green;
+  border-radius: $tech-border-radius;
+  display: flex;
+  flex-direction: column;
+  height: $tech-height;
+  position: relative;
+  width: $tech-width;
+  
+  &::before {
+    border: 1px solid $green;
+    border-radius: $tech-border-radius;
+    content: '';
+    height: $tech-height;
+    left: $tech-back-position;
+    margin: 15px 15px;
+    position: absolute;
+    top: $tech-back-position;
+    width: $tech-width;
+  }
+}
+
+.tech-image {
+  align-self: center;
+  width: $tech-image-size;
+}
+
+.tech-info {
+  padding: 0 50px;
+}
+
+.text-center {
+  display: block;
+  text-align: center;
+}
+
+.title-medium,
+.title-medium-bold {
+  font-size: $text-medium;
+}
+
+.title-medium-bold {
+  font-weight: bold;
+}
