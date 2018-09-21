@@ -1,15 +1,13 @@
 @import "variables";
 @import "margins";
 
-$border-radius: 5px;
-$position: -30px;
-$tech-image-size: 180px;
-$tech-width: 280px;
-$transition: top 0.2s linear, left 0.2s linear;
+.tech-container {
+  padding: 20px 20px;
+}
 
 .tech-box {
   background-color: $green;
-  border-radius: $border-radius;
+  border-radius: $tech-border-radius;
   display: flex;
   flex-direction: column;
   margin: 20px 20px;
@@ -17,15 +15,15 @@ $transition: top 0.2s linear, left 0.2s linear;
   width: $tech-width;
 
   &::before {
-    border: 2px solid #bed23c;
-    border-radius: $border-radius;
-    content: "";
+    border: 1px solid $green;
+    border-radius: $tech-border-radius;
+    content: '';
     height: 100%;
-    left: $position;
+    left: $tech-back-position;
     margin: 15px 15px;
     position: absolute;
-    top: $position;
-    transition: $transition;
+    top: $tech-back-position;
+    transition: $tech-transition;
     width: $tech-width;
     z-index: -1;
   }
@@ -33,15 +31,16 @@ $transition: top 0.2s linear, left 0.2s linear;
   &:hover::before {
     left: 0;
     top: 0;
-    transition: $transition;
+    transition: $tech-transition;
   }
 }
 
 .tech-image {
   align-self: center;
-  height: $tech-image-size;
   padding-top: 20px;
+  height: $tech-image-size;
   width: $tech-image-size;
+  object-fit: contain;
 }
 
 .tech-info {

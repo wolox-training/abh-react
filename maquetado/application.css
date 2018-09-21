@@ -109,7 +109,7 @@ li {
   padding-left: 51px;
   position: relative; }
   .title::before {
-    background: url(assets/triangle.svg);
+    background-image: url(assets/triangle.svg);
     background-repeat: no-repeat;
     content: '';
     height: 90px;
@@ -133,6 +133,9 @@ li {
 .m-top-2 {
   margin-top: 20px; }
 
+.tech-container {
+  padding: 20px 20px; }
+
 .tech-box {
   background-color: #BED23C;
   border-radius: 5px;
@@ -140,18 +143,18 @@ li {
   flex-direction: column;
   margin: 20px 20px;
   position: relative;
-  width: 280px; }
+  width: 270px; }
   .tech-box::before {
-    border: 2px solid #bed23c;
+    border: 1px solid #BED23C;
     border-radius: 5px;
-    content: "";
+    content: '';
     height: 100%;
     left: -30px;
     margin: 15px 15px;
     position: absolute;
     top: -30px;
     transition: top 0.2s linear, left 0.2s linear;
-    width: 280px;
+    width: 270px;
     z-index: -1; }
   .tech-box:hover::before {
     left: 0;
@@ -160,9 +163,10 @@ li {
 
 .tech-image {
   align-self: center;
-  height: 180px;
   padding-top: 20px;
-  width: 180px; }
+  height: 180px;
+  width: 180px;
+  object-fit: contain; }
 
 .tech-info {
   margin: 20px 0 40px 0;
@@ -184,7 +188,7 @@ li {
 
 .techs-container {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: wrap;
   margin: 30px 140px; }
 
 body {
