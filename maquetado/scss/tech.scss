@@ -1,19 +1,13 @@
 @import 'variables';
 @import 'margins';
 
-$tech-height: 390px;
-$tech-width: 270px;
-$border-radius: 5px;
-$tech-image-size: 180px;
-$position: -30px;
-
-.text-container {
+.tech-container {
   margin: 20px 20px;
 }
 
 .tech-box {
   background-color: $green;
-  border-radius: $border-radius;
+  border-radius: $tech-border-radius;
   display: flex;
   flex-direction: column;
   height: $tech-height;
@@ -21,22 +15,21 @@ $position: -30px;
   width: $tech-width;
   
   &::before {
-    border: 1px solid #BED23C;
-    border-radius: $border-radius;
+    border: 1px solid $green;
+    border-radius: $tech-border-radius;
     content: '';
     height: $tech-height;
-    left: $position;
+    left: $tech-back-position;
     margin: 15px 15px;
     position: absolute;
-    top: $position;
+    top: $tech-back-position;
     width: $tech-width;
   }
 }
 
 .tech-image{
-  width: $tech-image-size;
-  height: $tech-image-size; 
   align-self: center;
+  width: $tech-image-size;
 }
 
 .tech-info {
@@ -48,7 +41,7 @@ $position: -30px;
   text-align: center;
 }
 
-.title-medium ,
+.title-medium,
 .title-medium-bold {
   font-size: $text-medium;
 }
