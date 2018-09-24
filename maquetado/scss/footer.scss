@@ -2,23 +2,23 @@
 @import 'variables';
 
 .footer {
-  align-items: center;
-  background-color: $blue;
-  display: flex;
-  flex-direction: column;
+	align-items: center;
+	background-color: $blue;
+	display: flex;
+	flex-direction: column;
 }
 
 .footer-big-text {
-  color: $white;
-  font-size: $text-big;
-  font-weight: 100;
-  margin: 40px 0 10px 0;
+	color: $white;
+	font-size: $text-big;
+	font-weight: 100;
+	margin: 40px 0 10px 0;
 }
 
 .text-copyright {
-  align-self: flex-end;
-  color: $white;
-  font-size: $text-small;
-  font-weight: 100;
-  margin: 20px 30px;
+	align-self: flex-end;
+	color: $white;
+	font-size: $text-small;
+	font-weight: 100;
+	margin: 20px 30px;
 }

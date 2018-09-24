@@ -2,62 +2,62 @@
 @import 'margins';
 
 .tech-container {
-  padding: 20px;
+	padding: 20px;
 }
 
 .tech-box {
-  background-color: $green;
-  border-radius: $tech-border-radius;
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-  position: relative;
-  width: $tech-width;
+	background-color: $green;
+	border-radius: $tech-border-radius;
+	display: flex;
+	flex-direction: column;
+	margin: 20px;
+	position: relative;
+	width: $tech-width;
 
-  &::before {
-    border: 1px solid $green;
-    border-radius: $tech-border-radius;
-    content: '';
-    height: 100%;
-    left: -30px;
-    margin: 15px;
-    position: absolute;
-    top: -30px;
-    transition: $tech-transition;
-    width: $tech-width;
-    z-index: -1;
-  }
+	&::before {
+		border: 1px solid $green;
+		border-radius: $tech-border-radius;
+		content: '';
+		height: 100%;
+		left: -30px;
+		margin: 15px;
+		position: absolute;
+		top: -30px;
+		transition: $tech-transition;
+		width: $tech-width;
+		z-index: -1;
+	}
 
-  &:hover::before {
-    left: 0;
-    top: 0;
-    transition: $tech-transition;
-  }
+	&:hover::before {
+		left: 0;
+		top: 0;
+		transition: $tech-transition;
+	}
 }
 
 .tech-image {
-  align-self: center;
-  height: $tech-image-size;
-  object-fit: contain;
-  padding-top: 20px;
-  width: $tech-image-size;
+	align-self: center;
+	height: $tech-image-size;
+	object-fit: contain;
+	padding-top: 20px;
+	width: $tech-image-size;
 }
 
 .tech-info {
-  margin: 20px 0 40px 0;
-  padding: 0 40px;
+	margin: 20px 0 40px 0;
+	padding: 0 40px;
 }
 
 .text-center {
-  display: block;
-  text-align: center;
+	display: block;
+	text-align: center;
 }
 
 .title-medium,
 .title-medium-bold {
-  font-size: $text-medium;
+	font-size: $text-medium;
 }
 
 .title-medium-bold {
-  font-weight: bold;
+	font-weight: bold;
 }

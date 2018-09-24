@@ -3,23 +3,23 @@
 @import 'margins';
 
 .title {
-  align-items: center;
-  color: $black;
-  display: flex;
-  font-size: $text-big;
-  height: $title-decoration-height;
-  margin-left: 80px;
-  padding-left: 51px;
-  position: relative;
+	align-items: center;
+	color: $black;
+	display: flex;
+	font-size: $text-big;
+	height: $title-decoration-height;
+	margin-left: 80px;
+	padding-left: 51px;
+	position: relative;
 
-  &::before {
-    background-image: url(assets/triangle.svg);
-    background-repeat: no-repeat;
-    content: '';
-    height: $title-decoration-height;
-    left: 0;
-    position: absolute;
-    width:  $title-decoration-width;
-    z-index: -1;
-  }
+	&::before {
+		background-image: url(assets/triangle.svg);
+		background-repeat: no-repeat;
+		content: '';
+		height: $title-decoration-height;
+		left: 0;
+		position: absolute;
+		width: $title-decoration-width;
+		z-index: -1;
+	}
 }

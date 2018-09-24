@@ -1,4 +1,8 @@
 .DS_STORE
+
+##vs code
+.vscode/
+
 ### Sass ###
 .sass-cache/
 *.css

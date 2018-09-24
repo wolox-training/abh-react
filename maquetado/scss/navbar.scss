@@ -1,24 +1,24 @@
 @import 'variables';
 
 .navbar {
-  background-color: white;
-  box-shadow: 0 3px 3px $light-grey;
-  display: flex;
-  height: $nav-height;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 20px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1;
+	background-color: white;
+	box-shadow: 0 3px 3px $light-grey;
+	display: flex;
+	height: $nav-height;
+	justify-content: space-between;
+	margin: 0 auto;
+	padding: 20px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
 }
 
 .logo-img {
-  height: $nav-logo-height;
+	height: $nav-logo-height;
 }
 
 .page-title {
-  align-self: center;
-  font-size: $text-big;
+	align-self: center;
+	font-size: $text-big;
 }
