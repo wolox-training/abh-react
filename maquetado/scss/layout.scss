@@ -9,3 +9,12 @@
   justify-items: center;
   margin: 30px 200px;
 }
+
+@media only screen and (max-width: 1024px) {
+  .techs-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
