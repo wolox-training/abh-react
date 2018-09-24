@@ -37,10 +37,10 @@
 
 .tech-image {
   align-self: center;
-  padding-top: 20px;
   height: $tech-image-size;
-  width: $tech-image-size;
   object-fit: contain;
+  padding-top: 20px;
+  width: $tech-image-size;
 }
 
 .tech-info {
