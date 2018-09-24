@@ -45,3 +45,18 @@
 .title-medium-bold {
   font-weight: bold;
 }
+
+
+@media only screen and (max-width: 1024px) {
+  .tech-box {
+    border-bottom: 2px solid $green;
+
+    &:first-child {
+      border-right: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
