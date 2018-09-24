@@ -12,9 +12,7 @@
 
 @media only screen and (max-width: 1024px) {
   .techs-container {
-    align-items: center;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
+    grid-template-columns: 1fr;
   }
 }
