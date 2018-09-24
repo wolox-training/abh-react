@@ -6,32 +6,16 @@
 }
 
 .tech-box {
-  background-color: $green;
-  border-radius: $tech-border-radius;
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  position: relative;
+  justify-content: center;
   width: $tech-width;
 
-  &::before {
-    border: 1px solid $green;
-    border-radius: $tech-border-radius;
-    content: '';
+  &:first-child {
+    align-self: center;
+    border-right: 2px solid $green;
+    grid-row: span 2;
     height: 100%;
-    left: -30px;
-    margin: 15px;
-    position: absolute;
-    top: -30px;
-    transition: $tech-transition;
-    width: $tech-width;
-    z-index: -1;
-  }
-
-  &:hover::before {
-    left: 0;
-    top: 0;
-    transition: $tech-transition;
   }
 }
 
@@ -44,8 +28,8 @@
 }
 
 .tech-info {
-  margin: 20px 0 40px 0;
-  padding: 0 40px;
+  margin: 15px 0;
+  padding: 0 31px;
 }
 
 .text-center {
