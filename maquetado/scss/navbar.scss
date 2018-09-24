@@ -1,27 +1,17 @@
 @import 'variables';
 
-.nav {
-  height: 0;
-  left:0;
-  margin: auto;
-  position: fixed;
-  top: 0;
-  z-index: 9999;
-}
-
 .navbar {
   background-color: white;
-  border-bottom: 1px lightgray solid;
-  box-shadow: 0 2px lightgray;
+  box-shadow: 0 3px 3px $light-grey;
   display: flex;
   height: $nav-height;
   justify-content: space-between;
-  position: fixed;
-  width: 100%;
-}
-
-.logo {
+  margin: 0 auto;
   padding: 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .logo-img {
@@ -30,6 +20,5 @@
 
 .page-title {
   align-self: center;
-  padding: 20px;
   font-size: $text-big;
 }
