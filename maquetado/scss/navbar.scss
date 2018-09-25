@@ -22,3 +22,9 @@
   align-self: center;
   font-size: $text-big;
 }
+
+@media only screen and (max-width: 1024px) {
+  .page-title {
+    display: none;
+  }
+}

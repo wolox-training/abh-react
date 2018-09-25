@@ -9,3 +9,11 @@
   justify-items: center;
   margin: 30px 200px;
 }
+
+@media only screen and (max-width: 1024px) {
+  .techs-container {
+    align-items: center;
+    grid-template-columns: 1fr;
+    margin: 30px auto;
+  }
+}
