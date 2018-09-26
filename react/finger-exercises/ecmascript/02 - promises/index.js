@@ -15,6 +15,6 @@ export function delay(time) {
   }, 100));
 }
 
-export async function asyncDelay(time) {
+export function asyncDelay(time) {
   return delay(time);
 }
