@@ -10,6 +10,13 @@ export function min(...args) {
   return Math.min(...args);
 }
 
-export function copy() {
+export function copy(...args) {
+  if (isArray(...args)) {
+    return [...args[0]];
+  }
+  return { ...args[0] };
+}
 
+export function reverseMerge(...args) {
+  return [...args[1], ...args[0]];
 }
