@@ -20,3 +20,8 @@ export function copy(...args) {
 export function reverseMerge(...args) {
   return [...args[1], ...args[0]];
 }
+
+export function filterAttribs(obj) {
+  const { a, b, ...res } = obj;
+  return res;
+}

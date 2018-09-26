@@ -52,18 +52,18 @@ describe('Spread operator', () => {
     expect(example1).toEqual([1, 2]);
     expect(example2).toEqual([3, 4]);
   });
-  xit('filterAttribs filters \'a\' and \'b\' by default', () => {
+  it('filterAttribs filters \'a\' and \'b\' by default', () => {
     expect(filterAttribs({ a: 1, b: 2, c: 3 })).toEqual({ c: 3 });
     expect(filterAttribs({ b: 1, a: 2, c: 3 })).toEqual({ c: 3 });
     expect(filterAttribs({
       b: 1, d: 2, c: 3, e: 1
     })).toEqual({ c: 3, d: 2, e: 1 });
   });
-  xit('filterAttribs does not mutate the argument', () => {
+  it('filterAttribs does not mutate the argument', () => {
     const example = { a: 1, b: 2, c: 3 };
 
     filterAttribs(example);
 
-    expect(example.toEqual({ a: 1, b: 2, c: 3 }));
+    expect(example).toEqual({ a: 1, b: 2, c: 3 });
   });
 });
