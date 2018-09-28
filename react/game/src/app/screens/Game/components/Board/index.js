@@ -4,7 +4,9 @@ import Square from './components/Square';
 import styles from './styles.scss';
 
 class Board extends Component {
-  renderSquare = i => <Square value={i} />;
+  playerPlay = () => {};
+
+  renderSquare = i => <Square onClick={this.playerPlay} value={i} />;
 
   render() {
     const status = 'Next player: X';

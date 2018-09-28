@@ -1,9 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './styles.scss';
 
-function Square() {
-  return <button className={styles.square}>{Math.random() > 0.5 ? 'X' : 'O'}</button>;
+function Square(props) {
+  return (
+    <button className={styles.square} onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
 }
+
+Square.propTypes = {
+  value: PropTypes.string,
+  onClick: PropTypes.func.isRequired
+};
 
 export default Square;
