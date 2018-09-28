@@ -1,0 +1,11 @@
+@import 'variables/colors';
+@import 'variables/constants';
+
+.square {
+  border: 1px solid $square-border-color;
+  font-size: 24px;
+  height: $square-size;
+  margin-right: $square-margin;
+  margin-top: $square-margin;
+  width: $square-size;
+}
