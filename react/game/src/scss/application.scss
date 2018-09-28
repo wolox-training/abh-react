@@ -1,1 +1,14 @@
 @import 'equalizer';
+@import 'variables';
+
+* {
+  font-family: $font-family;
+}
+body {
+  margin: 20px;
+}
+
+ol,
+ul {
+  padding-left: 30px;
+}
