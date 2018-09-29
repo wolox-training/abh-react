@@ -4,12 +4,24 @@ import Square from './components/Square';
 import styles from './styles.scss';
 
 class Board extends Component {
-  playerPlay = () => {};
+  state = {
+    squares: Array(9).fill(null),
+    xIsNext: true
+  };
 
-  renderSquare = i => <Square onClick={this.playerPlay} value={i} />;
+  playerPlay = i => {
+    const squares = this.state.squares.slice();
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      squares,
+      xIsNext: !this.state.xIsNext
+    });
+  };
+
+  renderSquare = i => <Square onClick={this.playerPlay} value={this.state.squares[i]} />;
 
   render() {
-    const status = 'Next player: X';
+    const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
 
     return (
       <Fragment>
