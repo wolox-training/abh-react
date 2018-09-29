@@ -18,10 +18,10 @@ class Board extends Component {
     });
   };
 
-  renderSquare = i => <Square onClick={this.playerPlay} value={this.state.squares[i]} />;
+  renderSquare = i => <Square onClick={() => this.playerPlay(i)} value={this.state.squares[i]} />;
 
   render() {
-    const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+    const status = 'Next player: X';
 
     return (
       <Fragment>

@@ -3,8 +3,10 @@
 
 .square {
   border: 1px solid $square-border-color;
+  float: left;
   font-size: 24px;
   height: $square-size;
+  justify-self: center;
   margin-right: $square-margin;
   margin-top: $square-margin;
   width: $square-size;
