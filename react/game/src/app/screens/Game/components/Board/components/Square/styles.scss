@@ -2,6 +2,7 @@
 @import 'variables/constants';
 
 .square {
+  background-color: $white;
   border: 1px solid $square-border-color;
   float: left;
   font-size: 24px;
@@ -9,5 +10,43 @@
   justify-self: center;
   margin-right: $square-margin;
   margin-top: $square-margin;
+  pointer-events: none;
+  transform: translateZ(-1px);
+  transition-duration: 0.5s;
+  transition-property: background-color transform;
   width: $square-size;
+}
+
+.selectable-square {
+  pointer-events: all;
+
+  &::after {
+    box-shadow: 0 2px 6px rgba(0,0,0, 0.35);
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+
+  &:hover {
+    background-color: $my-blue;
+    transform: translateZ(1px) scale(1.35);
+  }
+
+  &:focus {
+    background-color: black;
+    transform: scale(1);
+  }
+}
+
+.x-selected {
+  background-color: $my-red;
+  color: $white;
+}
+
+.o-selected {
+  background-color: $my-green;
 }
