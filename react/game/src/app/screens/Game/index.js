@@ -43,6 +43,16 @@ class Game extends Component {
     });
   };
 
+  checkStatus = () => {
+    if (this.state.winner) {
+      if (this.state.winner === 'tie') {
+        return `We have a TIE`;
+      }
+      return `Winner: ${this.state.winner}`;
+    }
+    return `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+  };
+
   calculateWinner = squares => {
     const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
     let fullLine = 0;
@@ -61,29 +71,20 @@ class Game extends Component {
     return null;
   };
 
+  movement = (step, move) => {
+    const desc = move ? `Go to move #${move}` : 'Go to game start';
+    return (
+      <li key={parseInt(move.toString(), 10)}>
+        <button onClick={() => this.jumpTo(move)}>{desc}</button>
+      </li>
+    );
+  };
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-
-    let status;
-    if (this.state.winner) {
-      if (this.state.winner === 'tie') {
-        status = `We have a TIE`;
-      } else {
-        status = `Winner: ${this.state.winner}`;
-      }
-    } else {
-      status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
-    }
-
-    const moves = history.map((step, move) => {
-      const desc = move ? `Go to move #${move}` : 'Go to game start';
-      return (
-        <li key={parseInt(move.toString(), 10)}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
-      );
-    });
+    const status = this.checkStatus();
+    const moves = history.map(this.movement);
 
     const showClassWinner = () => {
       if (this.state.winner && this.state.winner === 'X') {
