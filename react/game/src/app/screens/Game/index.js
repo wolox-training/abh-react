@@ -55,20 +55,17 @@ class Game extends Component {
 
   calculateWinner = squares => {
     const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-    let fullLine = 0;
-    for (let i = 0; i < lines.length; i += 1) {
-      const [a, b, c] = lines[i];
-      if (squares[a] && squares[b] && squares[c]) {
-        fullLine += 1;
-      }
-      if (fullLine === 8) {
-        return 'tie';
-      }
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
-      }
+    if (squares.every(el => el != null)) {
+      return 'tie';
     }
-    return null;
+    let winner;
+    lines.forEach(line => {
+      const [a, b, c] = line;
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        winner = squares[a];
+      }
+    });
+    return winner;
   };
 
   movement = (step, move) => {
@@ -86,7 +83,7 @@ class Game extends Component {
     const status = this.checkStatus();
     const moves = history.map(this.movement);
 
-    const showClassWinner = () => {
+    const getClassWinner = () => {
       if (this.state.winner && this.state.winner === 'X') {
         return styles.statusWinnerX;
       } else if (this.state.winner && this.state.winner === 'O') {
@@ -103,7 +100,7 @@ class Game extends Component {
           winner={this.state.winner}
         />
         <div className={styles.gameInfo}>
-          <div className={`${styles.status} ${showClassWinner()}`}>{status}</div>
+          <div className={`${styles.status} ${getClassWinner()}`}>{status}</div>
           <h3 className={styles.gameHistoryTitle}>Game History</h3>
           <ol className={styles.gameHistoryList}>{moves}</ol>
         </div>

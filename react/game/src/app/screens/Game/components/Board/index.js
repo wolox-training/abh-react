@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { arrayOf, string, func, bool } from 'prop-types';
 
 import Square from './components/Square';
 import styles from './styles.scss';
@@ -30,10 +30,10 @@ function Board({ squares, onClick, xIsNext, winner }) {
 }
 
 Board.propTypes = {
-  squares: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onClick: PropTypes.func.isRequired,
-  xIsNext: PropTypes.bool.isRequired,
-  winner: PropTypes.string
+  squares: arrayOf(string).isRequired,
+  onClick: func.isRequired,
+  xIsNext: bool.isRequired,
+  winner: string
 };
 
 export default Board;

@@ -3,6 +3,7 @@
 .game {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .game-info {
@@ -10,7 +11,7 @@
 }
 
 .status {
-  background-color: $my-blue;
+  background-color: $square-blue;
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
@@ -19,12 +20,12 @@
 
 .status-winner-x {
   animation: spinny 2s linear 1;
-  background-color: $my-red;
+  background-color: $square-red;
 }
 
 .status-winner-o {
   animation: spinny 2s linear 1;
-  background-color: $my-green;
+  background-color: $square-green;
 }
 
 @keyframes spinny {
@@ -46,14 +47,14 @@
 }
 
 ol {
-  border: 1px solid $square-border-color;
+  border: 1px solid $square-border-gray;
   border-radius: 5px;
   padding: 10px;
 }
 
 .game-history-list {
   li {
-    border-bottom: 1px solid $square-border-color;
+    border-bottom: 1px solid $square-border-gray;
     list-style: decimal;
     margin: 10px;
     padding: 10px;
