@@ -7,9 +7,8 @@
   float: left;
   font-size: 24px;
   height: $square-size;
-  justify-self: center;
-  margin-right: $square-margin;
-  margin-top: $square-margin;
+  margin-right: $square-negative-margin;
+  margin-top: $square-negative-margin;
   pointer-events: none;
   transform: translateZ(-1px);
   transition-duration: 0.5s;
@@ -29,7 +28,6 @@
     top: 0;
     width: 100%;
   }
-
 
   &:hover {
     background-color: $square-blue;
