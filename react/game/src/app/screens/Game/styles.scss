@@ -3,7 +3,6 @@
 .game {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
 }
 
 .game-info {
@@ -40,13 +39,19 @@
   }
 }
 
+.game-history-title {
+  display: block;
+  font-size: 16px;
+  text-align: center;
+}
+
 ol {
   border: 1px solid $square-border-color;
   border-radius: 5px;
   padding: 10px;
 }
 
-.game-history {
+.game-history-list {
   li {
     border-bottom: 1px solid $square-border-color;
     list-style: decimal;

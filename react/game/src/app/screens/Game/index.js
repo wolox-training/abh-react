@@ -15,14 +15,6 @@ class Game extends Component {
     winner: null
   };
 
-  jumpTo = step => {
-    this.setState({
-      stepNumber: step,
-      xIsNext: step % 2 === 0,
-      winner: step === this.state.history.length - 1 ? this.state.winner : null
-    });
-  };
-
   handleClick = i => {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
@@ -43,6 +35,14 @@ class Game extends Component {
     });
   };
 
+  jumpTo = step => {
+    this.setState({
+      stepNumber: step,
+      xIsNext: step % 2 === 0,
+      winner: step === this.state.history.length - 1 ? this.state.winner : null
+    });
+  };
+
   calculateWinner = squares => {
     const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
     let fullLine = 0;
@@ -51,7 +51,7 @@ class Game extends Component {
       if (squares[a] && squares[b] && squares[c]) {
         fullLine += 1;
       }
-      if (fullLine === 7) {
+      if (fullLine === 8) {
         return 'tie';
       }
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
@@ -64,14 +64,13 @@ class Game extends Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = this.calculateWinner(current.squares);
 
     let status;
-    if (winner) {
-      if (winner === 'tie') {
+    if (this.state.winner) {
+      if (this.state.winner === 'tie') {
         status = `We have a TIE`;
       } else {
-        status = `Winner: ${winner}`;
+        status = `Winner: ${this.state.winner}`;
       }
     } else {
       status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
@@ -86,7 +85,7 @@ class Game extends Component {
       );
     });
 
-    const showWinner = () => {
+    const showClassWinner = () => {
       if (this.state.winner && this.state.winner === 'X') {
         return styles.statusWinnerX;
       } else if (this.state.winner && this.state.winner === 'O') {
@@ -103,8 +102,9 @@ class Game extends Component {
           winner={this.state.winner}
         />
         <div className={styles.gameInfo}>
-          <div className={`${styles.status} ${showWinner()}`}>{status}</div>
-          <ol className={styles.gameHistory}>{moves}</ol>
+          <div className={`${styles.status} ${showClassWinner()}`}>{status}</div>
+          <h3 className={styles.gameHistoryTitle}>Game History</h3>
+          <ol className={styles.gameHistoryList}>{moves}</ol>
         </div>
       </div>
     );
