@@ -4,18 +4,15 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 class Square extends Component {
-  /*
-  * If the game is over, we just render the classic button with the className if its X or O, but none click event
-  */
-
-  /*
-* From here we just render the button as desired, with onClick event, classSelected for its X or O, or null, 
-* and if its a selectable square
-*/
   state = {
     hover: false
   };
 
+  /*
+  * Check class checks if the square has a value, if has a value it must be X or O, and will assign a propper class x-selected
+  * or o-selected, if it does not have a value, and the game is not over, will assign the class selectable-square, 
+  * if the square does not have value and it have a winner, the method will just return ''
+  */
   checkClass = () => {
     if (this.props.value && this.props.value === 'X') {
       return styles.xSelected;
@@ -26,6 +23,11 @@ class Square extends Component {
     }
     return '';
   };
+
+  /*
+  * Check value will just check if the square has a value, if not, it will check if the current square has the state
+  * of hover, and not a winner, if this is true, it will return the current player, if not it will just return ''
+  */
 
   checkValue = () => {
     if (this.props.value) {
