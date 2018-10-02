@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { winLines } from '../../../constants/game';
+
 import styles from './styles.scss';
 import Board from './components/Board';
 
@@ -15,32 +17,32 @@ class Game extends Component {
     winner: null
   };
 
-  handleClick = i => {
+  handleClick = position => {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (this.state.winner || squares[i]) {
+    if (this.state.winner || squares[position]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
+    squares[position] = this.state.xIsNext ? 'X' : 'O';
+    this.setState(prevState => ({
       history: history.concat([
         {
           squares
         }
       ]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
+      xIsNext: !prevState.xIsNext,
       winner: this.calculateWinner(squares)
-    });
+    }));
   };
 
   jumpTo = step => {
-    this.setState({
+    this.setState(prevState => ({
       stepNumber: step,
       xIsNext: step % 2 === 0,
-      winner: step === this.state.history.length - 1 ? this.state.winner : null
-    });
+      winner: step === prevState.history.length - 1 ? prevState.winner : null
+    }));
   };
 
   checkStatus = () => {
@@ -54,7 +56,7 @@ class Game extends Component {
   };
 
   calculateWinner = squares => {
-    const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+    const lines = winLines;
     let winner;
     if (squares.every(el => el != null)) {
       winner = 'tie';
@@ -96,7 +98,7 @@ class Game extends Component {
         <Board
           squares={current.squares}
           xIsNext={this.state.xIsNext}
-          onClick={i => this.handleClick(i)}
+          onClick={this.handleClick}
           winner={this.state.winner}
         />
         <div className={styles.gameInfo}>

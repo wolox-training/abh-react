@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { string, func } from 'prop-types';
+import { string, func, number } from 'prop-types';
 
 import styles from './styles.scss';
 
@@ -16,7 +16,7 @@ class Square extends Component {
   };
 
   getSquareClass = () => {
-    const { value } = { ...this.props };
+    const { value } = this.props;
     if (value === 'X') {
       return styles.xSelected;
     } else if (value === 'O') {
@@ -27,15 +27,26 @@ class Square extends Component {
     return '';
   };
 
+  toggleHoverState = () => {
+    this.setState(prevState => ({ hover: !prevState.hover }));
+  };
+
+  handleClick = () => {
+    this.props.onClick(this.props.position);
+  };
+
   render() {
+    const value = this.getValue();
+    const squareClasses = `${styles.square} ${this.getSquareClass()}`;
+
     return (
       <button
-        className={`${styles.square} ${this.getSquareClass()}`}
-        onClick={this.props.onClick}
-        onMouseEnter={() => this.setState({ hover: true })}
-        onMouseLeave={() => this.setState({ hover: false })}
+        className={`${squareClasses}`}
+        onClick={this.handleClick}
+        onMouseEnter={this.toggleHoverState}
+        onMouseLeave={this.toggleHoverState}
       >
-        {this.getValue()}
+        {value}
       </button>
     );
   }
@@ -45,7 +56,8 @@ Square.propTypes = {
   value: string,
   onClick: func.isRequired,
   currentPlayer: string.isRequired,
-  winner: string
+  winner: string,
+  position: number
 };
 
 export default Square;

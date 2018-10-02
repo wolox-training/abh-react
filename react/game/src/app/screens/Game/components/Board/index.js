@@ -5,10 +5,11 @@ import Square from './components/Square';
 import styles from './styles.scss';
 
 function Board({ squares, onClick, xIsNext, winner }) {
-  const renderSquare = i => (
+  const renderSquare = position => (
     <Square
-      onClick={() => onClick(i)}
-      value={squares[i]}
+      position={position}
+      onClick={onClick}
+      value={squares[position]}
       currentPlayer={xIsNext ? 'X' : 'O'}
       winner={winner}
     />
