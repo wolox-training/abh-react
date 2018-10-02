@@ -16,7 +16,7 @@ class Square extends Component {
   };
 
   getSquareClass = () => {
-    const value = this.props.value;
+    const { value } = { ...this.props };
     if (value === 'X') {
       return styles.xSelected;
     } else if (value === 'O') {
