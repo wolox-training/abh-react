@@ -1,8 +1,62 @@
+@import 'variables/colors';
+
 .game {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .game-info {
   margin-left: 20px;
+}
+
+.status {
+  background-color: $square-blue;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.status-winner-x {
+  animation: spinny 2s linear 1;
+  background-color: $square-red;
+}
+
+.status-winner-o {
+  animation: spinny 2s linear 1;
+  background-color: $square-green;
+}
+
+@keyframes spinny {
+  0% {
+    transform: rotate(0deg) scale(1.5);
+  }
+  50% {
+    transform: rotate(180deg) scale(2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.game-history-title {
+  display: block;
+  font-size: 16px;
+  text-align: center;
+}
+
+ol {
+  border: 1px solid $square-border-gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.game-history-list {
+  li {
+    border-bottom: 1px solid $square-border-gray;
+    list-style: decimal;
+    margin: 10px;
+    padding: 10px;
+  }
 }

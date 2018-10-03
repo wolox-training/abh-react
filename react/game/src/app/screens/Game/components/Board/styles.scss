@@ -1,3 +1,6 @@
-.status {
-  margin-bottom: 10px;
+@import 'variables/constants';
+
+.board-container {
+  transform-style: preserve-3d;
+  width: $board-container-size;
 }
