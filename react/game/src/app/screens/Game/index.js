@@ -97,6 +97,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actionCreators.handlePlayerMove(history, winner, squares)),
   changeHistory: step => dispatch(actionCreators.handleHistoryChange(step))
 });
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
