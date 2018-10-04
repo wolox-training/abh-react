@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Game from '@screens/Game';
+import App from '@components/App';
 
 import registerServiceWorker from './registerServiceWorker';
 
 import './scss/application.scss';
 
-ReactDOM.render(<Game />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
