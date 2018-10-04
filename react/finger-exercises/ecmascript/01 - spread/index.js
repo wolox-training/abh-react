@@ -1,20 +1,14 @@
 import isArray from './utils';
 
 export function min(...args) {
-  if (args.length === 0) {
+  if (!args.length) {
     return undefined;
   }
-  if (isArray(...args)) {
-    return Math.min(...args[0]);
-  }
-  return Math.min(...args);
+  return isArray(args[0]) ? Math.min(...args[0]) : Math.min(...args);
 }
 
 export function copy(...args) {
-  if (isArray(...args)) {
-    return [...args[0]];
-  }
-  return { ...args[0] };
+  return isArray(...args) ? [...args[0]] : { ...args[0] };
 }
 
 export function reverseMerge(...args) {
