@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { arrayOf, bool, string, number, shape, func } from 'prop-types';
 import { connect } from 'react-redux';
-
-import { calculateWinner } from '../../../utils/game';
-import { actionCreators } from '../../../redux/game/actions';
+import { actionCreators } from '@redux/game/actions';
+import { calculateWinner } from '@utils/game';
 
 import styles from './styles.scss';
 import Board from './components/Board';
@@ -38,7 +37,7 @@ class Game extends Component {
   movement = (step, move) => {
     const desc = move ? `Go to move #${move}` : 'Go to game start';
     return (
-      <li key={parseInt(move.toString(), 10)}>
+      <li key={move}>
         <button onClick={() => this.jumpTo(move)}>{desc}</button>
       </li>
     );

@@ -1,4 +1,4 @@
-import { concatHistory } from '../../utils/game';
+import { concatHistory } from '@utils/game';
 
 const privateActionCreators = {
   gamePlayerMove: move => ({
