@@ -8,3 +8,14 @@ export const winLines = [
   [0, 4, 8],
   [2, 4, 6]
 ];
+
+export const initialState = {
+  history: [
+    {
+      squares: Array(9).fill(null)
+    }
+  ],
+  xIsNext: true,
+  stepNumber: 0,
+  winner: null
+};

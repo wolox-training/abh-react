@@ -1,4 +1,4 @@
-import { concatHistory } from '@utils/game';
+import { concatHistory, calculateWinner } from '@utils/game';
 
 const privateActionCreators = {
   gamePlayerMove: move => ({
@@ -25,10 +25,11 @@ export const actionCreators = {
   },
   handleHistoryChange: step => (dispatch, getState) => {
     const state = getState();
+    const winner = calculateWinner(state.game.history[step].squares);
     const change = {
       stepNumber: step,
       xIsNext: step % 2 === 0,
-      winner: step === state.game.history.length - 1 ? state.game.winner : null
+      winner
     };
     dispatch(privateActionCreators.gameHistoryChanged(change));
   }

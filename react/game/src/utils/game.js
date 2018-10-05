@@ -1,4 +1,4 @@
-import { winLines } from '../constants/game';
+import { winLines } from '@constants/game';
 
 export const concatHistory = (history, squares) => history.concat([{ squares }]);
 
