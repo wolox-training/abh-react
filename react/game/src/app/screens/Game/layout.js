@@ -26,7 +26,7 @@ class GameLayout extends Component {
           winner={this.props.winner}
         />
         <div className={styles.gameInfo}>
-          <div className={`${styles.status} ${this.getClassWinner()}`}>{status}</div>
+          <div className={`${styles.status} ${this.getClassWinner}`}>{status}</div>
           <h3 className={styles.gameHistoryTitle}>Game History</h3>
           <ol className={styles.gameHistoryList}>{moves}</ol>
         </div>
