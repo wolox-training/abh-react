@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { actionCreators } from '@redux/game/actions';
 import { calculateWinner } from '@utils/game';
 
-import styles from './styles.scss';
-import Board from './components/Board';
+import GameLayout from './layout';
 
 class Game extends Component {
   handleClick = position => {
@@ -44,33 +43,16 @@ class Game extends Component {
   };
 
   render() {
-    const history = this.props.history;
-    const current = history[this.props.stepNumber];
-    const status = this.checkStatus();
-    const moves = history.map(this.movement);
-
-    const getClassWinner = () => {
-      if (this.props.winner && this.props.winner === 'X') {
-        return styles.statusWinnerX;
-      } else if (this.props.winner && this.props.winner === 'O') {
-        return styles.statusWinnerO;
-      }
-    };
-
     return (
-      <div className={styles.game}>
-        <Board
-          squares={current.squares}
-          xIsNext={this.props.xIsNext}
-          onClick={this.handleClick}
-          winner={this.props.winner}
-        />
-        <div className={styles.gameInfo}>
-          <div className={`${styles.status} ${getClassWinner()}`}>{status}</div>
-          <h3 className={styles.gameHistoryTitle}>Game History</h3>
-          <ol className={styles.gameHistoryList}>{moves}</ol>
-        </div>
-      </div>
+      <GameLayout
+        history={this.props.history}
+        stepNumber={this.props.stepNumber}
+        checkStatus={this.checkStatus}
+        movement={this.movement}
+        winner={this.props.winner}
+        xIsNext={this.props.xIsNext}
+        handleClick={this.handleClick}
+      />
     );
   }
 }
