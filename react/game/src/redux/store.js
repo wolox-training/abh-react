@@ -1,10 +1,12 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { loadState, saveState } from '@utils/application';
+import { loadGameState, saveGameState } from '@utils/game';
 
 import { reducer as game } from './game/reducer';
 
-const persistedGameState = loadState();
+const persistedState = {
+  game: loadGameState()
+};
 
 const reducers = combineReducers({
   game
@@ -12,7 +14,9 @@ const reducers = combineReducers({
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-const store = createStore(reducers, persistedGameState, composeEnhancers(applyMiddleware(thunk)));
-store.subscribe(() => saveState(store.getState()));
+const store = createStore(reducers, persistedState, composeEnhancers(applyMiddleware(thunk)));
+store.subscribe(() => {
+  saveGameState(store.getState().game);
+});
 export { store };
 /* eslint-enable */

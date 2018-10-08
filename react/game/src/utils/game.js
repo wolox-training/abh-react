@@ -16,3 +16,22 @@ export const calculateWinner = squares => {
   });
   return winner || null;
 };
+
+export const loadGameState = () => {
+  try {
+    const serializedState = localStorage.getItem('gameState');
+    if (serializedState === null) return undefined;
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+export const saveGameState = gameState => {
+  try {
+    const serializedState = JSON.stringify(gameState);
+    localStorage.setItem('gameState', serializedState);
+  } catch (err) {
+    throw Error('Error: ', err);
+  }
+};
