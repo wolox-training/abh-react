@@ -1,32 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { arrayOf, bool, number, string, func, shape } from 'prop-types';
 
 import styles from './styles.scss';
 import Board from './components/Board';
 
-function GameLayout({ history, stepNumber, checkStatus, movement, winner, xIsNext, handleClick }) {
-  const current = history[stepNumber];
-  const status = checkStatus();
-  const moves = history.map(movement);
-
-  const getClassWinner = () => {
-    if (winner && winner === 'X') {
+class GameLayout extends Component {
+  getClassWinner = () => {
+    if (this.props.winner && this.props.winner === 'X') {
       return styles.statusWinnerX;
-    } else if (winner && winner === 'O') {
+    } else if (this.props.winner && this.props.winner === 'O') {
       return styles.statusWinnerO;
     }
   };
 
-  return (
-    <div className={styles.game}>
-      <Board squares={current.squares} xIsNext={xIsNext} onClick={handleClick} winner={winner} />
-      <div className={styles.gameInfo}>
-        <div className={`${styles.status} ${getClassWinner()}`}>{status}</div>
-        <h3 className={styles.gameHistoryTitle}>Game History</h3>
-        <ol className={styles.gameHistoryList}>{moves}</ol>
+  render() {
+    const current = this.props.history[this.props.stepNumber];
+    const status = this.props.checkStatus();
+    const moves = this.props.history.map(this.props.movement);
+    return (
+      <div className={styles.game}>
+        <Board
+          squares={current.squares}
+          xIsNext={this.props.xIsNext}
+          onClick={this.props.handleClick}
+          winner={this.props.winner}
+        />
+        <div className={styles.gameInfo}>
+          <div className={`${styles.status} ${this.getClassWinner()}`}>{status}</div>
+          <h3 className={styles.gameHistoryTitle}>Game History</h3>
+          <ol className={styles.gameHistoryList}>{moves}</ol>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 GameLayout.propTypes = {
