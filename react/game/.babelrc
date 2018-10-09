@@ -6,6 +6,7 @@
     ["module-resolver", {
       "root": ["./src"],
       "alias": {
+        "@assets": "./src/app/assets",
         "@components": "./src/app/components",
         "@screens": "./src/app/screens",
         "@redux": "./src/redux",
