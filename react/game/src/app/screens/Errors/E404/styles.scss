@@ -1,0 +1,18 @@
+@import 'variables/colors';
+@import 'variables/fontConfig';
+
+.error-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.error-title {
+  color: $error-font-color-red;
+  font-size: $error-font-size-title;
+}
+
+.error-body {
+  color: $error-font-color-red;
+  font-size: $error-font-size-body;
+}

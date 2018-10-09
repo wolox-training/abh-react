@@ -3,4 +3,4 @@ const ROUTES = {
   GAME: { name: 'game', path: '/game' }
 };
 
-export default ROUTES;
+export { ROUTES as default };
