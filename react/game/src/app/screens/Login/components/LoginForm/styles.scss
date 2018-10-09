@@ -8,16 +8,24 @@
   display: flex;
   flex-direction: column;
   max-width: $auth-width;
-  padding: 45px;
+  padding: 40px;
   text-align: center;
+  width: 100%;
 }
 
 .login-form input {
-  background: #F2F2F2;
-  box-sizing: border-box;
+  background: $input-background;
+  border: 1px solid transparent;
   font-size: $form-font-small-size;
-  margin: 0 0 15px;
+  margin: 0 0 20px;
   padding: 15px;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  &:focus {
+    border: 1px solid $page-blue-background;
+    box-shadow: 0 3px 5px $light-grey;
+    transform: scale(1.05, 1.05);
+  }
 }
 
 .login-form button {
@@ -25,13 +33,14 @@
   color: $white;
   padding: 15px;
   text-transform: uppercase;
-  transition: all 0.3s ease;
-}
+  transition: all 0.5s ease;
 
-.login-form button:hover,
-.login-form button:active,
-.login-form button:focus {
-  background: $page-blue-background-dark;
+  &:hover,
+  &:active,
+  &:focus {
+    background: $page-blue-background-dark;
+    transform: scale(1.1, 1.1);
+  }
 }
 
 .message {
@@ -43,5 +52,4 @@
 .message a {
   color: $page-blue-background-dark;
   font-size: $form-font-small-size;
-  text-decoration: none;
 }

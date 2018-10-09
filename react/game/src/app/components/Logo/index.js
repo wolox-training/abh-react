@@ -5,7 +5,7 @@ import styles from './styles.scss';
 
 function Logo() {
   return (
-    <div className={styles.logo}>
+    <div className={styles.logoContainer}>
       <img src={logo} alt="logo" />
     </div>
   );

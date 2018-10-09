@@ -1,5 +1,7 @@
 const ROUTES = {
-  LOGIN: { name: 'login', path: '/' },
+  HOME: { name: 'home', path: '/' },
+  LOGIN: { name: 'login', path: '/login' },
+  REGISTER: { name: 'register', path: '/register' },
   GAME: { name: 'game', path: '/game' }
 };
 
