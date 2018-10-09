@@ -1,5 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Login = () => <div>LOGIN</div>;
+import LoginLayout from './layout';
 
-export default Login;
+class LoginContainer extends Component {
+  handleSubmit = data => {
+    console.log(data);
+  };
+
+  render() {
+    return <LoginLayout onSubmit={this.handleSubmit} />;
+  }
+}
+
+export default LoginContainer;
