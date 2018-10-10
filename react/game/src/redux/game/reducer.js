@@ -1,6 +1,7 @@
 const initialState = {
   history: [
     {
+      id: null,
       squares: Array(9).fill(null)
     }
   ],

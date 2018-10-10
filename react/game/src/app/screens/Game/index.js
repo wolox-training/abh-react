@@ -36,7 +36,7 @@ class Game extends Component {
   movement = (step, move) => {
     const desc = move ? `Go to move #${move}` : 'Go to game start';
     return (
-      <li key={move}>
+      <li key={step.id}>
         <button onClick={() => this.jumpTo(move)}>{desc}</button>
       </li>
     );
