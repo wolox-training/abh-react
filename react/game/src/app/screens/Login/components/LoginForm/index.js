@@ -4,12 +4,13 @@ import ROUTES from '@constants/routes';
 import { Link } from 'react-router-dom';
 import { func } from 'prop-types';
 import Logo from '@components/Logo';
+import { FORM_NAMES } from '@constants/formNames';
 
 import styles from './styles.scss';
 
 class LoginForm extends Component {
   handleSubmit = event => {
-    event.preventDefault();
+    // TODO: adding the functionality in the next feature, this is just for making the form work for now
     this.props.onSubmit(event);
   };
 
@@ -35,5 +36,5 @@ LoginForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'loginForm' // a unique identifier for this form
+  form: FORM_NAMES.LOGIN_FORM
 })(LoginForm);
