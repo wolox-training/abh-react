@@ -1,8 +1,14 @@
 import { winLines } from '@constants/game';
+import { GAME_STATE_NAME } from '@constants/redux';
+import { service as localStorageService } from '@services/localStorageService';
 
-export const concatHistory = (history, squares) => history.concat([{ id: history.length - 1, squares }]);
+const loadGameState = () => localStorageService.get(GAME_STATE_NAME);
 
-export const calculateWinner = squares => {
+const saveGameState = gameState => localStorageService.set(GAME_STATE_NAME, gameState);
+
+const concatHistory = (history, squares) => history.concat([{ id: history.length - 1, squares }]);
+
+const calculateWinner = squares => {
   const lines = winLines;
   let winner;
   if (squares.every(el => el != null)) {
@@ -17,21 +23,4 @@ export const calculateWinner = squares => {
   return winner || null;
 };
 
-export const loadGameState = () => {
-  try {
-    const serializedState = localStorage.getItem('gameState');
-    if (serializedState === null) return undefined;
-    return JSON.parse(serializedState);
-  } catch (err) {
-    return undefined;
-  }
-};
-
-export const saveGameState = gameState => {
-  try {
-    const serializedState = JSON.stringify(gameState);
-    localStorage.setItem('gameState', serializedState);
-  } catch (err) {
-    throw Error('Error: ', err);
-  }
-};
+export { loadGameState, saveGameState, concatHistory, calculateWinner };

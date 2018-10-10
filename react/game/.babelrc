@@ -8,6 +8,8 @@
       "alias": {
         "@assets": "./src/app/assets",
         "@components": "./src/app/components",
+        "@config": "./src/config",
+        "@services": "./src/services",
         "@screens": "./src/app/screens",
         "@redux": "./src/redux",
         "@utils": "./src/utils/",
