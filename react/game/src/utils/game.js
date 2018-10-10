@@ -1,6 +1,6 @@
 import { winLines } from '@constants/game';
 
-export const concatHistory = (history, squares) => history.concat([{ squares }]);
+export const concatHistory = (history, squares) => history.concat([{ id: history.length - 1, squares }]);
 
 export const calculateWinner = squares => {
   const lines = winLines;

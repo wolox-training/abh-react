@@ -1,12 +1,12 @@
 import React from 'react';
+import Router from '@components/Router';
 import { Provider } from 'react-redux';
-import Game from '@screens/Game';
 import { store } from '@redux/store';
 
 function App() {
   return (
     <Provider store={store}>
-      <Game />
+      <Router />
     </Provider>
   );
 }

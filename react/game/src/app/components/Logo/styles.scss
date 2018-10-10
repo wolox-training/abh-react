@@ -1,0 +1,17 @@
+.logo-container {
+  animation: logo 2s forwards;
+  margin: 25px 15px;
+  object-fit: contain;
+  z-index: 1;
+}
+
+@keyframes logo {
+  from {
+    opacity: 0;
+    transform: scale(0.1, 0.1) rotate3d(0, 0.9, 0.5, 360deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1, 1) rotate(0);
+  }
+}
