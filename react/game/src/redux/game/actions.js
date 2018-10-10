@@ -1,13 +1,14 @@
 import { concatHistory, calculateWinner } from '@utils/game';
+import { GAME_ACTIONS } from '@constants/redux';
 
 const privateActionCreators = {
   gamePlayerMove: move => ({
-    type: 'GAME_PLAYER_MOVED',
+    type: GAME_ACTIONS.GAME_PLAYER_MOVED,
     payload: move
   }),
 
   gameHistoryChanged: step => ({
-    type: 'GAME_HISTORY_CHANGED',
+    type: GAME_ACTIONS.GAME_HISTORY_CHANGED,
     payload: step
   })
 };
