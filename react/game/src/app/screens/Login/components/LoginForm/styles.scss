@@ -7,13 +7,13 @@
   box-shadow: 0 0 10px 0 $auth-box-shadow-color, 0 5px 5px 0 $auth-box-shadow-color;
   display: flex;
   flex-direction: column;
-  max-width: $auth-width;
+  max-width: $auth-forms-width;
   padding: 40px;
   text-align: center;
   width: 100%;
 }
 
-.login-form input {
+.auth-forms-input {
   background: $input-background;
   border: 1px solid transparent;
   font-size: $form-font-small-size;
@@ -21,6 +21,7 @@
   padding: 15px;
   transform-style: preserve-3d;
   transition: all 0.5s ease;
+
   &:focus {
     border: 1px solid $page-blue-background;
     box-shadow: 0 3px 5px $light-grey;
@@ -28,7 +29,7 @@
   }
 }
 
-.login-form button {
+.form-button {
   background: $page-blue-background;
   color: $white;
   padding: 15px;

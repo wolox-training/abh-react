@@ -17,9 +17,11 @@ class LoginForm extends Component {
     return (
       <form className={styles.loginForm} onSubmit={this.handleSubmit}>
         <Logo />
-        <input type="text" placeholder="username" />
-        <input type="password" placeholder="password" />
-        <button type="submit">Login</button>
+        <input className={styles.authFormsInput} type="text" placeholder="username" />
+        <input className={styles.authFormsInput} type="password" placeholder="password" />
+        <button className={styles.formButton} type="submit">
+          Login
+        </button>
         <p className={styles.message}>
           Not registered? <Link to={ROUTES.REGISTER.path}>Create an account</Link>
         </p>
