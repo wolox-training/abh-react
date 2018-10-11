@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { loadGameState, saveGameState } from '@utils/game';
 import { createBrowserHistory } from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { reducer as form } from 'redux-form';
 
 import { reducer as game } from './game/reducer';
 
@@ -11,7 +12,8 @@ const persistedState = {
 };
 
 const reducers = combineReducers({
-  game
+  game,
+  form
 });
 
 export const history = createBrowserHistory();

@@ -13,22 +13,6 @@
   width: 100%;
 }
 
-.auth-forms-input {
-  background: $input-background;
-  border: 1px solid transparent;
-  font-size: $form-font-small-size;
-  margin: 0 0 20px;
-  padding: 15px;
-  transform-style: preserve-3d;
-  transition: all 0.5s ease;
-
-  &:focus {
-    border: 1px solid $page-blue-background;
-    box-shadow: 0 3px 5px $light-grey;
-    transform: scale(1.05, 1.05);
-  }
-}
-
 .form-button {
   background: $page-blue-background;
   color: $white;

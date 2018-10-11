@@ -13,7 +13,8 @@
         "@screens": "./src/app/screens",
         "@redux": "./src/redux",
         "@utils": "./src/utils/",
-        "@constants": "./src/constants"
+        "@constants": "./src/constants",
+        "@validation": "./src/validation"
       }
     }]
   ]
