@@ -23,6 +23,12 @@
   }
 }
 
+.input-error {
+  border: 2px solid $error-red;
+  box-shadow: 0 3px 5px $light-grey;
+  transform: scale(1.04, 1.04);
+}
+
 .input-label {
   color: $page-blue-background-dark;
   font-weight: 300;

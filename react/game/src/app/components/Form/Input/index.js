@@ -11,7 +11,13 @@ function Input({ label, input, type, meta, placeholder, id }) {
           {label}
         </label>
       )}
-      <input {...input} id={id} placeholder={placeholder} className={styles.formInput} type={type} />
+      <input
+        {...input}
+        id={id}
+        placeholder={placeholder}
+        className={`${styles.formInput} ${meta.error && meta.touched && styles.inputError}`}
+        type={type}
+      />
       {meta.error &&
         meta.touched &&
         !meta.active && <div className={styles.inputErrorMessage}>{meta.error}</div>}

@@ -9,7 +9,7 @@ export const required = (value, ...rest) => {
 
 export const minLength = (value, ...rest) => {
   const inputName = rest[2];
-  return value.length < 9 ? `${inputName} must be at least 8 characters` : undefined;
+  return value.length < 8 ? `${inputName} must be at least 8 characters` : undefined;
 };
 
 export const email = value =>
