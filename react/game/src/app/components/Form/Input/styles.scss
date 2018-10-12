@@ -24,9 +24,32 @@
 }
 
 .input-error {
+  animation: shake 0.8s ease-in-out 0.5s both;
   border: 2px solid $error-red;
   box-shadow: 0 3px 5px $light-grey;
-  transform: scale(1.04, 1.04);
+
+  @keyframes shake {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
 }
 
 .input-label {

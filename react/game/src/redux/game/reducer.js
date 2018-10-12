@@ -1,3 +1,5 @@
+import { GAME_ACTIONS } from '@constants/redux';
+
 const initialState = {
   history: [
     {
@@ -12,12 +14,17 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'GAME_PLAYER_MOVED':
+    case GAME_ACTIONS.LOAD_GAME_INFO:
       return {
         ...state,
         ...action.payload
       };
-    case 'GAME_HISTORY_CHANGED':
+    case GAME_ACTIONS.GAME_PLAYER_MOVED:
+      return {
+        ...state,
+        ...action.payload
+      };
+    case GAME_ACTIONS.GAME_HISTORY_CHANGED:
       return {
         ...state,
         ...action.payload

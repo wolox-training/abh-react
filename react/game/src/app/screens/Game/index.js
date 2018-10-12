@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import { arrayOf, bool, string, number, shape, func } from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators } from '@redux/game/actions';
-import { calculateWinner } from '@utils/game';
+import { calculateWinner, saveGameState } from '@utils/game';
+import { store } from '@redux/store';
 
 import GameLayout from './layout';
 
 class Game extends Component {
+  componentDidMount() {
+    this.props.loadGameInfo();
+    store.subscribe(() => {
+      saveGameState(store.getState().game);
+    });
+  }
   handleClick = position => {
     const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
@@ -63,7 +70,8 @@ Game.propTypes = {
   stepNumber: number,
   winner: string,
   playerMove: func.isRequired,
-  changeHistory: func.isRequired
+  changeHistory: func.isRequired,
+  loadGameInfo: func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -74,6 +82,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  loadGameInfo: () => dispatch(actionCreators.handleLoadGameInfo()),
   playerMove: (history, winner, squares) =>
     dispatch(actionCreators.handlePlayerMove(history, winner, squares)),
   changeHistory: step => dispatch(actionCreators.handleHistoryChange(step))

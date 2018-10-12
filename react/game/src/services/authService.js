@@ -1,7 +1,6 @@
-import api from '@config/api';
+import { API } from '@config/api';
+import { API_LOGIN_PATH } from '@constants/apiNames';
 
-import { API_LOGIN_PATH } from '../constants/apiNames';
-
-export const services = {
-  postLoginAPI: values => api.get(API_LOGIN_PATH, { email: values.email, password: values.password })
+export const service = {
+  post: values => API.post(API_LOGIN_PATH, { email: values.email, password: values.password })
 };

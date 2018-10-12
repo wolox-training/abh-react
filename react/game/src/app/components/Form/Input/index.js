@@ -4,6 +4,7 @@ import { string, shape } from 'prop-types';
 import styles from './styles.scss';
 
 function Input({ label, input, type, meta, placeholder, id }) {
+  const calculateErrorClass = () => (meta.error && meta.touched ? styles.inputError : '');
   return (
     <div className={styles.formField}>
       {label && (
@@ -15,7 +16,7 @@ function Input({ label, input, type, meta, placeholder, id }) {
         {...input}
         id={id}
         placeholder={placeholder}
-        className={`${styles.formInput} ${meta.error && meta.touched && styles.inputError}`}
+        className={`${styles.formInput} ${calculateErrorClass()}`}
         type={type}
       />
       {meta.error &&

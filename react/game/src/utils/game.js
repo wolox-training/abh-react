@@ -1,5 +1,5 @@
 import { winLines } from '@constants/game';
-import { GAME_STATE_NAME } from '@constants/redux';
+import { GAME_STATE_NAME } from '@constants/localStorage';
 import { service as localStorageService } from '@services/localStorageService';
 
 const loadGameState = () => localStorageService.get(GAME_STATE_NAME);

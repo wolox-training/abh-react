@@ -26,6 +26,12 @@
     background: $page-blue-background-dark;
     transform: scale(1.1, 1.1);
   }
+
+  &:disabled {
+    background: $btn-disabled-blue;
+    cursor: no-drop;
+    transform: scale(1, 1);
+  }
 }
 
 .message {
@@ -37,4 +43,12 @@
 .message a {
   color: $page-blue-background-dark;
   font-size: $form-font-small-size;
+}
+
+.error-message {
+  color: $error-red;
+  font-size: $form-font-small-size;
+  margin: 10px 0;
+  text-align: center;
+  text-decoration: underline;
 }
