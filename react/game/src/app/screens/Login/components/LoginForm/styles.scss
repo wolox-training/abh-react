@@ -3,14 +3,8 @@
 @import 'variables/fontConfig';
 
 .login-form {
-  background: $white;
-  box-shadow: 0 0 10px 0 $auth-box-shadow-color, 0 5px 5px 0 $auth-box-shadow-color;
   display: flex;
   flex-direction: column;
-  max-width: $auth-forms-width;
-  padding: 40px;
-  text-align: center;
-  width: 100%;
 }
 
 .form-button {
