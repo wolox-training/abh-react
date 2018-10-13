@@ -36,7 +36,7 @@ function LoginForm({ handleSubmit, onSubmit, pristine, submitting, errorMessage 
         Login
       </button>
       <p className={styles.message}>
-        Not registered? <Link to={ROUTES.REGISTER.path}>Create an account</Link>
+        Not registered? <Link to={ROUTES.AUTH.REGISTER.path}>Create an account</Link>
       </p>
     </form>
   );
