@@ -9,11 +9,11 @@
         "@assets": "./src/app/assets",
         "@components": "./src/app/components",
         "@config": "./src/config",
-        "@services": "./src/services",
-        "@screens": "./src/app/screens",
-        "@redux": "./src/redux",
-        "@utils": "./src/utils/",
         "@constants": "./src/constants",
+        "@redux": "./src/redux",
+        "@screens": "./src/app/screens",
+        "@services": "./src/services",
+        "@utils": "./src/utils/",
         "@validation": "./src/validation"
       }
     }]
