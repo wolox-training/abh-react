@@ -1,4 +1,4 @@
-import { GAME_ACTIONS } from '@constants/redux';
+import { GAME_ACTIONS } from './actions';
 
 const initialState = {
   history: [

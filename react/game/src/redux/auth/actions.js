@@ -1,12 +1,20 @@
-import { LOGIN_ACTIONS, USER_ACTIONS } from '@constants/redux';
 import { service as authService } from '@services/authService';
 import { loadAuthState, saveAuthState } from '@utils/auth';
 import { API } from '@config/api';
 
+export const LOGIN_ACTIONS = {
+  LOAD_APP: 'LOAD_APP',
+  APP_LOADED: 'APP_LOADED',
+  LOGIN_LOADING: 'LOGIN_LOADING',
+  LOGIN_ERROR: 'LOGIN_ERROR',
+  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  SET_USER_INFO: 'SET_USER_INFO'
+};
+
 const privateActionCreators = {
-  loadApp: (id, token) => ({
+  loadApp: ({ userId, token }) => ({
     type: LOGIN_ACTIONS.LOAD_APP,
-    payload: { userId: id, token }
+    payload: { userId, token }
   }),
   appLoaded: appLoaded => ({
     type: LOGIN_ACTIONS.APP_LOADED,
@@ -20,12 +28,12 @@ const privateActionCreators = {
     type: LOGIN_ACTIONS.LOGIN_ERROR,
     payload: { errorMessage }
   }),
-  loginSuccess: (id, token) => ({
+  loginSuccess: (userId, token) => ({
     type: LOGIN_ACTIONS.LOGIN_SUCCESS,
-    payload: { id, token }
+    payload: { userId, token }
   }),
   setUserInfo: userInfo => ({
-    type: USER_ACTIONS.SET_USER_INFO,
+    type: LOGIN_ACTIONS.SET_USER_INFO,
     payload: { userInfo }
   }),
   logout: () => ({
@@ -36,11 +44,14 @@ const privateActionCreators = {
 
 export const actionCreators = {
   initApp: () => async dispatch => {
+    dispatch(privateActionCreators.appLoaded(false));
+    dispatch(privateActionCreators.loginLoading(true));
     const session = loadAuthState();
+    const { token, userId } = session || { userId: null, token: null };
+    dispatch(privateActionCreators.loadApp({ userId, token }));
     if (session) {
-      dispatch(privateActionCreators.loadApp(session.id, session.userId));
       API.setHeader('Authorization', session.token);
-      const responseUser = await authService.get(session.id);
+      const responseUser = await authService.get(session.userId);
       dispatch(privateActionCreators.loginLoading(false));
       const userData = responseUser.data;
       if (responseUser.ok) {
@@ -57,16 +68,18 @@ export const actionCreators = {
       }
       dispatch(privateActionCreators.appLoaded(true));
     } else {
+      dispatch(privateActionCreators.loginLoading(false));
       dispatch(privateActionCreators.appLoaded(true));
     }
   },
   handleLogin: (email, password) => async dispatch => {
     dispatch(privateActionCreators.loginLoading(true));
     const response = await authService.post({ email, password });
-    const data = response.data;
     dispatch(privateActionCreators.loginLoading(false));
+    const data = response.data;
     if (response.ok) {
-      saveAuthState({ token: data.id, id: data.userId });
+      saveAuthState({ token: data.id, userId: data.userId });
+      dispatch(privateActionCreators.loadApp({ userId: data.userId, token: data.id }));
       API.setHeader('Authorization', data.id);
       dispatch(privateActionCreators.loginLoading(true));
       const responseUser = await authService.get(data.userId, data.id);
@@ -74,7 +87,7 @@ export const actionCreators = {
       const userData = responseUser.data;
       if (responseUser.ok) {
         const userInfo = {
-          id: data.userId,
+          userId: data.userId,
           email: userData.email,
           firstName: userData.firstName,
           lastName: userData.lastName,
@@ -89,5 +102,7 @@ export const actionCreators = {
       dispatch(privateActionCreators.loginError(data.error.message));
     }
   },
-  handleLogout: () => async dispatch => dispatch(privateActionCreators.logout)
+  handleLogout: () => async dispatch => {
+    dispatch(privateActionCreators.logout);
+  }
 };

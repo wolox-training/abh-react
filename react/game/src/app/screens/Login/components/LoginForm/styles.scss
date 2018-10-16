@@ -18,13 +18,13 @@
   &:active,
   &:focus {
     background: $page-blue-background-dark;
-    transform: scale(1.1, 1.1);
+    transform: scale(1.1);
   }
 
   &:disabled {
     background: $btn-disabled-blue;
     cursor: no-drop;
-    transform: scale(1, 1);
+    transform: scale(1);
   }
 }
 

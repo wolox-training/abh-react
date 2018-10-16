@@ -1,4 +1,4 @@
-import { LOGIN_ACTIONS, USER_ACTIONS } from '@constants/redux';
+import { LOGIN_ACTIONS } from './actions';
 
 const initialState = {
   userId: null,
@@ -7,7 +7,7 @@ const initialState = {
   errorMessage: null,
   appLoaded: false,
   userInfo: {
-    id: null,
+    userId: null,
     email: null,
     firstName: null,
     lastName: null,
@@ -18,6 +18,11 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_ACTIONS.LOAD_APP:
+      return {
+        ...state,
+        ...action.payload
+      };
+    case LOGIN_ACTIONS.APP_LOADED:
       return {
         ...state,
         ...action.payload
@@ -37,7 +42,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         ...action.payload
       };
-    case USER_ACTIONS.SET_USER_INFO:
+    case LOGIN_ACTIONS.SET_USER_INFO:
       return {
         ...state,
         ...action.payload

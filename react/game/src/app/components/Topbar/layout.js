@@ -7,6 +7,9 @@ import styles from './styles.scss';
 function TopbarLayout(props) {
   return (
     <div className={styles.navbar}>
+      <NavLink to="/" activeClassName={styles.active}>
+        Home
+      </NavLink>
       <NavLink to="/game" activeClassName={styles.active}>
         Game
       </NavLink>

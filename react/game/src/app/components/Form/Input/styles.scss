@@ -13,13 +13,12 @@
   border: 1px solid transparent;
   font-size: $form-font-small-size;
   padding: 15px;
-  transform-style: preserve-3d;
   transition: all 0.5s ease;
 
   &:focus {
     border: 1px solid $page-blue-background;
     box-shadow: 0 3px 5px $light-grey;
-    transform: scale(1.04, 1.04);
+    transform: scale(1.04);
   }
 }
 
@@ -31,23 +30,23 @@
   @keyframes shake {
     10%,
     90% {
-      transform: translate3d(-1px, 0, 0);
+      transform: translate(-1px, 0);
     }
 
     20%,
     80% {
-      transform: translate3d(2px, 0, 0);
+      transform: translate(2px, 0);
     }
 
     30%,
     50%,
     70% {
-      transform: translate3d(-4px, 0, 0);
+      transform: translate(-4px, 0);
     }
 
     40%,
     60% {
-      transform: translate3d(4px, 0, 0);
+      transform: translate(4px, 0);
     }
   }
 }
@@ -56,7 +55,6 @@
   color: $page-blue-background-dark;
   font-weight: 300;
   margin: 5px;
-  text-align: left;
 }
 
 .input-error-message {
@@ -66,7 +64,6 @@
   margin: 10px 0;
   padding: 3px;
   position: relative;
-  text-align: left;
 
   &::before {
     border-color: transparent transparent $error-red transparent;
