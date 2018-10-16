@@ -1,5 +1,4 @@
-import { service as authService } from '@services/authService';
-import { loadAuthState, saveAuthState } from '@utils/auth';
+import { service as authService, loadAuthState, saveAuthState } from '@services/authService';
 
 export const LOGIN_ACTIONS = {
   LOAD_APP: 'LOAD_APP',
@@ -34,6 +33,7 @@ const privateActionCreators = {
 
 export const actionCreators = {
   initApp: () => dispatch => {
+    dispatch(privateActionCreators.appLoaded(false));
     const session = loadAuthState();
     const { token, id } = session || { token: null, id: null };
     dispatch(privateActionCreators.loadApp({ token, id }));
@@ -43,12 +43,12 @@ export const actionCreators = {
     dispatch(privateActionCreators.loginLoading(true));
     const response = await authService.post({ email, password });
     const data = response.data;
-    dispatch(privateActionCreators.loginLoading(false));
     if (response.ok) {
       saveAuthState({ id: data.userId, token: data.id });
       dispatch(privateActionCreators.loginSuccess(data.userId, data.id));
     } else {
       dispatch(privateActionCreators.loginError(data.error.message));
     }
+    dispatch(privateActionCreators.loginLoading(false));
   }
 };

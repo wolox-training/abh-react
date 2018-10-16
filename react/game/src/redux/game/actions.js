@@ -1,4 +1,5 @@
-import { concatHistory, calculateWinner, loadGameState } from '@utils/game';
+import { concatHistory, calculateWinner } from '@utils/game';
+import { loadGameState } from '@services/gameService';
 
 export const GAME_ACTIONS = {
   GAME_PLAYER_MOVED: 'GAME_PLAYER_MOVED',

@@ -4,15 +4,15 @@ import { Field, reduxForm } from 'redux-form';
 import ROUTES from '@constants/routes';
 import { Link } from 'react-router-dom';
 import { func, bool, string } from 'prop-types';
-import { FORM_NAMES } from '@constants/formNames';
+import formNames from '@constants/formNames';
 import Input from '@components/Form/Input';
 import { required, minLength, email } from '@validation/forms';
 
 import styles from './styles.scss';
 
-function LoginForm({ handleSubmit, onSubmit, pristine, submitting, errorMessage }) {
+function LoginForm({ handleSubmit, pristine, submitting, errorMessage }) {
   return (
-    <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.loginForm} onSubmit={handleSubmit}>
       <Field
         validate={[required, email]}
         name="email"
@@ -43,7 +43,6 @@ function LoginForm({ handleSubmit, onSubmit, pristine, submitting, errorMessage 
 }
 
 LoginForm.propTypes = {
-  onSubmit: func.isRequired,
   handleSubmit: func.isRequired,
   pristine: bool.isRequired,
   submitting: bool.isRequired,
@@ -57,5 +56,5 @@ const mapStateToProps = state => ({
 const ConnectedLoginForm = connect(mapStateToProps)(LoginForm);
 
 export default reduxForm({
-  form: FORM_NAMES.LOGIN_FORM
+  form: formNames.LOGIN_FORM
 })(ConnectedLoginForm);
