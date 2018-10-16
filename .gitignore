@@ -1,5 +1,8 @@
 .DS_STORE
 
+## Ignore server files
+server/
+
 ##vs code
 .vscode/
 
