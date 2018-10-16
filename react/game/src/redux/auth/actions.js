@@ -38,7 +38,7 @@ export const actionCreators = {
   initApp: () => async dispatch => {
     const session = loadAuthState();
     if (session) {
-      await dispatch(privateActionCreators.loadApp(session.id, session.userId));
+      dispatch(privateActionCreators.loadApp(session.id, session.userId));
       API.setHeader('Authorization', session.token);
       const responseUser = await authService.get(session.id);
       dispatch(privateActionCreators.loginLoading(false));
