@@ -1,11 +1,18 @@
-import { LOGIN_ACTIONS } from '@constants/redux';
+import { LOGIN_ACTIONS, USER_ACTIONS } from '@constants/redux';
 
 const initialState = {
-  id: null,
+  userId: null,
   token: null,
   isLoading: false,
   errorMessage: null,
-  appLoaded: false
+  appLoaded: false,
+  userInfo: {
+    id: null,
+    email: null,
+    firstName: null,
+    lastName: null,
+    age: null
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -30,6 +37,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         ...action.payload
       };
+    case USER_ACTIONS.SET_USER_INFO:
+      return {
+        ...state,
+        ...action.payload
+      };
+    case LOGIN_ACTIONS.LOGOUT:
+      return initialState;
     default:
       return state;
   }
