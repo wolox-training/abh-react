@@ -1,5 +1,10 @@
 import { concatHistory, calculateWinner, loadGameState } from '@utils/game';
-import { GAME_ACTIONS } from '@constants/redux';
+
+export const GAME_ACTIONS = {
+  GAME_PLAYER_MOVED: 'GAME_PLAYER_MOVED',
+  GAME_HISTORY_CHANGED: 'GAME_HISTORY_CHANGED',
+  LOAD_GAME_INFO: 'LOAD_GAME_INFO'
+};
 
 const privateActionCreators = {
   loadGameInfo: gameInfo => ({

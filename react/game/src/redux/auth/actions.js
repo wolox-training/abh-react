@@ -1,6 +1,13 @@
-import { LOGIN_ACTIONS } from '@constants/redux';
 import { service as authService } from '@services/authService';
 import { loadAuthState, saveAuthState } from '@utils/auth';
+
+export const LOGIN_ACTIONS = {
+  LOAD_APP: 'LOAD_APP',
+  APP_LOADED: 'APP_LOADED',
+  LOGIN_LOADING: 'LOGIN_LOADING',
+  LOGIN_ERROR: 'LOGIN_ERROR',
+  LOGIN_SUCCESS: 'LOGIN_SUCCESS'
+};
 
 const privateActionCreators = {
   loadApp: session => ({
@@ -26,10 +33,10 @@ const privateActionCreators = {
 };
 
 export const actionCreators = {
-  initApp: () => async dispatch => {
+  initApp: () => dispatch => {
     const session = loadAuthState();
     const { token, id } = session || { token: null, id: null };
-    await dispatch(privateActionCreators.loadApp({ token, id }));
+    dispatch(privateActionCreators.loadApp({ token, id }));
     dispatch(privateActionCreators.appLoaded(true));
   },
   handleLogin: (email, password) => async dispatch => {

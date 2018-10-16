@@ -1,4 +1,4 @@
-import { LOGIN_ACTIONS } from '@constants/redux';
+import { LOGIN_ACTIONS } from './actions';
 
 const initialState = {
   id: null,
