@@ -1,6 +1,8 @@
 import { service as authService } from '@services/authService';
-import { loadAuthState, saveAuthState } from '@utils/auth';
+import { loadAuthState, saveAuthState, deleteAuthState } from '@utils/auth';
+import { deleteGameState } from '@utils/game';
 import { API } from '@config/api';
+import { push } from 'connected-react-router';
 
 export const LOGIN_ACTIONS = {
   LOAD_APP: 'LOAD_APP',
@@ -8,7 +10,8 @@ export const LOGIN_ACTIONS = {
   LOGIN_LOADING: 'LOGIN_LOADING',
   LOGIN_ERROR: 'LOGIN_ERROR',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  SET_USER_INFO: 'SET_USER_INFO'
+  SET_USER_INFO: 'SET_USER_INFO',
+  LOGOUT: 'LOGOUT'
 };
 
 const privateActionCreators = {
@@ -37,8 +40,7 @@ const privateActionCreators = {
     payload: { userInfo }
   }),
   logout: () => ({
-    type: LOGIN_ACTIONS.LOGOUT,
-    payload: null
+    type: LOGIN_ACTIONS.LOGOUT
   })
 };
 
@@ -103,6 +105,13 @@ export const actionCreators = {
     }
   },
   handleLogout: () => async dispatch => {
-    dispatch(privateActionCreators.logout);
+    const response = await authService.postLogout();
+    if (response.ok) {
+      deleteAuthState();
+      deleteGameState();
+      dispatch(privateActionCreators.logout());
+      dispatch(push('/'));
+      dispatch(privateActionCreators.appLoaded(true));
+    }
   }
 };

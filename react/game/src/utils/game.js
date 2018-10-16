@@ -6,6 +6,8 @@ const loadGameState = () => localStorageService.get(GAME_STATE_NAME);
 
 const saveGameState = gameState => localStorageService.set(GAME_STATE_NAME, gameState);
 
+const deleteGameState = () => localStorageService.delete(GAME_STATE_NAME);
+
 const concatHistory = (history, squares) => history.concat([{ id: history.length - 1, squares }]);
 
 const calculateWinner = squares => {
@@ -23,4 +25,4 @@ const calculateWinner = squares => {
   return winner || null;
 };
 
-export { loadGameState, saveGameState, concatHistory, calculateWinner };
+export { loadGameState, saveGameState, concatHistory, calculateWinner, deleteGameState };

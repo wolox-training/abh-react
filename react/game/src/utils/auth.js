@@ -8,4 +8,6 @@ const loadAuthState = () => {
 
 const saveAuthState = value => value && localStorageService.set(AUTH_SESSION_NAME, value);
 
-export { loadAuthState, saveAuthState };
+const deleteAuthState = () => localStorageService.delete(AUTH_SESSION_NAME);
+
+export { loadAuthState, saveAuthState, deleteAuthState };
