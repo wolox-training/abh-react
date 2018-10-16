@@ -1,10 +1,10 @@
 .DS_STORE
 
-## Ignore server files
-server/
-
 ##vs code
 .vscode/
+
+## Server ##
+server/
 
 ### Sass ###
 .sass-cache/
