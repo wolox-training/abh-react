@@ -6,15 +6,19 @@ import Home from '@screens/Home';
 import E404 from '@screens/Errors/E404';
 import Topbar from '@components/Topbar';
 
+import styles from './styles.scss';
+
 function Dashboard() {
   return (
     <Fragment>
       <Topbar />
-      <Switch>
-        <Route exact path={ROUTES.PRIVATE.HOME.path} component={Home} />
-        <Route path={ROUTES.PRIVATE.GAME.path} component={Game} />
-        <Route component={E404} />
-      </Switch>
+      <div className={styles.pagesContainer}>
+        <Switch>
+          <Route exact path={ROUTES.PRIVATE.HOME.path} component={Home} />
+          <Route exact path={ROUTES.PRIVATE.GAME.path} component={Game} />
+          <Route component={E404} />
+        </Switch>
+      </div>
     </Fragment>
   );
 }

@@ -6,8 +6,8 @@ import { actionCreators as loginActions } from '@redux/auth/actions';
 import TopbarLayout from './layout';
 
 class Topbar extends Component {
-  logout = async () => {
-    await this.props.handleLogout();
+  logout = () => {
+    this.props.handleLogout();
   };
 
   render() {
@@ -30,5 +30,7 @@ Topbar.propTypes = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  undefined,
+  { pure: false }
 )(Topbar);

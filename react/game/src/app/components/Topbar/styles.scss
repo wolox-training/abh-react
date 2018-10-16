@@ -1,0 +1,73 @@
+@import 'variables/constants';
+@import 'variables/colors';
+@import 'variables/fontConfig';
+
+.active {
+  background-color: $page-blue-background-dark;
+  border-radius: 5px;
+  color: $white;
+  text-decoration: underline;
+
+  &:active,
+  &:focus {
+    color: $white;
+  }
+
+  &:hover {
+    color: $black;
+  }
+}
+
+.navbar {
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 5px 10px $light-grey;
+  display: flex;
+  height: $nav-height;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.logo-img {
+  height: $nav-logo-height;
+  width: 150px;
+}
+
+.navbar-left {
+  justify-self: flex-start;
+  order: 1;
+}
+
+.navbar-center {
+  justify-self: center;
+  order: 2;
+}
+
+.navbar-right {
+  align-items: center;
+  display: flex;
+  justify-self: flex-end;
+  order: 3;
+}
+
+.nav-option {
+  font-size: $nav-item-font-size;
+  margin: 0 10px;
+  padding: 5px;
+}
+
+.page-title {
+  align-self: center;
+  font-size: 30px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .page-title {
+    display: none;
+  }
+}
