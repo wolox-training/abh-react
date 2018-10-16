@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { shape, string, int } from 'prop-types';
+import { shape, string, int, func } from 'prop-types';
 import { connect } from 'react-redux';
+import { actionCreators as loginActions } from '@redux/auth/actions';
 
 import TopbarLayout from './layout';
 
 class Topbar extends Component {
-  logout = () => {
-    console.log('logout Smart');
-    return true;
+  logout = async () => {
+    await this.props.handleLogout();
   };
 
   render() {
@@ -19,8 +19,16 @@ const mapStateToProps = state => ({
   userInfo: state.auth.userInfo
 });
 
+const mapDispatchToProps = dispatch => ({
+  handleLogout: () => dispatch(loginActions.handleLogout())
+});
+
 Topbar.propTypes = {
-  userInfo: shape({ email: string, firstName: string, lastName: string, age: int }).isRequired
+  userInfo: shape({ email: string, firstName: string, lastName: string, age: int }).isRequired,
+  handleLogout: func.isRequired
 };
 
-export default connect(mapStateToProps)(Topbar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Topbar);

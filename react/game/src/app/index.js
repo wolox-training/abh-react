@@ -10,7 +10,7 @@ class App extends Component {
   }
   render() {
     const { appLoaded } = this.props.auth;
-    return appLoaded ? <div>Loading</div> : <Router />;
+    return !appLoaded ? <div>Loading</div> : <Router />;
   }
 }
 

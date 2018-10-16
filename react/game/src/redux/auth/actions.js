@@ -6,11 +6,11 @@ import { API } from '@config/api';
 const privateActionCreators = {
   loadApp: (id, token) => ({
     type: LOGIN_ACTIONS.LOAD_APP,
-    payload: { id, token }
+    payload: { userId: id, token }
   }),
-  appLoaded: loaded => ({
+  appLoaded: appLoaded => ({
     type: LOGIN_ACTIONS.APP_LOADED,
-    payload: { loaded }
+    payload: { appLoaded }
   }),
   loginLoading: isLoading => ({
     type: LOGIN_ACTIONS.LOGIN_LOADING,
@@ -88,5 +88,6 @@ export const actionCreators = {
     } else {
       dispatch(privateActionCreators.loginError(data.error.message));
     }
-  }
+  },
+  handleLogout: () => async dispatch => dispatch(privateActionCreators.logout)
 };
