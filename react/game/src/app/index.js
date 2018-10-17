@@ -10,7 +10,7 @@ class App extends Component {
   }
   render() {
     const { appLoaded } = this.props.auth;
-    return appLoaded ? <div>Loading</div> : <Router />;
+    return appLoaded ? <Router /> : <div>Loading</div>;
   }
 }
 
@@ -20,7 +20,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  game: state.game,
   auth: state.auth
 });
 

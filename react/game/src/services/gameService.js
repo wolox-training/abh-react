@@ -4,3 +4,5 @@ import { service as localStorageService } from '@services/localStorageService';
 export const loadGameState = () => localStorageService.get(GAME_STATE_NAME);
 
 export const saveGameState = gameState => localStorageService.set(GAME_STATE_NAME, gameState);
+
+export const deleteGameState = () => localStorageService.delete(GAME_STATE_NAME);
