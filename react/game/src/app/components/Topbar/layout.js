@@ -26,6 +26,9 @@ function TopbarLayout({ email, routeName, logout }) {
             <i className="fa fa-caret-down" />
           </button>
           <div className={styles.dropdownContent}>
+            <NavLink exact to="/profile" activeClassName={styles.active} className={styles.dropdownOption}>
+              Profile
+            </NavLink>
             <button className={styles.dropdownOption} onClick={logout}>
               Logout
             </button>
@@ -38,6 +41,7 @@ function TopbarLayout({ email, routeName, logout }) {
 
 TopbarLayout.propTypes = {
   email: PropTypes.string,
+  routeName: PropTypes.string,
   logout: PropTypes.func.isRequired
 };
 

@@ -3,5 +3,5 @@ export const checkRoute = (routesToCheck, pathname) =>
 
 export const getRouteName = (routesToCheck, location) => {
   const route = Object.keys(routesToCheck).find(item => routesToCheck[item].path === location);
-  return routesToCheck[route].name;
+  return route ? routesToCheck[route].name : null;
 };

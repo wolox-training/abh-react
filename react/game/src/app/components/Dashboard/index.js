@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import ROUTES from '@constants/routes';
 import Game from '@screens/Game';
 import Home from '@screens/Home';
+import Profile from '@screens/Profile';
 import E404 from '@screens/Errors/E404';
 import Topbar from '@components/Topbar';
 
@@ -18,6 +19,7 @@ function Dashboard({ location }) {
         <Switch>
           <Route exact path={ROUTES.PRIVATE.HOME.path} component={Home} />
           <Route exact path={ROUTES.PRIVATE.GAME.path} component={Game} />
+          <Route exact path={ROUTES.PRIVATE.PROFILE.path} component={Profile} />
           <Route component={E404} />
         </Switch>
       </div>

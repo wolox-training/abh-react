@@ -6,7 +6,8 @@ const ROUTES = {
   },
   PRIVATE: {
     HOME: { id: 'home', name: 'Home', path: '/' },
-    GAME: { id: 'game', name: 'Game', path: '/game' }
+    GAME: { id: 'game', name: 'Game', path: '/game' },
+    PROFILE: { id: 'profile', name: 'My Profile', path: '/profile' }
   }
 };
 
