@@ -37,7 +37,6 @@
 
   &:hover {
     .dropdown-content {
-      color: $white;
       display: block;
     }
   }
@@ -80,20 +79,15 @@
 }
 
 .navbar-left {
-  justify-self: flex-start;
-  order: 1;
+  display: flex;
 }
 
 .navbar-center {
-  justify-self: center;
-  order: 2;
+  display: flex;
 }
 
 .navbar-right {
-  align-items: center;
   display: flex;
-  justify-self: flex-end;
-  order: 3;
 }
 
 .page-title {
