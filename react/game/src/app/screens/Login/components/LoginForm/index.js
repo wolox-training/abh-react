@@ -1,40 +1,60 @@
-import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 import ROUTES from '@constants/routes';
 import { Link } from 'react-router-dom';
-import { func } from 'prop-types';
-import Logo from '@components/Logo';
-import { FORM_NAMES } from '@constants/formNames';
+import { func, bool, string } from 'prop-types';
+import formNames from '@constants/formNames';
+import Input from '@components/Form/Input';
+import { required, minLength, email } from '@validation/forms';
 
 import styles from './styles.scss';
 
-class LoginForm extends Component {
-  handleSubmit = event => {
-    // TODO: adding the functionality in the next feature, this is just for making the form work for now
-    this.props.onSubmit(event);
-  };
-
-  render() {
-    return (
-      <form className={styles.loginForm} onSubmit={this.handleSubmit}>
-        <Logo />
-        <input className={styles.authFormsInput} type="text" placeholder="username" />
-        <input className={styles.authFormsInput} type="password" placeholder="password" />
-        <button className={styles.formButton} type="submit">
-          Login
-        </button>
-        <p className={styles.message}>
-          Not registered? <Link to={ROUTES.REGISTER.path}>Create an account</Link>
-        </p>
-      </form>
-    );
-  }
+function LoginForm({ handleSubmit, pristine, submitting, errorMessage }) {
+  return (
+    <form className={styles.loginForm} onSubmit={handleSubmit}>
+      <Field
+        validate={[required, email]}
+        name="email"
+        id="login-email"
+        type="email"
+        placeholder="example@example.com"
+        label="Email"
+        component={Input}
+      />
+      <Field
+        name="password"
+        id="login-password"
+        type="password"
+        placeholder="*******"
+        label="Password"
+        validate={[required, minLength]}
+        component={Input}
+      />
+      {errorMessage && <div className={styles.errorMessage}>Error: {errorMessage}</div>}
+      <button className={styles.formButton} disabled={pristine || submitting} type="submit">
+        Login
+      </button>
+      <p className={styles.message}>
+        Not registered? <Link to={ROUTES.AUTH.REGISTER.path}>Create an account</Link>
+      </p>
+    </form>
+  );
 }
 
 LoginForm.propTypes = {
-  onSubmit: func.isRequired
+  handleSubmit: func.isRequired,
+  pristine: bool.isRequired,
+  submitting: bool.isRequired,
+  errorMessage: string
 };
 
+const mapStateToProps = state => ({
+  errorMessage: state.auth.errorMessage
+});
+
+const ConnectedLoginForm = connect(mapStateToProps)(LoginForm);
+
 export default reduxForm({
-  form: FORM_NAMES.LOGIN_FORM
-})(LoginForm);
+  form: formNames.LOGIN_FORM
+})(ConnectedLoginForm);

@@ -1,30 +1,31 @@
-import { GAME_ACTIONS } from './actions';
+import { LOGIN_ACTIONS } from './actions';
 
 const initialState = {
-  history: [
-    {
-      id: null,
-      squares: Array(9).fill(null)
-    }
-  ],
-  xIsNext: true,
-  stepNumber: 0,
-  winner: null
+  id: null,
+  token: null,
+  isLoading: false,
+  errorMessage: null,
+  appLoaded: false
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GAME_ACTIONS.LOAD_GAME_INFO:
+    case LOGIN_ACTIONS.LOAD_APP:
       return {
         ...state,
         ...action.payload
       };
-    case GAME_ACTIONS.GAME_PLAYER_MOVED:
+    case LOGIN_ACTIONS.LOGIN_LOADING:
       return {
         ...state,
         ...action.payload
       };
-    case GAME_ACTIONS.GAME_HISTORY_CHANGED:
+    case LOGIN_ACTIONS.LOGIN_SUCCESS:
+      return {
+        ...state,
+        ...action.payload
+      };
+    case LOGIN_ACTIONS.LOGIN_ERROR:
       return {
         ...state,
         ...action.payload

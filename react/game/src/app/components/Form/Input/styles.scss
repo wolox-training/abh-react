@@ -1,0 +1,79 @@
+@import 'variables/colors';
+@import 'variables/constants';
+@import 'variables/fontConfig';
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 15px;
+}
+
+.form-input {
+  background: $input-background;
+  border: 1px solid transparent;
+  font-size: $form-font-small-size;
+  padding: 15px;
+  transition: all 0.5s ease;
+
+  &:focus {
+    border: 1px solid $page-blue-background;
+    box-shadow: 0 3px 5px $light-grey;
+    transform: scale(1.04);
+  }
+}
+
+.input-error {
+  animation: shake 0.8s ease-in-out 0.5s both;
+  border: 2px solid $error-red;
+  box-shadow: 0 3px 5px $light-grey;
+
+  @keyframes shake {
+    10%,
+    90% {
+      transform: translate(-1px, 0);
+    }
+
+    20%,
+    80% {
+      transform: translate(2px, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: translate(-4px, 0);
+    }
+
+    40%,
+    60% {
+      transform: translate(4px, 0);
+    }
+  }
+}
+
+.input-label {
+  color: $page-blue-background-dark;
+  font-weight: 300;
+  margin: 5px;
+}
+
+.input-error-message {
+  background-color: $error-red;
+  color: $white;
+  font-size: $form-font-small-size;
+  margin: 10px 0;
+  padding: 3px;
+  position: relative;
+
+  &::before {
+    border-color: transparent transparent $error-red transparent;
+    border-style: solid;
+    border-width: 0 8px 8px 7px;
+    content: '';
+    height: 0;
+    left: 20px;
+    position: absolute;
+    top: -8px;
+    width: 0;
+  }
+}

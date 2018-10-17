@@ -8,10 +8,13 @@
       "alias": {
         "@assets": "./src/app/assets",
         "@components": "./src/app/components",
-        "@screens": "./src/app/screens",
+        "@config": "./src/config",
+        "@constants": "./src/constants",
         "@redux": "./src/redux",
+        "@screens": "./src/app/screens",
+        "@services": "./src/services",
         "@utils": "./src/utils/",
-        "@constants": "./src/constants"
+        "@validation": "./src/validation"
       }
     }]
   ]

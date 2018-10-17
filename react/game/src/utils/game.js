@@ -1,8 +1,8 @@
 import { winLines } from '@constants/game';
 
-export const concatHistory = (history, squares) => history.concat([{ id: history.length - 1, squares }]);
+const concatHistory = (history, squares) => history.concat([{ id: history.length - 1, squares }]);
 
-export const calculateWinner = squares => {
+const calculateWinner = squares => {
   const lines = winLines;
   let winner;
   if (squares.every(el => el != null)) {
@@ -17,21 +17,4 @@ export const calculateWinner = squares => {
   return winner || null;
 };
 
-export const loadGameState = () => {
-  try {
-    const serializedState = localStorage.getItem('gameState');
-    if (serializedState === null) return undefined;
-    return JSON.parse(serializedState);
-  } catch (err) {
-    return undefined;
-  }
-};
-
-export const saveGameState = gameState => {
-  try {
-    const serializedState = JSON.stringify(gameState);
-    localStorage.setItem('gameState', serializedState);
-  } catch (err) {
-    throw Error('Error: ', err);
-  }
-};
+export { concatHistory, calculateWinner };

@@ -3,30 +3,8 @@
 @import 'variables/fontConfig';
 
 .login-form {
-  background: $white;
-  box-shadow: 0 0 10px 0 $auth-box-shadow-color, 0 5px 5px 0 $auth-box-shadow-color;
   display: flex;
   flex-direction: column;
-  max-width: $auth-forms-width;
-  padding: 40px;
-  text-align: center;
-  width: 100%;
-}
-
-.auth-forms-input {
-  background: $input-background;
-  border: 1px solid transparent;
-  font-size: $form-font-small-size;
-  margin: 0 0 20px;
-  padding: 15px;
-  transform-style: preserve-3d;
-  transition: all 0.5s ease;
-
-  &:focus {
-    border: 1px solid $page-blue-background;
-    box-shadow: 0 3px 5px $light-grey;
-    transform: scale(1.05, 1.05);
-  }
 }
 
 .form-button {
@@ -40,7 +18,13 @@
   &:active,
   &:focus {
     background: $page-blue-background-dark;
-    transform: scale(1.1, 1.1);
+    transform: scale(1.1);
+  }
+
+  &:disabled {
+    background: $btn-disabled-blue;
+    cursor: no-drop;
+    transform: scale(1);
   }
 }
 
@@ -53,4 +37,12 @@
 .message a {
   color: $page-blue-background-dark;
   font-size: $form-font-small-size;
+}
+
+.error-message {
+  color: $error-red;
+  font-size: $form-font-small-size;
+  margin: 10px 0;
+  text-align: center;
+  text-decoration: underline;
 }

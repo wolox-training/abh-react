@@ -9,8 +9,8 @@ function Dashboard() {
   return (
     <Fragment>
       <Switch>
-        <Route exact path={routes.HOME.path} component={Home} />
-        <Route path={routes.GAME.path} component={Game} />
+        <Route exact path={routes.PRIVATE.HOME.path} component={Home} />
+        <Route path={routes.PRIVATE.GAME.path} component={Game} />
         <Route component={E404} />
       </Switch>
     </Fragment>

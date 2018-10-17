@@ -1,14 +1,34 @@
 import React, { Component } from 'react';
+import { func } from 'prop-types';
+import { connect } from 'react-redux';
+import { actionCreators as loginActions } from '@redux/auth/actions';
 
 import LoginLayout from './layout';
 
 class LoginContainer extends Component {
-  // TODO: adding the functionality in the next feature, this is just for making the form work for now
-  handleSubmit = event => event.preventDefault();
+  onSubmit = values => {
+    const { email, password } = values;
+    this.props.login(email, password);
+  };
 
   render() {
-    return <LoginLayout onSubmit={this.handleSubmit} />;
+    return <LoginLayout onSubmit={this.onSubmit} />;
   }
 }
 
-export default LoginContainer;
+const mapStateToProps = state => ({
+  error: state.auth.loginError
+});
+
+const mapDispatchToProps = dispatch => ({
+  login: (email, password) => dispatch(loginActions.handleLogin(email, password))
+});
+
+LoginContainer.propTypes = {
+  login: func.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginContainer);

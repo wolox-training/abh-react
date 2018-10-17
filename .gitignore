@@ -3,6 +3,9 @@
 ##vs code
 .vscode/
 
+## Server ##
+server/
+
 ### Sass ###
 .sass-cache/
 *.css
