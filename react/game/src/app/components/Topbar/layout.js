@@ -21,7 +21,7 @@ function TopbarLayout({ email, routeName, logout }) {
           Game
         </NavLink>
         <div className={styles.dropdown}>
-          <button className={`${styles.dropdownButton} ${styles.navOption}`}>
+          <button className={styles.navOption}>
             {email}
             <i className="fa fa-caret-down" />
           </button>
