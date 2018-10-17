@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function Profile() {
-  return <h1>My Profile</h1>;
+import ProfileLayout from './layout';
+
+class Profile extends Component {
+  render() {
+    return <ProfileLayout />;
+  }
 }
 
 export default Profile;

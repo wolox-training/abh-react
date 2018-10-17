@@ -1,6 +1,9 @@
+@import 'variables/colors';
 @import 'variables/constants';
 
 .pages-container {
-  margin-top: $pages-margin-top;
-  width: 100%;
+  background: linear-gradient(to left, $page-blue-background-dark, $page-blue-background);
+  background: $page-blue-background;
+  height: 100vh;
+  padding-top: $pages-margin-top;
 }
