@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { arrayOf, bool, string, number, shape, func } from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators } from '@redux/game/actions';
-import { calculateWinner, saveGameState } from '@utils/game';
+import { calculateWinner } from '@utils/game';
+import { saveGameState } from '@services/gameService';
 import { store } from '@redux/store';
 
 import GameLayout from './layout';

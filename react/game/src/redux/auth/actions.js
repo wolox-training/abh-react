@@ -1,10 +1,9 @@
-import { service as authService } from '@services/authService';
-import { loadAuthState, saveAuthState, deleteAuthState } from '@utils/auth';
-import { deleteGameState } from '@utils/game';
+import { service as authService, loadAuthState, saveAuthState, deleteAuthState } from '@services/authService';
+import { deleteGameState } from '@services/gameService';
 import { API } from '@config/api';
 import { push } from 'connected-react-router';
 
-export const LOGIN_ACTIONS = {
+export const AUTH_ACTIONS = {
   LOAD_APP: 'LOAD_APP',
   APP_LOADED: 'APP_LOADED',
   LOGIN_LOADING: 'LOGIN_LOADING',
@@ -16,31 +15,31 @@ export const LOGIN_ACTIONS = {
 
 const privateActionCreators = {
   loadApp: ({ userId, token }) => ({
-    type: LOGIN_ACTIONS.LOAD_APP,
+    type: AUTH_ACTIONS.LOAD_APP,
     payload: { userId, token }
   }),
   appLoaded: appLoaded => ({
-    type: LOGIN_ACTIONS.APP_LOADED,
+    type: AUTH_ACTIONS.APP_LOADED,
     payload: { appLoaded }
   }),
   loginLoading: isLoading => ({
-    type: LOGIN_ACTIONS.LOGIN_LOADING,
+    type: AUTH_ACTIONS.LOGIN_LOADING,
     payload: { isLoading }
   }),
   loginError: errorMessage => ({
-    type: LOGIN_ACTIONS.LOGIN_ERROR,
+    type: AUTH_ACTIONS.LOGIN_ERROR,
     payload: { errorMessage }
   }),
   loginSuccess: (userId, token) => ({
-    type: LOGIN_ACTIONS.LOGIN_SUCCESS,
+    type: AUTH_ACTIONS.LOGIN_SUCCESS,
     payload: { userId, token }
   }),
   setUserInfo: userInfo => ({
-    type: LOGIN_ACTIONS.SET_USER_INFO,
+    type: AUTH_ACTIONS.SET_USER_INFO,
     payload: { userInfo }
   }),
   logout: () => ({
-    type: LOGIN_ACTIONS.LOGOUT
+    type: AUTH_ACTIONS.LOGOUT
   })
 };
 
@@ -77,7 +76,6 @@ export const actionCreators = {
   handleLogin: (email, password) => async dispatch => {
     dispatch(privateActionCreators.loginLoading(true));
     const response = await authService.post({ email, password });
-    dispatch(privateActionCreators.loginLoading(false));
     const data = response.data;
     if (response.ok) {
       saveAuthState({ token: data.id, userId: data.userId });
@@ -103,6 +101,7 @@ export const actionCreators = {
     } else {
       dispatch(privateActionCreators.loginError(data.error.message));
     }
+    dispatch(privateActionCreators.loginLoading(false));
   },
   handleLogout: () => async dispatch => {
     const response = await authService.postLogout();

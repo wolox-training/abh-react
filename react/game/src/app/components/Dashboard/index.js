@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ROUTES from '@constants/routes';
+import routes from '@constants/routes';
 import Game from '@screens/Game';
 import Home from '@screens/Home';
 import Profile from '@screens/Profile';
@@ -17,9 +17,9 @@ function Dashboard({ location }) {
       <Topbar currentLocation={location} />
       <div className={styles.pagesContainer}>
         <Switch>
-          <Route exact path={ROUTES.PRIVATE.HOME.path} component={Home} />
-          <Route exact path={ROUTES.PRIVATE.GAME.path} component={Game} />
-          <Route exact path={ROUTES.PRIVATE.PROFILE.path} component={Profile} />
+          <Route exact path={routes.PRIVATE.HOME.path} component={Home} />
+          <Route exact path={routes.PRIVATE.GAME.path} component={Game} />
+          <Route exact path={routes.PRIVATE.PROFILE.path} component={Profile} />
           <Route component={E404} />
         </Switch>
       </div>
