@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Logo from '@components/Logo';
+import routes from '@constants/routes';
 
 import styles from './styles.scss';
 
@@ -17,7 +18,12 @@ function TopbarLayout({ email, routeName, logout }) {
         <h1 className={styles.pageTitle}>{routeName}</h1>
       </div>
       <div className={styles.navbarRight}>
-        <NavLink exact to="/game" activeClassName={styles.active} className={styles.navOption}>
+        <NavLink
+          exact
+          to={routes.PRIVATE.GAME.path}
+          activeClassName={styles.active}
+          className={styles.navOption}
+        >
           Game
         </NavLink>
         <div className={styles.dropdown}>
@@ -26,7 +32,12 @@ function TopbarLayout({ email, routeName, logout }) {
             <i className="fa fa-caret-down" />
           </button>
           <div className={styles.dropdownContent}>
-            <NavLink exact to="/profile" activeClassName={styles.active} className={styles.dropdownOption}>
+            <NavLink
+              exact
+              to={routes.PRIVATE.PROFILE.path}
+              activeClassName={styles.active}
+              className={styles.dropdownOption}
+            >
               Profile
             </NavLink>
             <button className={styles.dropdownOption} onClick={logout}>

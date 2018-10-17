@@ -1,19 +1,19 @@
 import React from 'react';
-import { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import logo from '@assets/wolox_logo.svg';
 
 import styles from './styles.scss';
 
-function Logo(props) {
+function Logo({ logoImgClassName }) {
   return (
     <div className={styles.logoContainer}>
-      <img src={logo} alt="logo" className={props.logoImgClassName} />
+      <img src={logo} alt="logo" className={logoImgClassName} />
     </div>
   );
 }
 
 Logo.propTypes = {
-  logoImgClassName: string
+  logoImgClassName: PropTypes.string
 };
 
 export default Logo;

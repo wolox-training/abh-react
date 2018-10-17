@@ -8,15 +8,11 @@ import { getRouteName } from '@utils/router';
 import TopbarLayout from './layout';
 
 class Topbar extends Component {
-  logout = () => {
-    this.props.handleLogout();
-  };
-
   render() {
     return (
       <TopbarLayout
         routeName={getRouteName(routes.PRIVATE, this.props.currentLocation)}
-        logout={this.logout}
+        logout={this.props.handleLogout}
         email={this.props.userInfo.email}
       />
     );
