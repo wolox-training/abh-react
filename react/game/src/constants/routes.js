@@ -1,12 +1,12 @@
 const ROUTES = {
   PUBLIC: {},
   AUTH: {
-    LOGIN: { name: 'login', path: '/login' },
-    REGISTER: { name: 'register', path: '/register' }
+    LOGIN: { id: 'login', name: 'Login', path: '/login' },
+    REGISTER: { id: 'register', name: 'Register', path: '/register' }
   },
   PRIVATE: {
-    HOME: { name: 'home', path: '/' },
-    GAME: { name: 'game', path: '/game' }
+    HOME: { id: 'home', name: 'Home', path: '/' },
+    GAME: { id: 'game', name: 'Game', path: '/game' }
   }
 };
 

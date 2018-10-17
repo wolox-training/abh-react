@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import { shape, string, int, func } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import routes from '@constants/routes';
 import { actionCreators as loginActions } from '@redux/auth/actions';
+import { getRouteName } from '@utils/router';
 
 import TopbarLayout from './layout';
 
 class Topbar extends Component {
+  getRouteName = () => getRouteName(routes.PRIVATE, this.props.currentLocation);
+
   logout = () => {
     this.props.handleLogout();
   };
 
   render() {
-    return <TopbarLayout logout={this.logout} email={this.props.userInfo.email} />;
+    return (
+      <TopbarLayout routeName={this.getRouteName()} logout={this.logout} email={this.props.userInfo.email} />
+    );
   }
 }
 
@@ -24,8 +30,14 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Topbar.propTypes = {
-  userInfo: shape({ email: string, firstName: string, lastName: string, age: int }).isRequired,
-  handleLogout: func.isRequired
+  userInfo: PropTypes.shape({
+    email: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    age: PropTypes.int
+  }).isRequired,
+  handleLogout: PropTypes.func.isRequired,
+  currentLocation: PropTypes.string
 };
 
 export default connect(
