@@ -56,14 +56,7 @@ export const actionCreators = {
       dispatch(privateActionCreators.loginLoading(false));
       const userData = responseUser.data;
       if (responseUser.ok) {
-        const userInfo = {
-          id: userData.id,
-          email: userData.email,
-          firstName: userData.firstName,
-          lastName: userData.lastName,
-          age: userData.age
-        };
-        dispatch(privateActionCreators.setUserInfo(userInfo));
+        dispatch(privateActionCreators.setUserInfo({ ...responseUser.data }));
       } else {
         dispatch(privateActionCreators.loginError(userData.error.message));
       }
@@ -84,19 +77,11 @@ export const actionCreators = {
       dispatch(privateActionCreators.loginLoading(true));
       const responseUser = await authService.get(data.userId, data.id);
       dispatch(privateActionCreators.loginLoading(false));
-      const userData = responseUser.data;
       if (responseUser.ok) {
-        const userInfo = {
-          userId: data.userId,
-          email: userData.email,
-          firstName: userData.firstName,
-          lastName: userData.lastName,
-          age: userData.age
-        };
-        dispatch(privateActionCreators.setUserInfo(userInfo));
+        dispatch(privateActionCreators.setUserInfo({ ...responseUser.data }));
         dispatch(privateActionCreators.loginSuccess(data.userId, data.id));
       } else {
-        dispatch(privateActionCreators.loginError(data.error.message));
+        dispatch(privateActionCreators.loginError(responseUser.data.error.message));
       }
     } else {
       dispatch(privateActionCreators.loginError(data.error.message));

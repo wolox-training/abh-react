@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import routes from '@constants/routes';
@@ -7,16 +7,14 @@ import { getRouteName } from '@utils/router';
 
 import TopbarLayout from './layout';
 
-class Topbar extends Component {
-  render() {
-    return (
-      <TopbarLayout
-        routeName={getRouteName(routes.PRIVATE, this.props.currentLocation)}
-        logout={this.props.handleLogout}
-        email={this.props.userInfo.email}
-      />
-    );
-  }
+function Topbar({ currentLocation, handleLogout, userInfo }) {
+  return (
+    <TopbarLayout
+      routeName={getRouteName(routes.PRIVATE, currentLocation)}
+      logout={handleLogout}
+      email={userInfo.email}
+    />
+  );
 }
 
 const mapStateToProps = state => ({
@@ -40,7 +38,5 @@ Topbar.propTypes = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-  undefined,
-  { pure: false }
+  mapDispatchToProps
 )(Topbar);

@@ -7,7 +7,7 @@ const initialState = {
   errorMessage: null,
   appLoaded: false,
   userInfo: {
-    userId: null,
+    id: null,
     email: null,
     firstName: null,
     lastName: null,
