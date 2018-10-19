@@ -26,6 +26,8 @@ const privateActionCreators = {
 
 export const actionCreators = {
   submit: formData => async dispatch => {
+    console.log(formData);
+
     dispatch(privateActionCreators.submitLoading(true));
     dispatch(privateActionCreators.submitLoading(false));
   }

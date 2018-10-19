@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import formNames from '@constants/formNames';
 import Button from '@components/Form/Button';
 import Input from '@components/Form/Input';
+import Textarea from '@components/Form/Textarea';
 import { required, minValueAge, maxValueAge, url } from '@validation/forms';
 
 import styles from './styles.scss';
@@ -40,6 +41,14 @@ function ProfileEditForm({ handleSubmit, pristine, submitting, errorMessage, act
           component={Input}
         />
         <Field
+          validate={[required, minValueAge, maxValueAge]}
+          name="aboutMe"
+          id="aboutMe"
+          rows={5}
+          label="About me"
+          component={Textarea}
+        />
+        <Field
           validate={[required, url]}
           name="profilePicture"
           id="profilePicture"
@@ -55,7 +64,7 @@ function ProfileEditForm({ handleSubmit, pristine, submitting, errorMessage, act
           id="backgroundPicture"
           type="text"
           placeholder="http://www.startupchile.org/wp-content/uploads/2018/03/Wolox-Logo.png"
-          label="Profile Picture URL"
+          label="Background Picture URL"
           component={Input}
         />
 
