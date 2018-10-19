@@ -1,0 +1,20 @@
+@import 'variables/colors';
+
+.app-button {
+  background: $page-blue-background;
+  color: $white;
+  padding: 15px;
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background: $page-blue-background-dark;
+    transform: scale(1.1);
+  }
+
+  &:disabled {
+    background: $btn-disabled-blue;
+    cursor: no-drop;
+    transform: scale(1);
+  }
+}

@@ -4,34 +4,80 @@
 .profile-page {
   align-items: center;
   display: flex;
-  height: 100%;
+  height: 100vh;
   justify-content: center;
   width: 100%;
 }
 
 .profile-page-container {
+  align-items: center;
   background: $white;
   border-radius: 15px;
   box-shadow: 0 0 10px 0 $box-shadow-color, 0 5px 5px 0 $box-shadow-color;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 30px;
   max-width: $profile-container-width;
-  padding: 40px;
-  width: 100%;
+  position: relative;
+  width: 80%;
 }
 
 .profile-background {
-  background: url(http://www.pptbackgrounds.org/uploads/beautiful-lights-waves-powerpoint-backgrounds.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-radius: 15px 15px 0 0;
+  height: $profile-background-height;
+  width: 100%;
 }
 
-
 .profile-picture {
-  border: 3px solid $page-blue-background-light;
+  background-color: $white;
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 50%;
-  max-height: 250px;
-  max-width: 250px;
-  padding: 15px;
-  position: relative;
+  box-shadow: 0 0 10px 0 $box-shadow-color;
+  max-height: 200px;
+  max-width: 200px;
+  position: absolute;
+  transform: translateY(50%);
   width: 100%;
   z-index: 1;
+}
+
+.profile-picture-img {
+  border-radius: 50%;
+  height: 200px;
+  object-fit: contain;
+  width: 200px;
+  z-index: 0;
+}
+
+.edit-profile-btn-holder {
+  align-self: flex-end;
+  margin: 10px 5px 0;
+}
+
+.edit-profile-btn {
+  border-radius: 50%;
+}
+
+.profile-holder {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: $profile-background-height/2;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .edit-profile-btn-holder {
+    align-self: center;
+    margin: $profile-background-height/2+10px 0 0;
+  }
+
+  .profile-holder {
+    margin-top: 15px;
+  }
 }
