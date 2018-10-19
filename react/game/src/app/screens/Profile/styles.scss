@@ -2,10 +2,12 @@
 @import 'variables/constants';
 
 .profile-page {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
-  height: 100vh;
+  height: 100%;
   justify-content: center;
+  overflow: auto;
+  padding: 30px;
   width: 100%;
 }
 
@@ -16,11 +18,9 @@
   box-shadow: 0 0 10px 0 $box-shadow-color, 0 5px 5px 0 $box-shadow-color;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  margin-top: 30px;
   max-width: $profile-container-width;
   position: relative;
-  width: 80%;
+  width: 100%;
 }
 
 .profile-background {
@@ -34,23 +34,22 @@
 }
 
 .profile-picture {
+  align-items: center;
   background-color: $white;
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(216, 90, 90, 0.2);
   border-radius: 50%;
   box-shadow: 0 0 10px 0 $box-shadow-color;
-  max-height: 200px;
-  max-width: 200px;
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  overflow: hidden;
   position: absolute;
   transform: translateY(50%);
-  width: 100%;
+  width: 200px;
 }
 
 .profile-picture-img {
-  border-radius: 50%;
-  height: 200px;
-  object-fit: contain;
-  width: 200px;
-  z-index: 0;
+  height: 100%;
 }
 
 .edit-profile-btn-holder {
@@ -65,7 +64,6 @@
 .profile-holder {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
   margin-top: $profile-background-height/2;
   width: 100%;
 }

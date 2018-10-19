@@ -1,7 +1,7 @@
 import React from 'react';
 import { string, shape } from 'prop-types';
 
-import styles from './styles.scss';
+import styles from '../styles.scss';
 
 function Input({ label, input, type, meta, placeholder, id }) {
   return (

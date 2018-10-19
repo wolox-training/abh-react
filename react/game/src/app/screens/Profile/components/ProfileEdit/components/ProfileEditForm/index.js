@@ -45,6 +45,7 @@ function ProfileEditForm({ handleSubmit, pristine, submitting, errorMessage, act
           name="aboutMe"
           id="aboutMe"
           rows={5}
+          resize={false}
           label="About me"
           component={Textarea}
         />

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.scss';
+import styles from '../styles.scss';
 
-function Textarea({ label, input, meta, rows, cols, placeholder, id }) {
+function Textarea({ label, input, meta, rows, resize, cols, placeholder, id }) {
   return (
     <div className={styles.formField}>
       {label && (
@@ -16,6 +16,7 @@ function Textarea({ label, input, meta, rows, cols, placeholder, id }) {
         id={id}
         rows={rows}
         cols={cols}
+        style={{ resize: !resize && 'none' }}
         placeholder={placeholder}
         className={`${styles.formInput} ${meta.error && meta.touched ? styles.inputError : ''}`}
       />

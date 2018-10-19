@@ -2,8 +2,7 @@
 @import 'variables/constants';
 
 .pages-container {
-  background: linear-gradient(to left, $page-blue-background-dark, $page-blue-background);
-  background: $page-blue-background;
-  height: 100vh;
-  margin-top: $pages-margin-top;
+  height: 100%;
+  overflow: auto;
+  width: 100%;
 }
