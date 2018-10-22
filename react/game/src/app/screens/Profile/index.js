@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { actionCreators as profileActions } from '@redux/profile/actions';
 
 import ProfileLayout from './layout';
 
 class Profile extends Component {
   state = {
-    editingProfile: true
+    editingProfile: false
+  };
+
+  componentDidMount = () => {
+    this.props.loadProfile(this.props.userId);
   };
 
   activateEditProfile = () => {
@@ -14,25 +19,36 @@ class Profile extends Component {
   };
 
   render() {
+    const { loading, profileInfo } = this.props;
     return (
       <ProfileLayout
         editingProfile={this.state.editingProfile}
         activateEditProfile={this.activateEditProfile}
-        profilePicture={this.props.profilePicture}
-        backgroundPicture={this.props.backgroundPicture}
+        profileInfo={profileInfo}
+        loading={loading}
       />
     );
   }
 }
 
 Profile.propTypes = {
-  profilePicture: PropTypes.string.isRequired,
-  backgroundPicture: PropTypes.string.isRequired
+  profileInfo: PropTypes.shape({}).isRequired,
+  loading: PropTypes.bool,
+  loadProfile: PropTypes.func.isRequired,
+  userId: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => ({
-  profilePicture: state.auth.userInfo.profilePicture,
-  backgroundPicture: state.auth.userInfo.backgroundPicture
+  profileInfo: state.profile.info,
+  loading: state.profile.loading,
+  userId: state.auth.userId
 });
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = dispatch => ({
+  loadProfile: userId => dispatch(profileActions.loadProfileInfo(userId))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile);

@@ -1,33 +1,57 @@
-import { API } from '@config/api';
+import { service as profileService } from '@services/profileService';
+import { SubmissionError } from 'redux-form';
 
 export const PROFILE_ACTIONS = {
-  SUBMIT_LOADING: 'SUBMIT_LOADING',
-  SUBMIT_ERROR: 'SUBMIT_ERROR',
-  SUBMIT_SUCCESS: 'SUBMIT_SUCCESS',
-  RESET_FORM: 'RESET_FORM'
+  SET_PROFILE_INFO: 'SET_PROFILE_INFO',
+  LOADING: 'LOADING',
+  ERROR: 'ERROR',
+  SUCCESS: 'SUCCESS'
 };
 
 const privateActionCreators = {
-  submitLoading: loading => ({
-    type: PROFILE_ACTIONS.SUBMIT_LOADING,
+  set: info => ({
+    type: PROFILE_ACTIONS.SET_PROFILE_INFO,
+    payload: { info }
+  }),
+  loading: loading => ({
+    type: PROFILE_ACTIONS.LOADING,
     payload: { loading }
   }),
-  submitSuccess: () => ({
-    type: PROFILE_ACTIONS.SUBMIT_SUCCESS
+  success: successMessage => ({
+    type: PROFILE_ACTIONS.SUCCESS,
+    payload: { successMessage }
   }),
-  submitError: errorMessage => ({
-    type: PROFILE_ACTIONS.SUBMIT_ERROR,
+  error: errorMessage => ({
+    type: PROFILE_ACTIONS.ERROR,
     payload: { errorMessage }
-  }),
-  resetForm: () => ({
-    type: PROFILE_ACTIONS.RESET_FORM
   })
 };
 
 export const actionCreators = {
-  submit: formData => async dispatch => {
-    console.log(formData);
-    dispatch(privateActionCreators.submitLoading(true));
-    dispatch(privateActionCreators.submitLoading(false));
+  loadProfileInfo: id => async dispatch => {
+    dispatch(privateActionCreators.loading(true));
+    const response = await profileService.get(id);
+    const data = response.data;
+    if (response.ok) {
+      dispatch(privateActionCreators.set(data));
+    } else {
+      dispatch(privateActionCreators.error(data.error.message));
+    }
+    dispatch(privateActionCreators.loading(false));
+  },
+  submit: (userId, formData) => async dispatch => {
+    dispatch(privateActionCreators.loading(true));
+    const response = await profileService.patch(userId, formData);
+    const data = response.data;
+    dispatch(privateActionCreators.loading(false));
+    if (response.ok) {
+      dispatch(privateActionCreators.set(data));
+      dispatch(privateActionCreators.error(null));
+      dispatch(privateActionCreators.success('Profile edited correctly'));
+    } else {
+      dispatch(privateActionCreators.success(null));
+      dispatch(privateActionCreators.error(data.error.message));
+      throw new SubmissionError({ _error: data.error.message });
+    }
   }
 };

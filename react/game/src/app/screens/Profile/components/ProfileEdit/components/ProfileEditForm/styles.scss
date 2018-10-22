@@ -45,3 +45,11 @@
   text-align: center;
   text-decoration: underline;
 }
+
+.success-message {
+  color: $success-green;
+  font-size: $form-font-small-size;
+  margin: 10px 0;
+  text-align: center;
+  text-decoration: underline;
+}

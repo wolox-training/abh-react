@@ -6,13 +6,7 @@ const initialState = {
   isLoading: false,
   errorMessage: null,
   appLoaded: false,
-  userInfo: {
-    id: null,
-    email: null,
-    firstName: null,
-    lastName: null,
-    age: null
-  }
+  email: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -42,7 +36,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         ...action.payload
       };
-    case AUTH_ACTIONS.SET_USER_INFO:
+    case AUTH_ACTIONS.SET_EMAIL:
       return {
         ...state,
         ...action.payload

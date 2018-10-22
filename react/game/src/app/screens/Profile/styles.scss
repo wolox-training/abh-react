@@ -27,7 +27,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid $semi-transparent-black-border;
   border-radius: 15px 15px 0 0;
   height: $profile-background-height;
   width: 100%;
@@ -36,16 +36,16 @@
 .profile-picture {
   align-items: center;
   background-color: $white;
-  border: 1px solid rgba(216, 90, 90, 0.2);
+  border: 1px solid $profile-picture-border;
   border-radius: 50%;
   box-shadow: 0 0 10px 0 $box-shadow-color;
   display: flex;
-  height: 200px;
+  height: $profile-picture-size;
   justify-content: center;
   overflow: hidden;
   position: absolute;
   transform: translateY(50%);
-  width: 200px;
+  width: $profile-picture-size;
 }
 
 .profile-picture-img {
@@ -64,17 +64,6 @@
 .profile-holder {
   display: flex;
   flex-direction: column;
-  margin-top: $profile-background-height/2;
+  margin-top: -15px+$profile-background-height/2;
   width: 100%;
-}
-
-@media only screen and (max-width: 768px) {
-  .edit-profile-btn-holder {
-    align-self: center;
-    margin: $profile-background-height/2+10px 0 0;
-  }
-
-  .profile-holder {
-    margin-top: 15px;
-  }
 }

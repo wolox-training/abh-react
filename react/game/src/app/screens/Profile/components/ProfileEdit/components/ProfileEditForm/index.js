@@ -10,7 +10,14 @@ import { required, minValueAge, maxValueAge, url } from '@validation/forms';
 
 import styles from './styles.scss';
 
-function ProfileEditForm({ handleSubmit, pristine, submitting, errorMessage, activateEditProfile }) {
+function ProfileEditForm({
+  handleSubmit,
+  pristine,
+  submitting,
+  errorMessage,
+  successMessage,
+  activateEditProfile
+}) {
   return (
     <div className={styles.editProfileFormContainer}>
       <form className={styles.editProfileForm} onSubmit={handleSubmit}>
@@ -69,6 +76,7 @@ function ProfileEditForm({ handleSubmit, pristine, submitting, errorMessage, act
           component={Input}
         />
 
+        {successMessage && <div className={styles.successMessage}>{successMessage}</div>}
         {errorMessage && <div className={styles.errorMessage}>Error: {errorMessage}</div>}
         <div className={styles.editProfileBtnContainer}>
           <Button
@@ -87,7 +95,7 @@ function ProfileEditForm({ handleSubmit, pristine, submitting, errorMessage, act
             visible
             title="Click to cancel the profile edit"
           >
-            Cancel
+            Close
           </Button>
         </div>
       </form>
@@ -100,11 +108,12 @@ ProfileEditForm.propTypes = {
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
+  successMessage: PropTypes.string,
   activateEditProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  initialValues: state.auth.userInfo,
+  initialValues: state.profile.info,
   errorMessage: state.profile.errorMessage,
   successMessage: state.profile.successMessage
 });
