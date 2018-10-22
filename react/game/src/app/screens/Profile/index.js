@@ -32,7 +32,15 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
-  profileInfo: PropTypes.shape({}).isRequired,
+  profileInfo: PropTypes.shape({
+    firstName: PropTypes.string,
+    id: PropTypes.number,
+    lastName: PropTypes.string,
+    age: PropTypes.string,
+    aboutMe: PropTypes.string,
+    profilePicture: PropTypes.string,
+    backgroundPicture: PropTypes.string
+  }).isRequired,
   loading: PropTypes.bool,
   loadProfile: PropTypes.func.isRequired,
   userId: PropTypes.number.isRequired

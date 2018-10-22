@@ -12,32 +12,37 @@ import { required, minLength, email } from '@validation/forms';
 import styles from './styles.scss';
 
 function LoginForm({ handleSubmit, pristine, submitting, errorMessage }) {
+  const { fields, btnTitles, btnTooltips } = formNames.LOGIN;
+  const placeholders = formNames.PLACEHOLDERS;
   return (
     <form className={styles.loginForm} onSubmit={handleSubmit}>
       <Field
-        validate={[required, email]}
-        name="email"
-        id="login-email"
         type="email"
-        placeholder="example@example.com"
-        label="Email"
+        validate={[required, email]}
         component={Input}
+        label={fields.email.label}
+        id={fields.email.id}
+        name={fields.email.name}
+        placeholder={placeholders.EMAIL}
       />
       <Field
-        name="password"
-        id="login-password"
         type="password"
-        placeholder="*******"
-        label="Password"
-        validate={[required, minLength]}
         component={Input}
+        validate={[required, minLength]}
+        label={fields.password.label}
+        id={fields.password.id}
+        name={fields.password.name}
+        placeholder={placeholders.PASSWORD}
       />
       {errorMessage && <div className={styles.errorMessage}>Error: {errorMessage}</div>}
-      <Button disabled={pristine || submitting} type="submit" title="Click to check login" visible>
-        Login
+      <Button disabled={pristine || submitting} type="submit" title={btnTooltips.login} visible>
+        {btnTitles.login}
       </Button>
       <p className={styles.message}>
-        Not registered? <Link to={ROUTES.AUTH.REGISTER.path}>Create an account</Link>
+        Not registered?{' '}
+        <Link to={ROUTES.AUTH.REGISTER.path} title={btnTooltips.register}>
+          {btnTitles.register}
+        </Link>
       </p>
     </form>
   );
@@ -57,5 +62,5 @@ const mapStateToProps = state => ({
 const ConnectedLoginForm = connect(mapStateToProps)(LoginForm);
 
 export default reduxForm({
-  form: formNames.LOGIN_FORM
+  form: formNames.LOGIN.name
 })(ConnectedLoginForm);

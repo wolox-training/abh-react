@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@components/Form/Button';
+import formNames from '@constants/formNames';
 
 import ProfileInfo from './components/ProfileInfo';
 import ProfileEdit from './components/ProfileEdit';
@@ -8,6 +9,7 @@ import styles from './styles.scss';
 
 function ProfileLayout({ activateEditProfile, editingProfile, profileInfo, loading }) {
   const { backgroundPicture, profilePicture } = profileInfo;
+  const actionTooltip = formNames.EDIT_PROFILE.btnTooltips.action;
   return (
     <div className={styles.profilePage}>
       <div className={styles.profilePageContainer}>
@@ -30,7 +32,7 @@ function ProfileLayout({ activateEditProfile, editingProfile, profileInfo, loadi
                 onClick={activateEditProfile}
                 classes={styles.editProfileBtn}
                 visible={!editingProfile}
-                title="Click to edit your profile information"
+                title={actionTooltip}
               >
                 <i className="fas fa-user-edit" />
               </Button>

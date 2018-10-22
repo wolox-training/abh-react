@@ -1,5 +1,6 @@
 import { service as profileService } from '@services/profileService';
 import { SubmissionError } from 'redux-form';
+import formNames from '@constants/formNames';
 
 export const PROFILE_ACTIONS = {
   SET_PROFILE_INFO: 'SET_PROFILE_INFO',
@@ -47,7 +48,7 @@ export const actionCreators = {
     if (response.ok) {
       dispatch(privateActionCreators.set(data));
       dispatch(privateActionCreators.error(null));
-      dispatch(privateActionCreators.success('Profile edited correctly'));
+      dispatch(privateActionCreators.success(formNames.EDIT_PROFILE.messages.success));
     } else {
       dispatch(privateActionCreators.success(null));
       dispatch(privateActionCreators.error(data.error.message));

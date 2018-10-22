@@ -18,62 +18,66 @@ function ProfileEditForm({
   successMessage,
   activateEditProfile
 }) {
+  const { fields, btnTooltips, btnTitles } = formNames.EDIT_PROFILE;
+  const placeholders = formNames.PLACEHOLDERS;
   return (
     <div className={styles.editProfileFormContainer}>
       <form className={styles.editProfileForm} onSubmit={handleSubmit}>
         <Field
-          validate={[required]}
-          name="firstName"
-          id="firstName"
           type="text"
-          placeholder="Pepito"
-          label="First Name"
+          validate={[required]}
           component={Input}
+          name={fields.firstName.name}
+          id={fields.firstName.id}
+          label={fields.firstName.label}
+          placeholder={placeholders.NAME}
         />
         <Field
-          validate={[required]}
-          name="lastName"
-          id="lastName"
           type="text"
-          placeholder="Perez"
-          label="Last Name"
+          validate={[required]}
           component={Input}
+          name={fields.lastName.name}
+          id={fields.lastName.id}
+          label={fields.lastName.label}
+          placeholder={placeholders.LASTNAME}
         />
         <Field
-          validate={[required, minValueAge, maxValueAge]}
-          name="age"
-          id="age"
           type="number"
-          label="Age"
+          validate={[required, minValueAge, maxValueAge]}
           component={Input}
+          name={fields.age.name}
+          id={fields.age.id}
+          label={fields.age.label}
+          placeholder={placeholders.AGE}
         />
         <Field
-          validate={[required, minValueAge, maxValueAge]}
-          name="aboutMe"
-          id="aboutMe"
+          validate={[required]}
+          component={Textarea}
+          id={fields.aboutMe.id}
+          name={fields.aboutMe.name}
+          label={fields.aboutMe.label}
+          placeholder={placeholders.ABOUT}
           rows={5}
           resize={false}
-          label="About me"
-          component={Textarea}
         />
         <Field
-          validate={[required, url]}
-          name="profilePicture"
-          id="profilePicture"
           type="text"
-          placeholder="https://pbs.twimg.com/profile_images/879408429751824384/1I5KApVU_400x400.jpg"
-          label="Profile Picture URL"
+          validate={[required, url]}
           component={Input}
+          name={fields.profilePicture.name}
+          id={fields.profilePicture.id}
+          label={fields.profilePicture.label}
+          placeholder={placeholders.URL}
         />
 
         <Field
-          validate={[required, url]}
-          name="backgroundPicture"
-          id="backgroundPicture"
           type="text"
-          placeholder="http://www.startupchile.org/wp-content/uploads/2018/03/Wolox-Logo.png"
-          label="Background Picture URL"
+          validate={[required, url]}
           component={Input}
+          name={fields.backgroundPicture.name}
+          id={fields.backgroundPicture.id}
+          label={fields.backgroundPicture.label}
+          placeholder={placeholders.URL}
         />
 
         {successMessage && <div className={styles.successMessage}>{successMessage}</div>}
@@ -83,19 +87,19 @@ function ProfileEditForm({
             type="submit"
             visible
             disabled={pristine || submitting}
-            title="Click to save"
+            title={btnTooltips.save}
             classes={styles.editProfileButtons}
           >
-            Save
+            {btnTitles.save}
           </Button>
           <Button
             type="button"
             onClick={activateEditProfile}
             classes={`${styles.editProfileCancelBtn} ${styles.editProfileButtons}`}
             visible
-            title="Click to cancel the profile edit"
+            title={btnTooltips.cancel}
           >
-            Close
+            {btnTitles.cancel}
           </Button>
         </div>
       </form>
@@ -119,7 +123,7 @@ const mapStateToProps = state => ({
 });
 
 const ReduxFormProfileForm = reduxForm({
-  form: formNames.EDIT_PROFILE_FORM
+  form: formNames.EDIT_PROFILE.name
 })(ProfileEditForm);
 
 export default connect(mapStateToProps)(ReduxFormProfileForm);
