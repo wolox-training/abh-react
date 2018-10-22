@@ -2,6 +2,7 @@ import { service as authService, loadAuthState, saveAuthState, deleteAuthState }
 import { deleteGameState } from '@services/gameService';
 import { API } from '@config/api';
 import { push } from 'connected-react-router';
+import routes from '@constants/routes';
 
 export const AUTH_ACTIONS = {
   LOAD_APP: 'LOAD_APP',
@@ -68,7 +69,7 @@ export const actionCreators = {
       deleteAuthState();
       deleteGameState();
       dispatch(privateActionCreators.logout());
-      dispatch(push('/'));
+      dispatch(push(routes.AUTH.LOGIN.path));
       dispatch(privateActionCreators.appLoaded(true));
     }
   }
