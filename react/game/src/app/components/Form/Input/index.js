@@ -28,7 +28,7 @@ function Input({ label, input, type, meta, placeholder, id }) {
 Input.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.shape({
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onDragStart: PropTypes.func,

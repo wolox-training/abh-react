@@ -30,11 +30,11 @@ function ProfileLayout({ activateEditProfile, editingProfile, profileInfo, loadi
               <Button
                 type="button"
                 onClick={activateEditProfile}
-                classes={styles.editProfileBtn}
+                classNames={styles.editProfileBtn}
                 visible={!editingProfile}
                 title={actionTooltip}
               >
-                <i className="fas fa-user-edit" />
+                <i className="fa">&#xf4ff;</i>
               </Button>
             </div>
             <div className={styles.profileHolder}>
@@ -54,7 +54,15 @@ function ProfileLayout({ activateEditProfile, editingProfile, profileInfo, loadi
 ProfileLayout.propTypes = {
   activateEditProfile: PropTypes.func.isRequired,
   editingProfile: PropTypes.bool.isRequired,
-  profileInfo: PropTypes.shape({}),
+  profileInfo: PropTypes.shape({
+    firstName: PropTypes.string,
+    id: PropTypes.number,
+    lastName: PropTypes.string,
+    age: PropTypes.string,
+    aboutMe: PropTypes.string,
+    profilePicture: PropTypes.string,
+    backgroundPicture: PropTypes.string
+  }),
   loading: PropTypes.bool
 };
 
