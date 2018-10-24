@@ -1,3 +1,4 @@
+import { completeTypes, createTypes } from 'redux-recompose';
 import { service as authService, loadAuthState, saveAuthState, deleteAuthState } from '@services/authService';
 import { deleteGameState } from '@services/gameService';
 import { API } from '@config/api';
@@ -12,6 +13,10 @@ export const AUTH_ACTIONS = {
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGOUT: 'LOGOUT'
 };
+
+const completedTypes = completeTypes(['CHECK_AUTH'], ['INITIAL_LOADING_SUCCESS', 'LOGOUT']);
+
+export const actions = createTypes(completedTypes, '@@AUTH');
 
 const privateActionCreators = {
   loadApp: ({ userId, token, email }) => ({
