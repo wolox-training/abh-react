@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators as profileActions } from '@redux/profile/actions';
+import profileTypes from '@types/Profile';
 
 import ProfileLayout from './layout';
 
@@ -32,15 +33,7 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
-  profileInfo: PropTypes.shape({
-    firstName: PropTypes.string,
-    id: PropTypes.number,
-    lastName: PropTypes.string,
-    age: PropTypes.string,
-    aboutMe: PropTypes.string,
-    profilePicture: PropTypes.string,
-    backgroundPicture: PropTypes.string
-  }).isRequired,
+  profileInfo: profileTypes,
   loading: PropTypes.bool,
   loadProfile: PropTypes.func.isRequired,
   userId: PropTypes.number.isRequired

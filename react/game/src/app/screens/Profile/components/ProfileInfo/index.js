@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import profileTypes from '@types/Profile';
 
 import styles from './styles.scss';
 
@@ -17,14 +17,6 @@ function ProfileInfo({ profileInfo }) {
 }
 
 ProfileInfo.propTypes = {
-  profileInfo: PropTypes.shape({
-    firstName: PropTypes.string,
-    id: PropTypes.number,
-    lastName: PropTypes.string,
-    age: PropTypes.string,
-    aboutMe: PropTypes.string,
-    profilePicture: PropTypes.string,
-    backgroundPicture: PropTypes.string
-  })
+  profileInfo: profileTypes
 };
 export default ProfileInfo;
