@@ -5,8 +5,8 @@ import ROUTES from '@constants/routes';
 import { Link } from 'react-router-dom';
 import { func, bool, string } from 'prop-types';
 import formNames from '@constants/formNames';
-import Input from '@components/Form/Input';
-import Button from '@components/Form/Button';
+import Input from '@components/CustomFormFields/Input';
+import Button from '@components/CustomFormFields/Button';
 import { required, minLength, email } from '@validation/forms';
 
 import styles from './styles.scss';

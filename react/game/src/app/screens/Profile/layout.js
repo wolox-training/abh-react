@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Button from '@components/Form/Button';
+import Button from '@components/CustomFormFields/Button';
 import formNames from '@constants/formNames';
+import profileTypes from '@types/Profile';
 
 import ProfileInfo from './components/ProfileInfo';
 import ProfileEdit from './components/ProfileEdit';
@@ -54,15 +55,7 @@ function ProfileLayout({ activateEditProfile, editingProfile, profileInfo, loadi
 ProfileLayout.propTypes = {
   activateEditProfile: PropTypes.func.isRequired,
   editingProfile: PropTypes.bool.isRequired,
-  profileInfo: PropTypes.shape({
-    firstName: PropTypes.string,
-    id: PropTypes.number,
-    lastName: PropTypes.string,
-    age: PropTypes.string,
-    aboutMe: PropTypes.string,
-    profilePicture: PropTypes.string,
-    backgroundPicture: PropTypes.string
-  }),
+  profileInfo: profileTypes,
   loading: PropTypes.bool
 };
 
