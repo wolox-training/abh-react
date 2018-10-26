@@ -1,4 +1,7 @@
-import { GAME_ACTIONS } from './actions';
+import { createReducer } from 'redux-recompose';
+import { concatHistory, calculateWinner } from '@utils/game';
+
+import { actions } from './actions';
 
 const initialState = {
   history: [
@@ -12,26 +15,35 @@ const initialState = {
   winner: null
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GAME_ACTIONS.LOAD_GAME_INFO:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case GAME_ACTIONS.GAME_PLAYER_MOVED:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case GAME_ACTIONS.GAME_HISTORY_CHANGED:
-      return {
-        ...state,
-        ...action.payload
-      };
-    default:
-      return state;
-  }
+const loadGame = (state, action) => action.payload;
+
+const gameMove = (state, action) => {
+  const { history, winner, squares } = action.payload;
+  return {
+    history: concatHistory(history, squares),
+    stepNumber: history.length,
+    xIsNext: !state.xIsNext,
+    winner
+  };
 };
+
+const historyChanged = (state, action) => {
+  const step = action.payload;
+  const winner = calculateWinner(state.history[step].squares);
+  return {
+    ...state,
+    stepNumber: step,
+    xIsNext: step % 2 === 0,
+    winner
+  };
+};
+
+const reducerDescription = {
+  [actions.LOAD_GAME_INFO]: loadGame,
+  [actions.GAME_PLAYER_MOVED]: gameMove,
+  [actions.GAME_HISTORY_CHANGED]: historyChanged
+};
+
+const reducer = createReducer(initialState, reducerDescription);
 
 export { reducer };
