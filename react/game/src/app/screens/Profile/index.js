@@ -11,9 +11,9 @@ class Profile extends Component {
     editingProfile: false
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.props.loadProfile(this.props.userId);
-  };
+  }
 
   activateEditProfile = () => {
     this.setState(prevState => ({ editingProfile: !prevState.editingProfile }));
