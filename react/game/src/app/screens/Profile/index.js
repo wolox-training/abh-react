@@ -42,7 +42,7 @@ Profile.propTypes = {
 const mapStateToProps = state => ({
   profileInfo: state.profile.info,
   loading: state.profile.loading,
-  userId: state.auth.userId
+  userId: state.auth.authInfo.userId
 });
 
 const mapDispatchToProps = dispatch => ({

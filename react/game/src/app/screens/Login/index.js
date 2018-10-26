@@ -16,6 +16,10 @@ class LoginContainer extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  loading: state.auth.authInfoLoading
+});
+
 const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(loginActions.handleLogin(email, password))
 });
@@ -25,6 +29,6 @@ LoginContainer.propTypes = {
 };
 
 export default connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
 )(LoginContainer);

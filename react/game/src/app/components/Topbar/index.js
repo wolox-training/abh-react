@@ -18,7 +18,7 @@ function Topbar({ currentLocation, handleLogout, email }) {
 }
 
 const mapStateToProps = state => ({
-  email: state.auth.email
+  email: state.auth.authInfo.email
 });
 
 const mapDispatchToProps = dispatch => ({

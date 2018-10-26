@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from 'prop-types';
+import PropTypes from 'prop-types';
 import Logo from '@components/Logo';
 
 import styles from './styles.scss';
@@ -19,7 +19,7 @@ function LoginLayout({ onSubmit }) {
 }
 
 LoginLayout.propTypes = {
-  onSubmit: func.isRequired
+  onSubmit: PropTypes.func.isRequired
 };
 
 export default LoginLayout;
