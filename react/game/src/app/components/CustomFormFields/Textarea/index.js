@@ -1,9 +1,10 @@
 import React from 'react';
-import { string, shape } from 'prop-types';
+import PropTypes from 'prop-types';
+import inputPropTypes from '@types/Input';
 
-import styles from './styles.scss';
+import styles from '../styles.scss';
 
-function Input({ label, input, type, meta, placeholder, id }) {
+function Textarea({ label, input, meta, rows, resize, cols, placeholder, id }) {
   return (
     <div className={styles.formField}>
       {label && (
@@ -11,12 +12,14 @@ function Input({ label, input, type, meta, placeholder, id }) {
           {label}
         </label>
       )}
-      <input
+      <textarea
         {...input}
         id={id}
+        rows={rows}
+        cols={cols}
+        style={{ resize: !resize && 'none' }}
         placeholder={placeholder}
         className={`${styles.formInput} ${meta.error && meta.touched ? styles.inputError : ''}`}
-        type={type}
       />
       {meta.error &&
         meta.touched &&
@@ -25,13 +28,10 @@ function Input({ label, input, type, meta, placeholder, id }) {
   );
 }
 
-Input.propTypes = {
-  label: string.isRequired,
-  input: shape({}).isRequired,
-  type: string.isRequired,
-  meta: shape({}).isRequired,
-  placeholder: string,
-  id: string
+Textarea.propTypes = {
+  ...inputPropTypes,
+  rows: PropTypes.number,
+  cols: PropTypes.number
 };
 
-export default Input;
+export default Textarea;

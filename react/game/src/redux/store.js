@@ -6,11 +6,13 @@ import { reducer as form } from 'redux-form';
 
 import { reducer as auth } from './auth/reducer';
 import { reducer as game } from './game/reducer';
+import { reducer as profile } from './profile/reducer';
 
 const reducers = combineReducers({
   auth,
   game,
-  form
+  form,
+  profile
 });
 
 export const history = createBrowserHistory();

@@ -16,10 +16,6 @@ class LoginContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  error: state.auth.loginError
-});
-
 const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(loginActions.handleLogin(email, password))
 });
@@ -29,6 +25,6 @@ LoginContainer.propTypes = {
 };
 
 export default connect(
-  mapStateToProps,
+  undefined,
   mapDispatchToProps
 )(LoginContainer);

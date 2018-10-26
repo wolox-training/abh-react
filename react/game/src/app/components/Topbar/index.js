@@ -7,18 +7,18 @@ import { getRouteName } from '@utils/router';
 
 import TopbarLayout from './layout';
 
-function Topbar({ currentLocation, handleLogout, userInfo }) {
+function Topbar({ currentLocation, handleLogout, email }) {
   return (
     <TopbarLayout
       routeName={getRouteName(routes.PRIVATE, currentLocation)}
       logout={handleLogout}
-      email={userInfo.email}
+      email={email}
     />
   );
 }
 
 const mapStateToProps = state => ({
-  userInfo: state.auth.userInfo
+  email: state.auth.email
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,12 +26,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Topbar.propTypes = {
-  userInfo: PropTypes.shape({
-    email: PropTypes.string,
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    age: PropTypes.int
-  }).isRequired,
+  email: PropTypes.string,
   handleLogout: PropTypes.func.isRequired,
   currentLocation: PropTypes.string
 };

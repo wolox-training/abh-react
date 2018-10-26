@@ -1,0 +1,55 @@
+@import 'variables/constants';
+@import 'variables/colors';
+@import 'variables/fontConfig';
+
+.edit-profile-form-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: $profile-container-width;
+  width: 100%;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.edit-profile-cancel-btn {
+  background-color: $error-red;
+  color: $white;
+
+  &:hover {
+    background-color: $error-red;
+    transform: none;
+  }
+}
+
+.edit-profile-buttons {
+  margin: 5px;
+}
+
+.edit-profile-btn-container {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+}
+
+.error-message {
+  color: $error-red;
+  font-size: $form-font-small-size;
+  margin: 10px 0;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.success-message {
+  color: $success-green;
+  font-size: $form-font-small-size;
+  margin: 10px 0;
+  text-align: center;
+  text-decoration: underline;
+}

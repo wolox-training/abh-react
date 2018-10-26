@@ -7,27 +7,6 @@
   flex-direction: column;
 }
 
-.form-button {
-  background: $page-blue-background;
-  color: $white;
-  padding: 15px;
-  text-transform: uppercase;
-  transition: all 0.5s ease;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background: $page-blue-background-dark;
-    transform: scale(1.1);
-  }
-
-  &:disabled {
-    background: $btn-disabled-blue;
-    cursor: no-drop;
-    transform: scale(1);
-  }
-}
-
 .message {
   color: $font-gray;
   font-size: $form-font-small-size;

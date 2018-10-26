@@ -13,6 +13,7 @@
         "@redux": "./src/redux",
         "@screens": "./src/app/screens",
         "@services": "./src/services",
+        "@types": "./src/types",
         "@utils": "./src/utils/",
         "@validation": "./src/validation"
       }
