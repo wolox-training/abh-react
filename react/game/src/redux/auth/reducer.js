@@ -16,7 +16,7 @@ const initialState = completeState(initialStateDescription, ['appLoading']);
 const reducerDescription = {
   primaryActions: [actions.LOGIN, actions.LOGOUT],
   override: {
-    [actions.INIT_APP_LOADING]: onSetValue(false)
+    [actions.INIT_APP_LOADING]: onReadValue()
   }
 };
 
