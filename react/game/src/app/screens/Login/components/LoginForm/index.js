@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import ROUTES from '@constants/routes';
 import { Link } from 'react-router-dom';
-import { func, bool, string } from 'prop-types';
+import PropTypes from 'prop-types';
 import formNames from '@constants/formNames';
 import Input from '@components/CustomFormFields/Input';
 import Button from '@components/CustomFormFields/Button';
@@ -36,7 +36,7 @@ function LoginForm({ handleSubmit, pristine, submitting, errorMessage, loading }
       />
       {errorMessage && <div className={styles.errorMessage}>Error: {errorMessage}</div>}
       <Button disabled={pristine || submitting || loading} type="submit" title={btnTooltips.login} visible>
-        {!loading ? btnTitles.login : 'Loading'}
+        {!loading ? btnTitles.login : btnTitles.loading}
       </Button>
       <p className={styles.message}>
         Not registered?{' '}
@@ -48,14 +48,12 @@ function LoginForm({ handleSubmit, pristine, submitting, errorMessage, loading }
   );
 }
 
-//  CAMBIAR PROPTYPES
-
 LoginForm.propTypes = {
-  handleSubmit: func.isRequired,
-  pristine: bool.isRequired,
-  submitting: bool.isRequired,
-  errorMessage: string,
-  loading: bool.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string,
+  loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({

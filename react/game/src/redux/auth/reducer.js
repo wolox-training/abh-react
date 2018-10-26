@@ -1,4 +1,4 @@
-import { createReducer, completeState, completeReducer, onSetValue, onReadValue } from 'redux-recompose';
+import { createReducer, completeState, completeReducer, onSetValue } from 'redux-recompose';
 
 import { actions } from './actions';
 
@@ -16,7 +16,7 @@ const initialState = completeState(initialStateDescription, ['appLoading']);
 const reducerDescription = {
   primaryActions: [actions.LOGIN, actions.LOGOUT],
   override: {
-    [actions.INIT_APP_LOADING]: onReadValue()
+    [actions.INIT_APP_LOADING]: onSetValue(false)
   }
 };
 

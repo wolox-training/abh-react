@@ -17,7 +17,7 @@ export const actionCreators = {
     dispatch({ type: actions.LOGIN_SUCCESS, target: TARGET, payload: session });
     if (session) API.setHeader('Authorization', session.token);
     setTimeout(() => {
-      dispatch({ type: actions.INIT_APP_LOADING, target: TARGET_APP_LOADING, payload: false });
+      dispatch({ type: actions.INIT_APP_LOADING, target: TARGET_APP_LOADING });
     }, 1500);
   },
   handleLogin: (email, password) => ({
