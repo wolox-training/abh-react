@@ -1,6 +1,6 @@
 import { createReducer } from 'redux-recompose';
-import { concatHistory, calculateWinner } from '@utils/game';
 
+import { loadGame, gameMove, historyChanged } from './selectors';
 import { actions } from './actions';
 
 const initialState = {
@@ -13,29 +13,6 @@ const initialState = {
   xIsNext: true,
   stepNumber: 0,
   winner: null
-};
-
-const loadGame = (state, action) => action.payload;
-
-const gameMove = (state, action) => {
-  const { history, winner, squares } = action.payload;
-  return {
-    history: concatHistory(history, squares),
-    stepNumber: history.length,
-    xIsNext: !state.xIsNext,
-    winner
-  };
-};
-
-const historyChanged = (state, action) => {
-  const step = action.payload;
-  const winner = calculateWinner(state.history[step].squares);
-  return {
-    ...state,
-    stepNumber: step,
-    xIsNext: step % 2 === 0,
-    winner
-  };
 };
 
 const reducerDescription = {

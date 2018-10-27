@@ -48,9 +48,9 @@ export const actionCreators = {
     target: TARGET,
     injections: [
       withPostSuccess(dispatch => {
-        deleteAuthState();
         deleteGameState();
-        API.setHeaders([]);
+        deleteAuthState();
+        delete API.headers.Authorization;
         dispatch(push(routes.AUTH.LOGIN.path));
       })
     ],

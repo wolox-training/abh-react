@@ -11,10 +11,15 @@ import GameLayout from './layout';
 class Game extends Component {
   componentDidMount() {
     this.props.loadGameInfo();
-    store.subscribe(() => {
+    this.unsuscribe = store.subscribe(() => {
       saveGameState(store.getState().game);
     });
   }
+
+  componentWillUnmount() {
+    this.unsuscribe();
+  }
+
   handleClick = position => {
     const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
