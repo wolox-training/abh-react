@@ -1,7 +1,9 @@
-import { PROFILE_ACTIONS } from './actions';
+import { createReducer, completeState, completeReducer, onReadValue } from 'redux-recompose';
 
-const initialState = {
-  info: {
+import { actions } from './actions';
+
+const initialStateDescription = {
+  profileInfo: {
     firstName: null,
     id: null,
     lastName: null,
@@ -10,36 +12,18 @@ const initialState = {
     profilePicture: null,
     backgroundPicture: null
   },
-  errorMessage: null,
-  successMessage: null,
-  loading: false
+  successMessage: null
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case PROFILE_ACTIONS.SET_PROFILE_INFO:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case PROFILE_ACTIONS.LOADING:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case PROFILE_ACTIONS.SUCCESS:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case PROFILE_ACTIONS.ERROR:
-      return {
-        ...state,
-        ...action.payload
-      };
-    default:
-      return state;
+const initialState = completeState(initialStateDescription, ['successMessage']);
+
+const reducerDescription = {
+  primaryActions: [actions.PROFILE_INFO],
+  override: {
+    [actions.SET_SUCCESS_MESSAGE]: onReadValue()
   }
 };
+
+const reducer = createReducer(initialState, completeReducer(reducerDescription));
 
 export { reducer };

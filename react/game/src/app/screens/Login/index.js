@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: (email, password) => dispatch(loginActions.handleLogin(email, password))
+  login: (email, password) => dispatch(loginActions.login(email, password))
 });
 
 LoginContainer.propTypes = {

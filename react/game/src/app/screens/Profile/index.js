@@ -36,17 +36,17 @@ Profile.propTypes = {
   profileInfo: profileTypes,
   loading: PropTypes.bool,
   loadProfile: PropTypes.func.isRequired,
-  userId: PropTypes.number.isRequired
+  userId: PropTypes.number
 };
 
 const mapStateToProps = state => ({
-  profileInfo: state.profile.info,
-  loading: state.profile.loading,
+  profileInfo: state.profile.profileInfo,
+  loading: state.profile.profileInfoLoading,
   userId: state.auth.authInfo.userId
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadProfile: userId => dispatch(profileActions.loadProfileInfo(userId))
+  loadProfile: userId => dispatch(profileActions.loadProfile(userId))
 });
 
 export default connect(

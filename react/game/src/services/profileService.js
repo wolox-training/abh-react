@@ -5,6 +5,6 @@ const apiNames = {
 };
 
 export const service = {
-  patch: (userId, values) => API.patch(`${apiNames.API_USER_PATH}${userId}`, values),
+  patch: values => API.patch(`${apiNames.API_USER_PATH}${values.id}`, values),
   get: userId => API.get(`${apiNames.API_USER_PATH}${userId}`, null)
 };

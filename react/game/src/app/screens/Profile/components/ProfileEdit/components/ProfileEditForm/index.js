@@ -5,7 +5,14 @@ import profileTypes from '@types/Profile';
 
 import ProfileEditFormLayout from './layout';
 
-function ProfileEditForm({ onSubmit, errorMessage, successMessage, activateEditProfile, initialValues }) {
+function ProfileEditForm({
+  onSubmit,
+  errorMessage,
+  successMessage,
+  activateEditProfile,
+  initialValues,
+  loading
+}) {
   return (
     <ProfileEditFormLayout
       onSubmit={onSubmit}
@@ -13,6 +20,7 @@ function ProfileEditForm({ onSubmit, errorMessage, successMessage, activateEditP
       successMessage={successMessage}
       activateEditProfile={activateEditProfile}
       initialValues={initialValues}
+      loading={loading}
     />
   );
 }
@@ -22,12 +30,13 @@ ProfileEditForm.propTypes = {
   errorMessage: PropTypes.string,
   successMessage: PropTypes.string,
   activateEditProfile: PropTypes.func.isRequired,
-  initialValues: profileTypes
+  initialValues: profileTypes,
+  loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  initialValues: state.profile.info,
-  errorMessage: state.profile.errorMessage,
+  initialValues: state.profile.profileInfo,
+  errorMessage: state.profile.profileInfoError,
   successMessage: state.profile.successMessage
 });
 

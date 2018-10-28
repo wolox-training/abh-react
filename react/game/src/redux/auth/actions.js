@@ -1,4 +1,4 @@
-import { withSuccess, withPostSuccess, completeTypes, createTypes } from 'redux-recompose';
+import { withPostSuccess, completeTypes, createTypes } from 'redux-recompose';
 import { service as authService, loadAuthState, saveAuthState, deleteAuthState } from '@services/authService';
 import { deleteGameState } from '@services/gameService';
 import { API } from '@config/api';
@@ -16,41 +16,33 @@ export const actionCreators = {
     const session = loadAuthState();
     dispatch({ type: actions.LOGIN_SUCCESS, target: TARGET, payload: session });
     if (session) API.setHeader('Authorization', session.token);
-    setTimeout(() => {
-      dispatch({ type: actions.INIT_APP_LOADING, target: TARGET_APP_LOADING });
-    }, 1500);
+    dispatch({ type: actions.INIT_APP_LOADING, target: TARGET_APP_LOADING });
   },
-  handleLogin: (email, password) => ({
+  login: (email, password) => ({
     type: actions.LOGIN,
     service: authService.post,
     payload: { email, password },
     target: TARGET,
     injections: [
-      withSuccess((dispatch, response) => {
+      withPostSuccess((dispatch, response) => {
         const { data } = response;
-        setTimeout(() => {
-          dispatch({
-            type: actions.LOGIN_SUCCESS,
-            payload: { token: data.id, email, userId: data.userId },
-            target: TARGET
-          });
-          saveAuthState({ token: data.id, userId: data.userId, email });
-          API.setHeader('Authorization', data.id);
-          dispatch(push(routes.PRIVATE.HOME.path));
-        }, 1500);
+        saveAuthState({ token: data.id, userId: data.userId, email });
+        API.setHeader('Authorization', data.id);
+        dispatch(push(routes.PRIVATE.HOME.path));
       })
     ],
+    successSelector: response => ({ token: response.data.id, email, userId: response.data.userId }),
     failureSelector: response => response.data.error.message
   }),
-  handleLogout: () => ({
+  logout: () => ({
     type: actions.LOGOUT,
     service: authService.postLogout,
     target: TARGET,
     injections: [
       withPostSuccess(dispatch => {
         deleteGameState();
-        deleteAuthState();
         delete API.headers.Authorization;
+        deleteAuthState();
         dispatch(push(routes.AUTH.LOGIN.path));
       })
     ],
