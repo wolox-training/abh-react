@@ -1,6 +1,6 @@
 import { createReducer } from 'redux-recompose';
 
-import { loadGame, gameMove, historyChanged } from './selectors';
+import { loadGame, gameMove, historyChanged } from './effects';
 import { actions } from './actions';
 
 const initialState = {
