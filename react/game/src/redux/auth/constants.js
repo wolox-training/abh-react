@@ -1,6 +1,6 @@
 const targets = {
-  TARGET: 'authInfo',
-  TARGET_APP_LOADING: 'appLoading'
+  AUTH_INFO: 'authInfo',
+  APP_LOADING: 'appLoading'
 };
 
 export default targets;

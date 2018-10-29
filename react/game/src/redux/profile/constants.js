@@ -1,6 +1,6 @@
 const targets = {
-  TARGET: 'profileInfo',
-  TARGET_SUCCESS_MESSAGE: 'successMessage'
+  PROFILE_INFO: 'profileInfo',
+  SUCCESS_MESSAGE: 'successMessage'
 };
 
 export default targets;

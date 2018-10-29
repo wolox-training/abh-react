@@ -14,15 +14,15 @@ export const actions = createTypes(completedTypes, '@@AUTH');
 export const actionCreators = {
   initApp: () => dispatch => {
     const session = loadAuthState();
-    dispatch({ type: actions.LOGIN_SUCCESS, target: targets.TARGET, payload: session });
+    dispatch({ type: actions.LOGIN_SUCCESS, target: targets.AUTH_INFO, payload: session });
     if (session) API.setHeader('Authorization', session.token);
-    dispatch({ type: actions.INIT_APP_LOADING, target: targets.TARGET_APP_LOADING });
+    dispatch({ type: actions.INIT_APP_LOADING, target: targets.APP_LOADING });
   },
   login: (email, password) => ({
     type: actions.LOGIN,
     service: authService.post,
     payload: { email, password },
-    target: targets.TARGET,
+    target: targets.AUTH_INFO,
     injections: [
       withPostSuccess((dispatch, response) => {
         const { data } = response;
@@ -37,7 +37,7 @@ export const actionCreators = {
   logout: () => ({
     type: actions.LOGOUT,
     service: authService.postLogout,
-    target: targets.TARGET,
+    target: targets.AUTH_INFO,
     injections: [
       withPostSuccess(dispatch => {
         deleteGameState();
