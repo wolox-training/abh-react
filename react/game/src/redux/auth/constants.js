@@ -1,2 +1,6 @@
-export const TARGET_APP_LOADING = 'appLoading';
-export const TARGET = 'authInfo';
+const targets = {
+  TARGET: 'authInfo',
+  TARGET_APP_LOADING: 'appLoading'
+};
+
+export default targets;

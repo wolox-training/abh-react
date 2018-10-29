@@ -1,2 +1,6 @@
-export const TARGET = 'profileInfo';
-export const TARGET_SUCCESS_MESSAGE = 'successMessage';
+const targets = {
+  TARGET: 'profileInfo',
+  TARGET_SUCCESS_MESSAGE: 'successMessage'
+};
+
+export default targets;
