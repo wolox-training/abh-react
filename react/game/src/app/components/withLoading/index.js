@@ -4,18 +4,12 @@ import styles from './styles.scss';
 
 const withLoading = (Component, external) => props => {
   const { loading, msgLoading } = props;
+  const endClass = external ? 'External' : 'Internal';
   const LoadingComp = loading ? (
-    external ? (
-      <div className={styles.loadingContainerExternal}>
-        <div className={styles.loadingExternal} />
-        <div className={styles.loadingTextExternal}>{msgLoading}</div>
-      </div>
-    ) : (
-      <div className={styles.loadingContainerInternal}>
-        <div className={styles.loadingInternal} />
-        <div className={styles.loadingTextInternal}>{msgLoading}</div>
-      </div>
-    )
+    <div className={styles[`loadingContainer${endClass}`]}>
+      <div className={styles[`loading${endClass}`]} />
+      <div className={styles[`loadingText${endClass}`]}>{msgLoading}</div>
+    </div>
   ) : (
     <Component {...props} />
   );
