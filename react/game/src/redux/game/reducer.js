@@ -1,4 +1,7 @@
-import { GAME_ACTIONS } from './actions';
+import { createReducer } from 'redux-recompose';
+
+import { loadGame, gameMove, historyChanged } from './effects';
+import { actions } from './actions';
 
 const initialState = {
   history: [
@@ -12,26 +15,12 @@ const initialState = {
   winner: null
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GAME_ACTIONS.LOAD_GAME_INFO:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case GAME_ACTIONS.GAME_PLAYER_MOVED:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case GAME_ACTIONS.GAME_HISTORY_CHANGED:
-      return {
-        ...state,
-        ...action.payload
-      };
-    default:
-      return state;
-  }
+const reducerDescription = {
+  [actions.LOAD_GAME_INFO]: loadGame,
+  [actions.GAME_PLAYER_MOVED]: gameMove,
+  [actions.GAME_HISTORY_CHANGED]: historyChanged
 };
+
+const reducer = createReducer(initialState, reducerDescription);
 
 export { reducer };

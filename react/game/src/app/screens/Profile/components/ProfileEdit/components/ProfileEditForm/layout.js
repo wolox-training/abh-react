@@ -14,7 +14,8 @@ function ProfileEditFormLayout({
   submitting,
   errorMessage,
   successMessage,
-  activateEditProfile
+  activateEditProfile,
+  loading
 }) {
   const { btnTooltips, btnTitles } = formNames.EDIT_PROFILE;
   return (
@@ -27,11 +28,11 @@ function ProfileEditFormLayout({
           <Button
             type="submit"
             visible
-            disabled={pristine || submitting}
+            disabled={pristine || submitting || loading}
             title={btnTooltips.save}
             classNames={styles.editProfileButtons}
           >
-            {btnTitles.save}
+            {!loading ? btnTitles.save : btnTitles.loading}
           </Button>
           <Button
             type="button"
@@ -54,6 +55,7 @@ ProfileEditFormLayout.propTypes = {
   submitting: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
   successMessage: PropTypes.string,
+  loading: PropTypes.bool.isRequired,
   activateEditProfile: PropTypes.func.isRequired
 };
 

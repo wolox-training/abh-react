@@ -1,51 +1,25 @@
-import { AUTH_ACTIONS } from './actions';
+import { createReducer, completeState, completeReducer, onSetValue } from 'redux-recompose';
 
-const initialState = {
-  userId: null,
-  token: null,
-  isLoading: false,
-  errorMessage: null,
-  appLoaded: false,
-  email: null
+import { actions } from './actions';
+
+const initialStateDescription = {
+  authInfo: {
+    userId: null,
+    token: null,
+    email: null
+  },
+  appLoading: true
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case AUTH_ACTIONS.LOAD_APP:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case AUTH_ACTIONS.APP_LOADED:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case AUTH_ACTIONS.LOGIN_LOADING:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case AUTH_ACTIONS.LOGIN_SUCCESS:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case AUTH_ACTIONS.LOGIN_ERROR:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case AUTH_ACTIONS.SET_EMAIL:
-      return {
-        ...state,
-        ...action.payload
-      };
-    case AUTH_ACTIONS.LOGOUT:
-      return initialState;
-    default:
-      return state;
+const initialState = completeState(initialStateDescription, ['appLoading']);
+
+const reducerDescription = {
+  primaryActions: [actions.LOGIN, actions.LOGOUT],
+  override: {
+    [actions.INIT_APP_LOADING]: onSetValue(false)
   }
 };
+
+const reducer = createReducer(initialState, completeReducer(reducerDescription));
 
 export { reducer };

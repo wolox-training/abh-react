@@ -15,7 +15,8 @@ const FORM_NAMES = {
     },
     btnTitles: {
       login: 'Login',
-      register: 'Create an account'
+      register: 'Create an account',
+      loading: 'Loading'
     },
     btnTooltips: {
       login: 'Click to login',
@@ -58,7 +59,8 @@ const FORM_NAMES = {
     },
     btnTitles: {
       save: 'Save profile',
-      cancel: 'Close'
+      cancel: 'Close',
+      loading: 'Loading'
     },
     btnTooltips: {
       save: 'Click to save your profile',

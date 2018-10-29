@@ -1,5 +1,6 @@
 import { GAME_STATE_NAME } from '@constants/localStorage';
-import { service as localStorageService } from '@services/localStorageService';
+
+import { service as localStorageService } from './localStorageService';
 
 export const loadGameState = () => localStorageService.get(GAME_STATE_NAME);
 

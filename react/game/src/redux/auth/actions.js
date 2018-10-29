@@ -1,76 +1,52 @@
+import { withPostSuccess, completeTypes, createTypes } from 'redux-recompose';
 import { service as authService, loadAuthState, saveAuthState, deleteAuthState } from '@services/authService';
 import { deleteGameState } from '@services/gameService';
 import { API } from '@config/api';
 import { push } from 'connected-react-router';
 import routes from '@constants/routes';
 
-export const AUTH_ACTIONS = {
-  LOAD_APP: 'LOAD_APP',
-  APP_LOADED: 'APP_LOADED',
-  LOGIN_LOADING: 'LOGIN_LOADING',
-  LOGIN_ERROR: 'LOGIN_ERROR',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  LOGOUT: 'LOGOUT'
-};
+import targets from './constants';
 
-const privateActionCreators = {
-  loadApp: ({ userId, token, email }) => ({
-    type: AUTH_ACTIONS.LOAD_APP,
-    payload: { userId, token, email }
-  }),
-  appLoaded: appLoaded => ({
-    type: AUTH_ACTIONS.APP_LOADED,
-    payload: { appLoaded }
-  }),
-  loginLoading: isLoading => ({
-    type: AUTH_ACTIONS.LOGIN_LOADING,
-    payload: { isLoading }
-  }),
-  loginError: errorMessage => ({
-    type: AUTH_ACTIONS.LOGIN_ERROR,
-    payload: { errorMessage }
-  }),
-  loginSuccess: (userId, token) => ({
-    type: AUTH_ACTIONS.LOGIN_SUCCESS,
-    payload: { userId, token }
-  }),
-  logout: () => ({
-    type: AUTH_ACTIONS.LOGOUT
-  })
-};
+const completedTypes = completeTypes(['INIT_APP_LOADING', 'LOGIN', 'LOGOUT'], ['INIT_APP_LOADING']);
+
+export const actions = createTypes(completedTypes, '@@AUTH');
 
 export const actionCreators = {
-  initApp: () => async dispatch => {
-    dispatch(privateActionCreators.appLoaded(false));
+  initApp: () => dispatch => {
     const session = loadAuthState();
-    const { token, userId, email } = session || { userId: null, token: null, email: null };
-    dispatch(privateActionCreators.loadApp({ userId, token, email }));
-    if (session) {
-      API.setHeader('Authorization', session.token);
-    }
-    dispatch(privateActionCreators.appLoaded(true));
+    dispatch({ type: actions.LOGIN_SUCCESS, target: targets.AUTH_INFO, payload: session });
+    if (session) API.setHeader('Authorization', session.token);
+    dispatch({ type: actions.INIT_APP_LOADING, target: targets.APP_LOADING });
   },
-  handleLogin: (email, password) => async dispatch => {
-    dispatch(privateActionCreators.loginLoading(true));
-    const response = await authService.post({ email, password });
-    const data = response.data;
-    if (response.ok) {
-      saveAuthState({ token: data.id, userId: data.userId, email });
-      dispatch(privateActionCreators.loadApp({ userId: data.userId, token: data.id, email }));
-      API.setHeader('Authorization', data.id);
-    } else {
-      dispatch(privateActionCreators.loginError(data.error.message));
-    }
-    dispatch(privateActionCreators.loginLoading(false));
-  },
-  handleLogout: () => async dispatch => {
-    const response = await authService.postLogout();
-    if (response.ok) {
-      deleteAuthState();
-      deleteGameState();
-      dispatch(privateActionCreators.logout());
-      dispatch(push(routes.AUTH.LOGIN.path));
-      dispatch(privateActionCreators.appLoaded(true));
-    }
-  }
+  login: (email, password) => ({
+    type: actions.LOGIN,
+    service: authService.post,
+    payload: { email, password },
+    target: targets.AUTH_INFO,
+    injections: [
+      withPostSuccess((dispatch, response) => {
+        const { data } = response;
+        saveAuthState({ token: data.id, userId: data.userId, email });
+        API.setHeader('Authorization', data.id);
+        dispatch(push(routes.PRIVATE.HOME.path));
+      })
+    ],
+    successSelector: response => ({ token: response.data.id, email, userId: response.data.userId }),
+    failureSelector: response => response.data.error.message
+  }),
+  logout: () => ({
+    type: actions.LOGOUT,
+    service: authService.postLogout,
+    target: targets.AUTH_INFO,
+    injections: [
+      withPostSuccess(dispatch => {
+        deleteGameState();
+        delete API.headers.Authorization;
+        deleteAuthState();
+        dispatch(push(routes.AUTH.LOGIN.path));
+      })
+    ],
+    successSelector: () => ({ token: null, email: null, userId: null }),
+    failureSelector: response => response.data.error.message
+  })
 };

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import ROUTES from '@constants/routes';
 import { Link } from 'react-router-dom';
-import { func, bool, string } from 'prop-types';
+import PropTypes from 'prop-types';
 import formNames from '@constants/formNames';
 import Input from '@components/CustomFormFields/Input';
 import Button from '@components/CustomFormFields/Button';
@@ -11,7 +11,7 @@ import { required, minLength, email } from '@validation/forms';
 
 import styles from './styles.scss';
 
-function LoginForm({ handleSubmit, pristine, submitting, errorMessage }) {
+function LoginForm({ handleSubmit, pristine, submitting, errorMessage, loading }) {
   const { fields, btnTitles, btnTooltips } = formNames.LOGIN;
   const placeholders = formNames.PLACEHOLDERS;
   return (
@@ -35,8 +35,8 @@ function LoginForm({ handleSubmit, pristine, submitting, errorMessage }) {
         placeholder={placeholders.PASSWORD}
       />
       {errorMessage && <div className={styles.errorMessage}>Error: {errorMessage}</div>}
-      <Button disabled={pristine || submitting} type="submit" title={btnTooltips.login} visible>
-        {btnTitles.login}
+      <Button disabled={pristine || submitting || loading} type="submit" title={btnTooltips.login} visible>
+        {!loading ? btnTitles.login : btnTitles.loading}
       </Button>
       <p className={styles.message}>
         Not registered?{' '}
@@ -49,14 +49,16 @@ function LoginForm({ handleSubmit, pristine, submitting, errorMessage }) {
 }
 
 LoginForm.propTypes = {
-  handleSubmit: func.isRequired,
-  pristine: bool.isRequired,
-  submitting: bool.isRequired,
-  errorMessage: string
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string,
+  loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  errorMessage: state.auth.errorMessage
+  errorMessage: state.auth.authInfoError,
+  loading: state.auth.authInfoLoading
 });
 
 const ConnectedLoginForm = connect(mapStateToProps)(LoginForm);

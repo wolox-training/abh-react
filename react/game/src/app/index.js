@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func, shape } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators as loginActions } from '@redux/auth/actions';
 import Router from '@components/Router';
@@ -9,18 +9,18 @@ class App extends Component {
     this.props.initApp();
   }
   render() {
-    const { appLoaded } = this.props.auth;
-    return appLoaded ? <Router /> : <div>Loading</div>;
+    const { appLoading } = this.props;
+    return !appLoading ? <Router /> : <div>Loading</div>;
   }
 }
 
 App.propTypes = {
-  initApp: func.isRequired,
-  auth: shape({}).isRequired
+  initApp: PropTypes.func.isRequired,
+  appLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  appLoading: state.auth.appLoading
 });
 
 const mapDispatchToProps = dispatch => ({

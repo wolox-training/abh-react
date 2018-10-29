@@ -7,18 +7,25 @@ import ProfileEditForm from './components/ProfileEditForm';
 
 class ProfileEdit extends Component {
   render() {
-    const { activateEditProfile, submitProfileInfo } = this.props;
-    return <ProfileEditForm onSubmit={submitProfileInfo} activateEditProfile={activateEditProfile} />;
+    const { activateEditProfile, submitProfileInfo, loading } = this.props;
+    return (
+      <ProfileEditForm
+        loading={loading}
+        onSubmit={submitProfileInfo}
+        activateEditProfile={activateEditProfile}
+      />
+    );
   }
 }
 
 ProfileEdit.propTypes = {
   submitProfileInfo: PropTypes.func.isRequired,
-  activateEditProfile: PropTypes.func.isRequired
+  activateEditProfile: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
-const mapDispatchToProps = (dispatch, { userId }) => ({
-  submitProfileInfo: data => dispatch(profileActions.submit(userId, data))
+const mapDispatchToProps = dispatch => ({
+  submitProfileInfo: data => dispatch(profileActions.editProfile(data))
 });
 
 export default connect(
