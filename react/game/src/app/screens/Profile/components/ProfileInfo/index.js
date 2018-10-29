@@ -49,4 +49,6 @@ ProfileInfo.propTypes = {
   activateEditProfile: PropTypes.func.isRequired,
   editingProfile: PropTypes.bool.isRequired
 };
-export default withLoading(ProfileInfo, false);
+
+const external = false;
+export default withLoading(ProfileInfo, external);
