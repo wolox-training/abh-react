@@ -14,26 +14,26 @@ export const actionCreators = {
     type: actions.PROFILE_INFO,
     service: profileService.get,
     payload: id,
-    target: targets.TARGET,
+    target: targets.PROFILE_INFO,
     failureSelector: response => response.data.error.message
   }),
   editProfile: values => ({
     type: actions.PROFILE_INFO,
     service: profileService.patch,
     payload: values,
-    target: targets.TARGET,
+    target: targets.PROFILE_INFO,
     injections: [
       withPostSuccess(dispatch => {
         dispatch({
           type: actions.SET_SUCCESS_MESSAGE,
-          target: targets.TARGET_SUCCESS_MESSAGE,
+          target: targets.SUCCESS_MESSAGE,
           payload: formNames.EDIT_PROFILE.messages.success
         });
       }),
       withPostFailure((dispatch, response) => {
         dispatch({
           type: actions.SET_SUCCESS_MESSAGE,
-          target: targets.TARGET_SUCCESS_MESSAGE,
+          target: targets.SUCCESS_MESSAGE,
           payload: null
         });
         throw new SubmissionError({ _error: response.data.error.message });
@@ -42,6 +42,6 @@ export const actionCreators = {
     failureSelector: response => response.data.error.message
   }),
   clearMessages: () => dispatch => {
-    dispatch({ type: actions.SET_SUCCESS_MESSAGE, target: targets.TARGET_SUCCESS_MESSAGE, payload: null });
+    dispatch({ type: actions.SET_SUCCESS_MESSAGE, target: targets.SUCCESS_MESSAGE, payload: null });
   }
 };
