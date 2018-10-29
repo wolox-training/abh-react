@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators as loginActions } from '@redux/auth/actions';
 import Router from '@components/Router';
+import msg from '@constants/messages';
+import withLoading from '@components/withLoading';
 
 class App extends Component {
   componentDidMount() {
@@ -10,7 +12,10 @@ class App extends Component {
   }
   render() {
     const { appLoading } = this.props;
-    return !appLoading ? <Router /> : <div>Loading</div>;
+    const WithLoading = withLoading(Router);
+    return (
+      <WithLoading onSubmit={this.handleSubmit} loading={appLoading} msgLoading={msg.APP_LOADING_MESSAGE} />
+    );
   }
 }
 

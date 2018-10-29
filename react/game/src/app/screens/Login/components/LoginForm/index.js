@@ -11,7 +11,7 @@ import { required, minLength, email } from '@validation/forms';
 
 import styles from './styles.scss';
 
-function LoginForm({ handleSubmit, pristine, submitting, errorMessage, loading }) {
+function LoginForm({ handleSubmit, pristine, submitting, errorMessage }) {
   const { fields, btnTitles, btnTooltips } = formNames.LOGIN;
   const placeholders = formNames.PLACEHOLDERS;
   return (
@@ -35,8 +35,8 @@ function LoginForm({ handleSubmit, pristine, submitting, errorMessage, loading }
         placeholder={placeholders.PASSWORD}
       />
       {errorMessage && <div className={styles.errorMessage}>Error: {errorMessage}</div>}
-      <Button disabled={pristine || submitting || loading} type="submit" title={btnTooltips.login} visible>
-        {!loading ? btnTitles.login : btnTitles.loading}
+      <Button disabled={pristine || submitting} type="submit" title={btnTooltips.login} visible>
+        {btnTitles.login}
       </Button>
       <p className={styles.message}>
         Not registered?{' '}
@@ -52,13 +52,11 @@ LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string,
-  loading: PropTypes.bool.isRequired
+  errorMessage: PropTypes.string
 };
 
 const mapStateToProps = state => ({
-  errorMessage: state.auth.authInfoError,
-  loading: state.auth.authInfoLoading
+  errorMessage: state.auth.authInfoError
 });
 
 const ConnectedLoginForm = connect(mapStateToProps)(LoginForm);

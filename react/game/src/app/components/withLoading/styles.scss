@@ -1,0 +1,51 @@
+@import 'variables/colors';
+@import 'variables/constants';
+@import 'variables/fontConfig';
+
+.loading-container {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loading {
+  height: $loading-size;
+  width: $loading-size;
+
+  &:after {
+    animation: dual-ring 1.2s linear infinite;
+    border: 5px solid #CEF;
+    border-color: $white transparent $white transparent;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: $loading-size;
+    width: $loading-size;
+  }
+}
+@keyframes dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  color: $white;
+  font-size: $text-big;
+  margin-top: 15px;
+}
+
+
+.error-text {
+  color: $error-red;
+  font-size: $error-font-size-body;
+}

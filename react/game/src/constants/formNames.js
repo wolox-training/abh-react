@@ -15,8 +15,7 @@ const FORM_NAMES = {
     },
     btnTitles: {
       login: 'Login',
-      register: 'Create an account',
-      loading: 'Loading'
+      register: 'Create an account'
     },
     btnTooltips: {
       login: 'Click to login',
