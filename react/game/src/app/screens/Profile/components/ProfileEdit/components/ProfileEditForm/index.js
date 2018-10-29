@@ -37,7 +37,8 @@ ProfileEditForm.propTypes = {
 const mapStateToProps = state => ({
   initialValues: state.profile.profileInfo,
   errorMessage: state.profile.profileInfoError,
-  successMessage: state.profile.successMessage
+  successMessage: state.profile.successMessage,
+  loading: state.profile.profileInfoLoading
 });
 
 export default connect(mapStateToProps)(ProfileEditForm);

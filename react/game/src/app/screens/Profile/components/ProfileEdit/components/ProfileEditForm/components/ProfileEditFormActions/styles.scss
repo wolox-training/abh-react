@@ -1,0 +1,40 @@
+@import 'variables/constants';
+@import 'variables/colors';
+@import 'variables/fontConfig';
+
+.error-message {
+  color: $error-red;
+  font-size: $form-font-small-size;
+  margin: 10px 0;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.success-message {
+  color: $success-green;
+  font-size: $form-font-small-size;
+  margin: 10px 0;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.edit-profile-btn-container {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+}
+
+.edit-profile-cancel-btn {
+  background-color: $error-red;
+  color: $white;
+
+  &:hover {
+    background-color: $error-red;
+    transform: none;
+  }
+}
+
+.edit-profile-buttons {
+  margin: 5px;
+}

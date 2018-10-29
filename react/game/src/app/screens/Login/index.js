@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionCreators as loginActions } from '@redux/auth/actions';
 
@@ -12,7 +12,8 @@ class LoginContainer extends Component {
   };
 
   render() {
-    return <LoginLayout onSubmit={this.onSubmit} />;
+    const { loading } = this.props;
+    return <LoginLayout onSubmit={this.onSubmit} loading={loading} />;
   }
 }
 
@@ -25,7 +26,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 LoginContainer.propTypes = {
-  login: func.isRequired
+  login: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default connect(

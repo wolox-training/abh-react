@@ -8,19 +8,20 @@ class App extends Component {
   componentDidMount() {
     this.props.initApp();
   }
+
   render() {
-    const { appLoading } = this.props;
-    return !appLoading ? <Router /> : <div>Loading</div>;
+    const { loading } = this.props;
+    return <Router loading={loading} />;
   }
 }
 
 App.propTypes = {
   initApp: PropTypes.func.isRequired,
-  appLoading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  appLoading: state.auth.appLoading
+  loading: state.auth.appLoading
 });
 
 const mapDispatchToProps = dispatch => ({

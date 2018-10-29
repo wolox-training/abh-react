@@ -60,7 +60,7 @@
 }
 
 .nav-option {
-  font-size: $nav-item-font-size;
+  font-size: $text-medium;
   margin: 0 10px;
   padding: 10px;
 
@@ -92,7 +92,7 @@
   }
 
   .nav-option {
-    font-size: -2px+$nav-item-font-size;
+    font-size: -2px+$text-medium;
     margin: 0 5px;
   }
 }

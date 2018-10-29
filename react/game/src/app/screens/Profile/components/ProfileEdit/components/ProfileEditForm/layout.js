@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
 import formNames from '@constants/formNames';
-import Button from '@components/CustomFormFields/Button';
 
 import { mapField } from './utils';
 import { formFields } from './constants';
 import styles from './styles.scss';
+import ProfileEditFormActions from './components/ProfileEditFormActions';
 
 function ProfileEditFormLayout({
   handleSubmit,
@@ -17,33 +17,18 @@ function ProfileEditFormLayout({
   activateEditProfile,
   loading
 }) {
-  const { btnTooltips, btnTitles } = formNames.EDIT_PROFILE;
   return (
     <div className={styles.editProfileFormContainer}>
       <form className={styles.editProfileForm} onSubmit={handleSubmit}>
         {formFields.map(mapField)}
-        {successMessage && <div className={styles.successMessage}>{successMessage}</div>}
-        {errorMessage && <div className={styles.errorMessage}>Error: {errorMessage}</div>}
-        <div className={styles.editProfileBtnContainer}>
-          <Button
-            type="submit"
-            visible
-            disabled={pristine || submitting || loading}
-            title={btnTooltips.save}
-            classNames={styles.editProfileButtons}
-          >
-            {!loading ? btnTitles.save : btnTitles.loading}
-          </Button>
-          <Button
-            type="button"
-            onClick={activateEditProfile}
-            classNames={`${styles.editProfileCancelBtn} ${styles.editProfileButtons}`}
-            visible
-            title={btnTooltips.cancel}
-          >
-            {btnTitles.cancel}
-          </Button>
-        </div>
+        <ProfileEditFormActions
+          loading={loading}
+          pristine={pristine}
+          submitting={submitting}
+          errorMessage={errorMessage}
+          successMessage={successMessage}
+          activateEditProfile={activateEditProfile}
+        />
       </form>
     </div>
   );
@@ -55,8 +40,8 @@ ProfileEditFormLayout.propTypes = {
   submitting: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string,
   successMessage: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-  activateEditProfile: PropTypes.func.isRequired
+  activateEditProfile: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default reduxForm({

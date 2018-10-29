@@ -1,0 +1,67 @@
+@import 'variables/colors';
+@import 'variables/constants';
+@import 'variables/fontConfig';
+
+.loading-container {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  position: relative;
+
+  .text {
+    color: $page-blue-background-dark;
+    font-size: $text-medium;
+  }
+
+  .loading {
+    height: $loading-size-internal;
+    margin-bottom: 15px;
+    width: $loading-size-internal;
+
+    &:after {
+      animation: dual-ring 1.2s linear infinite;
+      border: 5px solid $white;
+      border-color: $page-blue-background-dark transparent $page-blue-background-dark transparent;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      height: $loading-size-internal;
+      width: $loading-size-internal;
+    }
+  }
+
+  &.external {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    .text {
+      color: $white;
+      font-size: $text-big;
+    }
+
+    .loading {
+      height: $loading-size-external;
+      width: $loading-size-external;
+
+      &:after {
+        border-color: $white transparent $white transparent;
+        height: $loading-size-external;
+        width: $loading-size-external;
+      }
+    }
+  }
+}
+
+@keyframes dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
