@@ -15,7 +15,6 @@ export const actionCreators = {
     service: profileService.get,
     payload: id,
     target: TARGET,
-    successSelector: response => response.data,
     failureSelector: response => response.data.error.message
   }),
   editProfile: values => ({
@@ -35,7 +34,6 @@ export const actionCreators = {
         throw new SubmissionError({ _error: response.data.error.message });
       })
     ],
-    successSelector: response => response.data,
     failureSelector: response => response.data.error.message
   })
 };
