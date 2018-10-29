@@ -6,26 +6,24 @@ import { actionCreators as profileActions } from '@redux/profile/actions';
 import ProfileEditForm from './components/ProfileEditForm';
 
 class ProfileEdit extends Component {
+  componentWillUnmount() {
+    this.props.clearMessages();
+  }
   render() {
-    const { activateEditProfile, submitProfileInfo, loading } = this.props;
-    return (
-      <ProfileEditForm
-        loading={loading}
-        onSubmit={submitProfileInfo}
-        activateEditProfile={activateEditProfile}
-      />
-    );
+    const { activateEditProfile, submitProfileInfo } = this.props;
+    return <ProfileEditForm onSubmit={submitProfileInfo} activateEditProfile={activateEditProfile} />;
   }
 }
 
 ProfileEdit.propTypes = {
   submitProfileInfo: PropTypes.func.isRequired,
   activateEditProfile: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+  clearMessages: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
-  submitProfileInfo: data => dispatch(profileActions.editProfile(data))
+  submitProfileInfo: data => dispatch(profileActions.editProfile(data)),
+  clearMessages: () => dispatch(profileActions.clearMessages())
 });
 
 export default connect(

@@ -12,7 +12,8 @@ class App extends Component {
   }
   render() {
     const { appLoading } = this.props;
-    const WithLoading = withLoading(Router);
+    const external = true;
+    const WithLoading = withLoading(Router, external);
     return (
       <WithLoading onSubmit={this.handleSubmit} loading={appLoading} msgLoading={msg.APP_LOADING_MESSAGE} />
     );

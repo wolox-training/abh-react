@@ -1,23 +1,25 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import styles from './styles.scss';
 
-const withLoading = Component => props => {
-  const { loading, msgLoading, msgError } = props;
-  const loadingComp = loading ? (
-    <div className={styles.loadingContainer}>
-      <div className={styles.loading} />
-      <div className={styles.loadingText}>{msgLoading}</div>
-    </div>
-  ) : msgError ? (
-    <Fragment>
-      <div className={styles.error}>{msgError}</div>
-      <Component {...props} />
-    </Fragment>
+const withLoading = (Component, external) => props => {
+  const { loading, msgLoading } = props;
+  const LoadingComp = loading ? (
+    external ? (
+      <div className={styles.loadingContainerExternal}>
+        <div className={styles.loadingExternal} />
+        <div className={styles.loadingTextExternal}>{msgLoading}</div>
+      </div>
+    ) : (
+      <div className={styles.loadingContainerInternal}>
+        <div className={styles.loadingInternal} />
+        <div className={styles.loadingTextInternal}>{msgLoading}</div>
+      </div>
+    )
   ) : (
     <Component {...props} />
   );
-  return loadingComp;
+  return LoadingComp;
 };
 
 export default withLoading;

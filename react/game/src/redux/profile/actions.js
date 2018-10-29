@@ -32,10 +32,14 @@ export const actionCreators = {
         });
       }),
       withPostFailure((dispatch, response) => {
+        dispatch({ type: actions.SET_SUCCESS_MESSAGE, target: TARGET_SUCCESS_MESSAGE, payload: null });
         throw new SubmissionError({ _error: response.data.error.message });
       })
     ],
     successSelector: response => response.data,
     failureSelector: response => response.data.error.message
-  })
+  }),
+  clearMessages: () => dispatch => {
+    dispatch({ type: actions.SET_SUCCESS_MESSAGE, target: TARGET_SUCCESS_MESSAGE, payload: null });
+  }
 };

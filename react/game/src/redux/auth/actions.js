@@ -11,9 +11,11 @@ const completedTypes = completeTypes(['INIT_APP_LOADING', 'LOGIN', 'LOGOUT'], ['
 
 export const actions = createTypes(completedTypes, '@@AUTH');
 
+const nullSession = { token: null, email: null, userId: null };
+
 export const actionCreators = {
   initApp: () => dispatch => {
-    const session = loadAuthState();
+    const session = loadAuthState() || nullSession;
     dispatch({ type: actions.LOGIN_SUCCESS, target: TARGET, payload: session });
     if (session) API.setHeader('Authorization', session.token);
     dispatch({ type: actions.INIT_APP_LOADING, target: TARGET_APP_LOADING });
@@ -46,7 +48,7 @@ export const actionCreators = {
         dispatch(push(routes.AUTH.LOGIN.path));
       })
     ],
-    successSelector: () => ({ token: null, email: null, userId: null }),
+    successSelector: () => nullSession,
     failureSelector: response => response.data.error.message
   })
 };

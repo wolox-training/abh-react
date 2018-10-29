@@ -1,27 +1,4 @@
-@import 'variables/colors';
-@import 'variables/constants';
-@import 'variables/fontConfig';
-
 .login-form {
   display: flex;
   flex-direction: column;
-}
-
-.message {
-  color: $font-gray;
-  font-size: $form-font-small-size;
-  margin: 15px 0 0;
-}
-
-.message a {
-  color: $page-blue-background-dark;
-  font-size: $form-font-small-size;
-}
-
-.error-message {
-  color: $error-red;
-  font-size: $form-font-small-size;
-  margin: 10px 0;
-  text-align: center;
-  text-decoration: underline;
 }

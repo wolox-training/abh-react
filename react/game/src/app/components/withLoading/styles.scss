@@ -2,7 +2,7 @@
 @import 'variables/constants';
 @import 'variables/fontConfig';
 
-.loading-container {
+.loading-container-external {
   align-items: center;
   align-self: center;
   display: flex;
@@ -14,21 +14,47 @@
   transform: translate(-50%, -50%);
 }
 
-.loading {
-  height: $loading-size;
-  width: $loading-size;
+.loading-container-internal {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  position: relative;
+}
 
+.loading-external {
+  height: $loading-size-external;
+  width: $loading-size-external;
   &:after {
     animation: dual-ring 1.2s linear infinite;
-    border: 5px solid #CEF;
+    border: 5px solid $white;
     border-color: $white transparent $white transparent;
     border-radius: 50%;
     content: '';
     display: block;
-    height: $loading-size;
-    width: $loading-size;
+    height: $loading-size-external;
+    width: $loading-size-external;
   }
 }
+
+.loading-internal {
+  height: $loading-size-internal;
+  width: $loading-size-internal;
+
+  &:after {
+    animation: dual-ring 1.2s linear infinite;
+    border: 5px solid $white;
+    border-color: $page-blue-background-dark transparent $page-blue-background-dark transparent;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: $loading-size-internal;
+    width: $loading-size-internal;
+  }
+}
+
 @keyframes dual-ring {
   0% {
     transform: rotate(0deg);
@@ -38,14 +64,14 @@
   }
 }
 
-.loading-text {
+.loading-text-external {
   color: $white;
   font-size: $text-big;
   margin-top: 15px;
 }
 
-
-.error-text {
-  color: $error-red;
-  font-size: $error-font-size-body;
+.loading-text-internal {
+  color: $page-blue-background-dark;
+  font-size: $text-medium;
+  margin-top: 15px;
 }
