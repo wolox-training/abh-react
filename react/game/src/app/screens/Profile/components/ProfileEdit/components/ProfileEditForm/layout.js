@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
 import formNames from '@constants/formNames';
-import msg from '@constants/messages';
 
 import { mapField } from './utils';
 import { formFields } from './constants';
@@ -24,7 +23,6 @@ function ProfileEditFormLayout({
         {formFields.map(mapField)}
         <ProfileEditFormActions
           loading={loading}
-          msgLoading={msg.profile.LOADING_PROFILE_EDIT}
           pristine={pristine}
           submitting={submitting}
           errorMessage={errorMessage}

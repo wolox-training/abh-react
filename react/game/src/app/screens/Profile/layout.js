@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import profileTypes from '@types/Profile';
-import msg from '@constants/messages';
 
 import ProfileInfo from './components/ProfileInfo';
 import ProfileEdit from './components/ProfileEdit';
@@ -14,7 +13,6 @@ function ProfileLayout({ activateEditProfile, editingProfile, profileInfo, loadi
         {!editingProfile ? (
           <ProfileInfo
             loading={loading}
-            msgLoading={msg.profile.LOADING_PROFILE_INFO}
             profileInfo={profileInfo}
             editingProfile={editingProfile}
             activateEditProfile={activateEditProfile}

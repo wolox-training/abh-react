@@ -7,6 +7,8 @@ import { history } from '@redux/store';
 import AuthRoute from '@components/AuthRoute';
 import Dashboard from '@components/Dashboard';
 import E404 from '@screens/Errors/E404';
+import msg from '@constants/messages';
+import withLoading from '@components/withLoading';
 
 function Router() {
   return (
@@ -24,4 +26,4 @@ function Router() {
   );
 }
 
-export default Router;
+export default withLoading(Router, { isContained: false, msgLoading: msg.APP_LOADING_MESSAGE });

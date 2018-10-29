@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import withLoading from '@components/withLoading';
 import formNames from '@constants/formNames';
 import Button from '@components/CustomFormFields/Button';
+import msg from '@constants/messages';
 
 import styles from './styles.scss';
 
@@ -44,4 +45,7 @@ ProfileEditFormActions.propTypes = {
   activateEditProfile: PropTypes.func.isRequired
 };
 
-export default withLoading(ProfileEditFormActions, false);
+export default withLoading(ProfileEditFormActions, {
+  isContained: true,
+  msgLoading: msg.profile.LOADING_PROFILE_EDIT
+});

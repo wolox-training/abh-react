@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form';
 import Input from '@components/CustomFormFields/Input';
 import { required, minLength, email } from '@validation/forms';
 import formNames from '@constants/formNames';
-import msg from '@constants/messages';
 
 import LoginActions from './components/LoginActions';
 import styles from './styles.scss';
@@ -35,7 +34,6 @@ function LoginFormLayout({ handleSubmit, pristine, submitting, errorMessage, loa
       <LoginActions
         errorMessage={errorMessage}
         loading={loading}
-        msgLoading={msg.login.LOADING_LOGIN}
         pristine={pristine}
         submitting={submitting}
       />

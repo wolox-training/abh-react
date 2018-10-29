@@ -4,6 +4,7 @@ import profileTypes from '@types/Profile';
 import Button from '@components/CustomFormFields/Button';
 import formNames from '@constants/formNames';
 import withLoading from '@components/withLoading';
+import msg from '@constants/messages';
 
 import styles from './styles.scss';
 
@@ -50,5 +51,4 @@ ProfileInfo.propTypes = {
   editingProfile: PropTypes.bool.isRequired
 };
 
-const external = false;
-export default withLoading(ProfileInfo, external);
+export default withLoading(ProfileInfo, { isContained: true, msgLoading: msg.profile.LOADING_PROFILE_INFO });

@@ -2,7 +2,7 @@
 @import 'variables/constants';
 @import 'variables/fontConfig';
 
-.loading-container-internal {
+.loading-container {
   align-items: center;
   align-self: center;
   display: flex;
@@ -10,42 +10,50 @@
   justify-content: center;
   margin: 10px;
   position: relative;
-}
 
-.loading-container-external {
-  @extend .loading-container-internal;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.loading-external {
-  height: $loading-size-external;
-  margin-bottom: 15px;
-  width: $loading-size-external;
-
-  &:after {
-    animation: dual-ring 1.2s linear infinite;
-    border: 5px solid $white;
-    border-color: $white transparent $white transparent;
-    border-radius: 50%;
-    content: '';
-    display: block;
-    height: $loading-size-external;
-    width: $loading-size-external;
+  .text {
+    color: $page-blue-background-dark;
+    font-size: $text-medium;
   }
-}
 
-.loading-internal {
-  @extend .loading-external;
-  height: $loading-size-internal;
-  width: $loading-size-internal;
-
-  &:after {
-    border-color: $page-blue-background-dark transparent $page-blue-background-dark transparent;
+  .loading {
     height: $loading-size-internal;
+    margin-bottom: 15px;
     width: $loading-size-internal;
+
+    &:after {
+      animation: dual-ring 1.2s linear infinite;
+      border: 5px solid $white;
+      border-color: $page-blue-background-dark transparent $page-blue-background-dark transparent;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      height: $loading-size-internal;
+      width: $loading-size-internal;
+    }
+  }
+
+  &.external {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    .text {
+      color: $white;
+      font-size: $text-big;
+    }
+
+    .loading {
+      height: $loading-size-external;
+      width: $loading-size-external;
+
+      &:after {
+        border-color: $white transparent $white transparent;
+        height: $loading-size-external;
+        width: $loading-size-external;
+      }
+    }
   }
 }
 
@@ -56,14 +64,4 @@
   100% {
     transform: rotate(360deg);
   }
-}
-
-.loading-text-external {
-  color: $white;
-  font-size: $text-big;
-}
-
-.loading-text-internal {
-  color: $page-blue-background-dark;
-  font-size: $text-medium;
 }

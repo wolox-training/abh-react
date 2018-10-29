@@ -5,11 +5,11 @@ import ROUTES from '@constants/routes';
 import Button from '@components/CustomFormFields/Button';
 import formNames from '@constants/formNames';
 import withLoading from '@components/withLoading';
+import msg from '@constants/messages';
 
 import styles from './styles.scss';
 
 const { btnTitles, btnTooltips } = formNames.LOGIN;
-const external = false;
 function LoginActions({ errorMessage, pristine, submitting }) {
   return (
     <Fragment>
@@ -33,4 +33,4 @@ LoginActions.propTypes = {
   submitting: PropTypes.bool.isRequired
 };
 
-export default withLoading(LoginActions, external);
+export default withLoading(LoginActions, { isContained: true, msgLoading: msg.login.LOADING_LOGIN });
