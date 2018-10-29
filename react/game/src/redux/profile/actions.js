@@ -3,7 +3,7 @@ import { service as profileService } from '@services/profileService';
 import { SubmissionError } from 'redux-form';
 import formNames from '@constants/formNames';
 
-import { TARGET, TARGET_SUCCESS_MESSAGE } from './constants';
+import targets from './constants';
 
 const completedTypes = completeTypes(['PROFILE_INFO', 'SET_SUCCESS_MESSAGE'], ['SET_SUCCESS_MESSAGE']);
 
@@ -14,30 +14,34 @@ export const actionCreators = {
     type: actions.PROFILE_INFO,
     service: profileService.get,
     payload: id,
-    target: TARGET,
+    target: targets.TARGET,
     failureSelector: response => response.data.error.message
   }),
   editProfile: values => ({
     type: actions.PROFILE_INFO,
     service: profileService.patch,
     payload: values,
-    target: TARGET,
+    target: targets.TARGET,
     injections: [
       withPostSuccess(dispatch => {
         dispatch({
           type: actions.SET_SUCCESS_MESSAGE,
-          target: TARGET_SUCCESS_MESSAGE,
+          target: targets.TARGET_SUCCESS_MESSAGE,
           payload: formNames.EDIT_PROFILE.messages.success
         });
       }),
       withPostFailure((dispatch, response) => {
-        dispatch({ type: actions.SET_SUCCESS_MESSAGE, target: TARGET_SUCCESS_MESSAGE, payload: null });
+        dispatch({
+          type: actions.SET_SUCCESS_MESSAGE,
+          target: targets.TARGET_SUCCESS_MESSAGE,
+          payload: null
+        });
         throw new SubmissionError({ _error: response.data.error.message });
       })
     ],
     failureSelector: response => response.data.error.message
   }),
   clearMessages: () => dispatch => {
-    dispatch({ type: actions.SET_SUCCESS_MESSAGE, target: TARGET_SUCCESS_MESSAGE, payload: null });
+    dispatch({ type: actions.SET_SUCCESS_MESSAGE, target: targets.TARGET_SUCCESS_MESSAGE, payload: null });
   }
 };

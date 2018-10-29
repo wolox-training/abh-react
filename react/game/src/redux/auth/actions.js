@@ -5,7 +5,7 @@ import { API } from '@config/api';
 import { push } from 'connected-react-router';
 import routes from '@constants/routes';
 
-import { TARGET_APP_LOADING, TARGET } from './constants';
+import targets from './constants';
 
 const completedTypes = completeTypes(['INIT_APP_LOADING', 'LOGIN', 'LOGOUT'], ['INIT_APP_LOADING']);
 
@@ -16,15 +16,15 @@ const nullSession = { token: null, email: null, userId: null };
 export const actionCreators = {
   initApp: () => dispatch => {
     const session = loadAuthState() || nullSession;
-    dispatch({ type: actions.LOGIN_SUCCESS, target: TARGET, payload: session });
+    dispatch({ type: actions.LOGIN_SUCCESS, target: targets.TARGET, payload: session });
     if (session) API.setHeader('Authorization', session.token);
-    dispatch({ type: actions.INIT_APP_LOADING, target: TARGET_APP_LOADING });
+    dispatch({ type: actions.INIT_APP_LOADING, target: targets.TARGET_APP_LOADING });
   },
   login: (email, password) => ({
     type: actions.LOGIN,
     service: authService.post,
     payload: { email, password },
-    target: TARGET,
+    target: targets.TARGET,
     injections: [
       withPostSuccess((dispatch, response) => {
         const { data } = response;
@@ -39,7 +39,7 @@ export const actionCreators = {
   logout: () => ({
     type: actions.LOGOUT,
     service: authService.postLogout,
-    target: TARGET,
+    target: targets.TARGET,
     injections: [
       withPostSuccess(dispatch => {
         deleteGameState();
